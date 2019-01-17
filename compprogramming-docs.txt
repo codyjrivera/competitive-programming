@@ -1,0 +1,2 @@
+https://stackoverflow.com/questions/2758080/how-to-sort-an-stl-vector
+https://stackoverflow.com/questions/875103/how-do-i-erase-an-element-from-stdvector-by-index
