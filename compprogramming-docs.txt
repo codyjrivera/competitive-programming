@@ -1,2 +1,7 @@
 https://stackoverflow.com/questions/2758080/how-to-sort-an-stl-vector
 https://stackoverflow.com/questions/875103/how-do-i-erase-an-element-from-stdvector-by-index
+http://www.cplusplus.com/reference/climits/
+https://en.cppreference.com/w/cpp/numeric/lcm
+https://en.wikipedia.org/wiki/Euclidean_algorithm
+https://stackoverflow.com/questions/3154454/what-is-the-most-efficient-way-to-calculate-the-least-common-multiple-of-two-int
+https://docs.python.org/dev/library/collections.html#collections.Counter
