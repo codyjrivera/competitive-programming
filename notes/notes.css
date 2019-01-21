@@ -148,6 +148,34 @@ article>p:last-child {
 	margin-bottom: 0;
 }
 
+table {
+	text-align: right;
+	border-collapse: collapse;
+	margin: 0.5em;
+}
+
+th {
+	font-weight: normal;
+	background-color: #eee;
+}
+
+th[rowspan] {
+	font-weight: bold;
+	text-align: center;
+}
+
+th, td {
+	padding: 0.2em;
+}
+
+td {
+	border: 1pt solid black;
+}
+
+.highlight {
+	background-color: #ff0;
+}
+
 @media print {
 	body {
 		background-color: white;
