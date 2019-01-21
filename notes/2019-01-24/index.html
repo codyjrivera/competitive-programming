@@ -83,7 +83,7 @@ int main() {
     return 0;
 }</pre>
 
-	<p><strong>This isn't good enough.</strong> Though the solution is correct (it always produces the correct answer, I think), it is not nearly efficient enough to process the maximum input. For the two sample cases, it completes in 2 ms on my system&mdash;pretty good, right?&mdash;but when given the <a href="pens.in">maximal input file</a> (50,000 pens each with 1,000,000,000 ml of ink), it segfaulted because <code>x</code> did not have enough bytes. After changing <code>x</code> to an <code>unsigned long long int</code> and adding some signal handling (see: <a href="pens-naive-modified.cpp">pens-naive-modified.cpp</a>), I estimated based on the <a href="pens.1h">state after one hour</a> that this algorithm would complete on my system in <strong>10 days, 13 hours, and 18 minutes</strong>.
+	<p><strong>This isn't good enough.</strong> Though the solution is correct (it always produces the correct answer, I think), it is not nearly efficient enough to process the maximum input. For the two sample cases, it completes in 2 ms on my system&mdash;pretty good, right?&mdash;but when given the <a href="pens.in">maximal input file</a> (50,000 pens each with 1,000,000,000 ml of ink; input file generated with <a href="pens.py">pens.py</a>), it segfaulted because <code>x</code> did not have enough bytes. After changing <code>x</code> to an <code>unsigned long long int</code> and adding some signal handling (see: <a href="pens-naive-modified.cpp">pens-naive-modified.cpp</a>), I estimated based on the <a href="pens.1h">state after one hour</a> that this algorithm would complete on my system in <strong>10 days, 13 hours, and 18 minutes</strong>.
 
 	<p>That is more than three seconds.
 
