@@ -22,7 +22,7 @@
         <li><a href="https://cses.fi/problemset/">CSES Problem Set</a> &ndash; Problems with rankings for top 5 fastest and shortest programs &ndash; great for practicing your optimization and/or code golf. The usual languages are supported. <a href="https://cses.fi/register">Register at CSES</a> and log in to submit.</li>
         <li><a href="https://cses.fi/boi/list/">BOI Contest Collection</a> &ndash; Practice past problems from the Baltic Olympiad in Informatics, including a virtual contest option. <a href="https://cses.fi/register" class="noprint">Register at CSES</a> and log in to view problems and submit solutions.</li>
         <li><a href="https://cses.fi/ceoi/list/">CEOI Contest Collection</a> &ndash; Practice past problems from the Central European Olympiad in Informatics, including a virtual contest option. <a href="https://cses.fi/register" class="noprint">Register at CSES</a> and log in to view problems and submit solutions.</li>
-        <li>The <a href="http://springcontest.cs.mercer.edu/">Mercer Spring Programming Contest</a> publishes their past solution sets. This is of particular interest to those of us competing there on <time datetime="2019-02-16">February 16</a>. We'll use the 2018 problems as practice at meetings in the coming weeks so don't do those!</li> 
+        <li>The <a href="http://springcontest.cs.mercer.edu/">Mercer Spring Programming Contest</a> publishes their past solution sets. This is of particular interest to those of us competing there on <time datetime="2019-02-16">February 16</a>. We'll use the 2018 problems as practice at meetings in the coming weeks so don't do those!</li>
         <li><a href="https://community.topcoder.com/tc?module=ProblemArchive">Topcoder Problem Archive</a> &ndash; Problems from past Topcoder SRMs and TCO finals. Appears to be read-only. Also check their <a href="https://www.topcoder.com/?s=Editorials">post-contest editorials</a> for information on how to solve the problems!</li>
         <li><a href="https://codechef.com/INOIPRAC">INOI Practice Contest</a> &ndash; Practice problems for the Indian National Olympiad in Informatics hosted at CodeChef.</li>
         <li><a href="https://codechef.com/ZCOPRAC">ZCO Practice Contest</a> &ndash; Practice problems for the Zonal Computing Olympiad hosted at CodeChef.</li>
@@ -37,17 +37,17 @@
         <li><time datetime="2019-02-16"><strong>Saturday, February 16</strong></time>: <a href="http://springcontest.cs.mercer.edu/" class="noprint">Mercer Spring Programming Contest</a> (Macon, GA, teams of 3) &ndash; <strong>three weeks away!</strong></li>
         <li><time datetime="2019-03-02T12:00:00.000-06:00"><strong>Saturday, March 2</strong>, noon &ndash; 5:00 pm</time>: <a href="http://naipc.uchicago.edu">North American Invitational Programming Contest</a> (Online, teams of 3)</li>
     </ul>
-    
+
     <h2>Problems for this week</h2>
     <ul>
         <li><strong>Easy</strong>: </li>
         <li><strong>Medium</strong>: </li>
         <li><strong>Hard</strong>: Codeforces Problem 774F (from VK Cup 2017) &ndash; <a href="https://codeforces.com/problemset/problem/774/F" class="noprint">Pens and Days of Week</a></li>
     </ul>
-    
+
     <h2>Pens and Days of Week</h2>
     <p>I spent a couple hours at last week's meeting going down an incorrect path for this problem. Hopefully we can figure it out this week.
-    
+
     <h3>Simplified problem description</h3>
     <p class="lnum">Provided is an array <code>a</code> of <code>n</code> integers.
     <br>Every day <code>x</code> (starting from day 0), <code>a[x % n] -= 1</code>, except when <code>x % 7 == 6</code>.
@@ -56,7 +56,7 @@
     <br>Input format: <code>n</code> on first line, then space-separated <code>a[i]</code> on second line.
     <br>Output format: The index of the solution plus 1 (since the problem uses a 1-indexed array of pens).
     <br>Time limit: 3 seconds; memory limit: 256 MB.
-    
+
     <h3>Na&iuml;ve solution</h3>
     <p>At first, this problem may appear easy. It is tempting to write something like the following (<a href="/solutions/pens-naive.cpp">pens-naive.cpp</a>):
     <pre>#include &lt;iostream&gt;
@@ -79,12 +79,12 @@ int main() {
             break;
         }
 		x++;
-    }           
+    }
     return 0;
 }</pre>
 
-	<p><strong>This isn't good enough.</strong> Though the solution is correct (it always produces the correct answer, I think), it is not nearly efficient enough to process the maximum input. When given the <a href="pens.in">maximal input file</a> (50,000 pens each with 1,000,000,000 ml of ink), it segfaulted because <code>x</code> did not have enough bytes, so I changed <code>x</code> to an <code>unsigned long long int</code>. When I gave <em>that</em> the maximal input file, it completed on my system in <strong>TIME</strong>.
-	
+	<p><strong>This isn't good enough.</strong> Though the solution is correct (it always produces the correct answer, I think), it is not nearly efficient enough to process the maximum input. When given the <a href="pens.in">maximal input file</a> (50,000 pens each with 1,000,000,000 ml of ink), it segfaulted because <code>x</code> did not have enough bytes. After changing <code>x</code> to an <code>unsigned long long int</code> and adding some signal handling (see: <a href="pens-naive-modified.cpp">pens-naive-modified.cpp</a>), I estimated based on the <a href="pens.1h">state after one hour</a> that this algorithm would complete on my system in <strong>TIME</strong>.
+
 	<p>That is more than three seconds.
 	
 	<h3>Analyzing the problem</h3>
@@ -142,35 +142,35 @@ int main() {
 			</table>
 		</div>
 	</div>
-	
+
 	<h3>The mistake I made last week</h3>
 	<p>At this point, I decided to try to find a way to determine the state of the system after all the values had been decremented such that the smallest value was equal to 1, then continue the daily loop from there. That is, I would start on day 3 in sample 1 and on day 14 in sample 2 (and on day several million in the maximal case).
-	
+
 	<p>While struggling to find an efficient algorithm to find this day and its corresponding values, I forgot part of the problem. I started thinking that not only was ink not used on Sundays, <em>but also that the pen pointer was not incremented on Sundays</em>. In hindsight, this is exactly equivalent to simply decrementing the ink and advancing the pen pointer each day, which would be very easy indeed to implement. By coincidence, my implementation of this incorrect algorithm (which I hadn't then realized could be simplified that much) had an off-by-one error that caused it to return the correct result for the first sample case.
-	
+
 	<p>I spent the next hour or so trying to find the error in my implementation causing the answer for the second test case to be incorrect before realizing it was the algorithm itself that was entirely incorrect.
-	
+
 	<p><strong>Tip: Always try to calculate the sample inputs on paper to make sure you understand the problem correctly!</strong> You may even stumble into an efficient solution in the process.
-	
+
 	<h3>Another insufficiently efficient solution</h3>
 	<p>After recollecting myself and going back to the correct tables above, I noticed that the pattern in the value in the table was obvious for each pen. One way to solve this problem is to determine the day on which each pen runs out of ink. This is much easier to see in the table for sample 2 above.
-	
+
 	<p>Take pen 4 in sample 2, for instance. It starts with 4 ml of ink. This is then decremented on day 5n + 3, except when <code>(5 * n + 3) % 7 == 6</code>. Considering the cause of the pattern in the highlighted cells in the table, it is easy to see the following algorithm for solving this problem:
-	
+
 	[code]
-	
+
 	<p>Guess what? <strong>This isn't good enough either.</strong> If it takes millions of days to deplete the first pen, there are still at least hundreds of thousands of calculations to be done on each pen. For the maximal input, this program runs in <strong>TIME</strong>on my system.
-	
+
 	<h3>Another idea</h3>
 	<p>What if we combined days into blocks such that each pen's ink is decreased by the same amount in each row of the table?
-	
+
 	[table]
-	
+
 	<p>This would make it very easy to determine how many rows of the table are needed before each pen runs out of ink. But how do we know which pen runs out of ink first if two pens now run out in the same row (block of days)?
-	
+
 	<p>The width of this table is lcm(7, n). A full LCM implementation is not needed&mdash;not only because one is now <a href="https://en.cppreference.com/w/cpp/numeric/lcm">included in CPP</a>, but because lcm of a prime and a variable integer can be simplified to:
-	
+
 	[code]
-	
+
 	<p>I have not explored this further.
 </article>
