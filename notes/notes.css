@@ -51,6 +51,29 @@
 	src: url("/notes/segoeuii.ttf") format("truetype");
 }
 
+@font-face {
+	font-family: "Ubuntu Mono";
+	src: url("/notes/UbuntuMono-R.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Ubuntu Mono";
+	font-style: italic;
+	src: url("/notes/UbuntuMono-RI.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Ubuntu Mono";
+	font-style: italic;
+	font-weight: bold;
+	src: url("/notes/UbuntuMono-BI.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Ubuntu Mono";
+	font-style: italic;
+	src: url("/notes/UbuntuMono-RI.ttf") format("truetype");
+}
 
 body {
 	background-color: whitesmoke;
@@ -176,16 +199,33 @@ td {
 	background-color: #ff0;
 }
 
+pre, code {
+	font-family: "Ubuntu Mono", monospace;
+}
+
+pre {
+	font-size: 10pt;
+	background-color: whitesmoke;
+	padding: 1em;
+	border: 1pt solid #ccc;
+	border-radius: 1em;
+	line-height: 1.2;
+}
+
+div>pre {
+
+}
+
 @media print {
 	body {
 		background-color: white;
 		margin: 0;
 	}
-	
+
 	header {
 		margin: 1em;
 	}
-	
+
 	article {
 		margin-top: 0;
 		border: none;
@@ -194,19 +234,19 @@ td {
 		font-size: 12pt;
 		margin-bottom: 0.5in;
 	}
-	
+
 	h1, h2, h3 {
 		font-family: "Linux Biolinum O", serif;
 	}
-	
+
 	a {
 		color: #006;
 	}
-	
+
 	a.noprint {
 		color: black;
 	}
-	
+
 	a[href]:not(.noprint):after {
 		content: attr(href);
 		font-style: italic;
@@ -219,10 +259,10 @@ td {
 		margin-right: 0.2em;
 		display: inline-block;
 		border-radius: 0.4em;
-		font-feature-settings: "tnum";		
+		font-feature-settings: "tnum";
 		font-weight: normal;
 	}
-	
+
 	a[data-href]:after {
 		content: attr(data-href) !important;
 	}

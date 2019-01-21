@@ -64,12 +64,12 @@
 
 int main() {
     int n;
-	std::vector&lt;int&gt; a;
+    std::vector&lt;int&gt; a;
     std::cin &gt;&gt; n;
     for(int i = 0; i &lt; n; i++) {
-		int val;
+        int val;
         std::cin &gt;&gt; val;
-		a.push_back(val);
+        a.push_back(val);
     }
     int x = 0;
     while(true) {
@@ -78,7 +78,7 @@ int main() {
             std::cout &lt;&lt; x % n + 1 &lt;&lt; std::endl;
             break;
         }
-		x++;
+        x++;
     }
     return 0;
 }</pre>
