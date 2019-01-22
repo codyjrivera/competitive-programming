@@ -69,7 +69,22 @@ int main() {
     return 0;
 }</pre>
 	<p><strong>C</strong>: <a href="/solutions/1097a.c">1097a.c</a> &ndash; this solution runs in TIME in Codeforces' environment.
-	<pre></pre>
+	<pre>#include &lt;stdio.h&gt;
+
+int main() {
+    char tableCard[2];
+    scanf("%2s", tableCard);
+    char card[2];
+    for(int i = 0; i &lt; 5; i++) {
+        scanf("%2s", card);
+        if(card[0] == tableCard[0] || card[1] == tableCard[1]) {
+            puts("YES");
+            return 0;
+        }
+    }
+    puts("NO");
+    return 0;
+}</pre>
 	<p><strong>Python 3</strong>: <a href="/solutions/1097a.py">1097a.py</a> &ndash; this solution runs in <strong class="lnum">109 ms</strong> in Codeforces' environment.
 	<pre>tableCard = input()
 cards = input().split(' ')
@@ -99,7 +114,7 @@ print("NO")</pre>
         }
     }</pre>
 	<h3>An object-oriented solution</h3>
-	<p>Conventionaly, better style (in C++) would be to write something like the following (<a href="/solutions/1097a-oo.cpp">1097a-oo.cpp</a>):
+	<p>Conventionally, better style (in C++) would be to write something like the following (<a href="/solutions/1097a-oo.cpp">1097a-oo.cpp</a>):
 	<pre></pre>
 	<p>But this is <strong>not good for competitive programming</strong>! It takes longer to write, there is more that can go wrong, and it takes longer to run and uses more memory! Remember, you aren't scored on style (in the usual competitions)&mdash;only on how long it takes you to submit a solution that runs within the time and memory limits.
 
