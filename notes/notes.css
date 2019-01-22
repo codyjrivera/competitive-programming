@@ -228,6 +228,10 @@ pre {
 	white-space: pre-wrap;
 }
 
+aside[data-appendix] {
+	display: none;
+}
+
 @media print {
 	body {
 		background-color: white;
@@ -250,7 +254,7 @@ pre {
 	}
 
 	h1, h2, h3 {
-		font-family: "Linux Biolinum O", serif;
+		font-family: "Linux Biolinum O", sans-serif;
 	}
 
 	a[href^='htt'], a[href^='htt']:visited {
@@ -306,5 +310,32 @@ pre {
 
 	code {
 		font-size: 11pt;
+	}
+
+	[data-appendix]:not(aside) * {
+		display: none !important;
+	}
+
+	[data-appendix]:not(aside):after {
+		content: 'Figure omitted: see appendix ' attr(data-appendix);
+		display: block;
+		font-style: italic;
+		text-align: left;
+		margin: 0;
+		padding: 0.5em;
+		border: 1pt solid black;
+		border-radius: 1em;
+	}
+
+	aside[data-appendix] {
+		display: block;
+	}
+
+	aside[data-appendix]:before {
+		content: "Appendix " attr(data-appendix);
+		font-size: 20pt;
+		font-family: "Linux Biolinum O", sans-serif;
+		display: block;
+		text-align: center;
 	}
 }
