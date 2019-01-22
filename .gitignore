@@ -2,3 +2,5 @@
 *.ttf
 *.otf
 a.out
+*.class
+in
