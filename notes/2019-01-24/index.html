@@ -45,8 +45,67 @@
         <li><strong>Hard</strong>: Codeforces Problem 774F (from VK Cup 2017) &ndash; <a href="https://codeforces.com/problemset/problem/774/F" class="noprint">Pens and Days of Week</a></li>
     </ul>
 
+	<h2>Gennady and a Card Game</h2>
+	<h3>Simplified problem description</h3>
+	<p>Six standard playing cards are given. Each card is two characters: the first is the rank in <code>{'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'}</code> and the second is the suit in <code>{'D', 'C', 'S', 'H'}</code>.
+	<p>If any of the last five cards have the same rank or suit as the first card, print <code>"YES"</code>. Otherwise, print <code>"NO"</code>.
+	<h3>Solutions</h3>
+	<p><strong>C++</strong>: <a href="/solutions/1097a.cpp">1097a.cpp</a> &ndash; this solution runs in <strong class="lnum">30 ms</strong> in Codeforces' environment.
+	<pre>#include <iostream>
+#include &lt;string&gt;
+
+int main() {
+    std::string tableCard;
+    std::cin &gt;&gt; tableCard;
+    for(int i = 0; i &lt; 5; i++) {
+        std::string card;
+        std::cin &gt;&gt; card;
+        if(card[0] == tableCard[0] || card[1] == tableCard[1]) {
+            std::cout &lt;&lt; "YES\n";
+            return 0;
+        }
+    }
+    std::cout &lt;&lt; "NO\n";
+    return 0;
+}</pre>
+	<p><strong>C</strong>: <a href="/solutions/1097a.c">1097a.c</a> &ndash; this solution runs in TIME in Codeforces' environment.
+	<pre></pre>
+	<p><strong>Python 3</strong>: <a href="/solutions/1097a.py">1097a.py</a> &ndash; this solution runs in <strong class="lnum">109 ms</strong> in Codeforces' environment.
+	<pre>tableCard = input()
+cards = input().split(' ')
+for card in cards:
+    if card[0] == tableCard[0] or card[1] == tableCard[1]:
+        print("YES")
+        exit()
+print("NO")</pre>
+	<p><strong>Java</strong>: <a href="/solutions/Cardgame.java">Cardgame.java</a> &ndash; this solution runs in <strong class="lnum">124 ms</strong> in Codeforces' environment.
+	<pre>import java.util.Scanner;
+
+    public class Cardgame {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            String tableCard = scanner.nextLine();
+            String[] myCards = scanner.nextLine().split(" ");
+            for(String card : myCards) {
+                if(card.charAt(0) == tableCard.charAt(0) || card.charAt(1) == tableCard.charAt(1)) {
+                    System.out.println("YES");
+                    scanner.close();
+                    System.exit(0);
+                }
+            }
+            System.out.println("NO");
+            scanner.close();
+            System.exit(0);
+        }
+    }</pre>
+	<h3>An object-oriented solution</h3>
+	<p>Conventionaly, better style (in C++) would be to write something like the following (<a href="/solutions/1097a-oo.cpp">1097a-oo.cpp</a>):
+	<pre></pre>
+	<p>But this is <strong>not good for competitive programming</strong>! It takes longer to write, there is more that can go wrong, and it takes longer to run and uses more memory! Remember, you aren't scored on style (in the usual competitions)&mdash;only on how long it takes you to submit a solution that runs within the time and memory limits.
+
+	<h2>Zuhair and Strings</h2>
+
     <h2>Pens and Days of Week</h2>
-    <p>I spent a couple hours at last week's meeting going down an incorrect path for this problem. Hopefully we can figure it out this week.
 
     <h3>Simplified problem description</h3>
     <p class="lnum">Provided is an array <code>a</code> of <code>n</code> integers.
