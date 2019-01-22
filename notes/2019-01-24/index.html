@@ -450,7 +450,7 @@ int main() {
 	<pre>int endBlocks[n] = {0}; // The block in which pen n runs out of ink.
 for(int i = 0; i < n; i++) {
     if(i % 7 == 6) endBlocks[n] = -1; // The pen never runs out of ink.
-    else endBlocks[n] = a[n] / 6 + !!(a[n] % 6); // This is a safe implementation of ceil(a[n] / 6)
+    else endBlocks[n] = a[n] / 6 + !!(a[n] % 6); // A safe implementation of ceil(a[n] / 6)
 }</pre>
 
  	<p>But how do we know which pen runs out of ink first if two pens run out in the same block? It's not guaranteed to be the pen with the lowest index that runs out during this block, since that pen could be used on Sunday before another pen runs out in the following week within the same block. Because blocks always end on Sunday, it is sufficient for our needs to simply skip to the beginning of the first block in which a pen runs out of ink, then run the na&iuml;ve algorithm (<a href="pens.cpp">pens.cpp</a>):
@@ -468,7 +468,7 @@ int main() {
         std::cin &gt;&gt; ink[i];
         int endBlock = -1; // -1 if this pen is never depleted
         if(n % 7) {
-            endBlock = ink[i] / 6 + !!(ink[i] % 6) - 1; // Last block before this pen runs out of ink
+            endBlock = ink[i] / 6 + !!(ink[i] % 6) - 1; // Block before this pen runs out of ink
         }
         else {
             if(i % 7 != 6) {
