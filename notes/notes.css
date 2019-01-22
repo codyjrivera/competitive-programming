@@ -287,10 +287,6 @@ pre {
 		background-color: whitesmoke;
 	}
 
-	table {
-		page-break-inside: avoid;
-	}
-
 	th {
 		background-color: #eee;
 	}
