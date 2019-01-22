@@ -236,15 +236,15 @@ pre {
 		font-family: "Linux Biolinum O", serif;
 	}
 
-	a {
+	a[href] {
 		color: #006;
 	}
 
-	a.noprint {
-		color: black;
+	a[href].noprint {
+		color: #000;
 	}
 
-	a[href]:not(.noprint):after {
+	a[href^='htt']:not(.noprint):after {
 		content: attr(href);
 		font-style: italic;
 		font-size: small;
