@@ -97,7 +97,7 @@ article {
 	font-size: 12pt;
 }
 
-time, table, .lnum {
+time, table, .lnum, code, pre {
 	font-feature-settings: "lnum", "tnum";
 }
 
