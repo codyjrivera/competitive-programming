@@ -76,14 +76,15 @@
 }
 
 body {
-	background-color: whitesmoke;
+	background-color: #111;
+	color: #bbb;
 }
 
 article {
-	background-color: white;
+	background-color: #222;
 	display: block;
 	max-width: 7.5in;
-	border: 1px solid black;
+	border: 1px solid #bbb;
 	border-radius: 1em;
 	padding: 0.5in;
 	margin-left: auto;
@@ -110,6 +111,7 @@ h1, h2, h3 {
 	font-family: "Linux Libertine O", serif;
 	text-align: center;
 	font-feature-settings: "titl";
+	color: #ccc;
 }
 
 h1 {
@@ -136,6 +138,18 @@ header>time {
 
 a:not(:active):not(:hover) {
 	text-decoration: none;
+}
+
+a[href] {
+	color: #6bf;
+}
+
+a[href]:visited {
+	color: #c9f;
+}
+
+a[href]:active {
+	color: #f96;
 }
 
 ul {
@@ -179,7 +193,7 @@ table {
 
 th {
 	font-weight: normal;
-	background-color: #eee;
+	background-color: #111;
 }
 
 th[rowspan] {
@@ -192,11 +206,12 @@ th, td {
 }
 
 td {
-	border: 1pt solid black;
+	border: 1pt solid #bbb;
 }
 
 .highlight {
-	background-color: #ff0;
+	background-color: #046;
+	color: #ccc;
 }
 
 pre, code {
@@ -205,9 +220,9 @@ pre, code {
 
 pre {
 	font-size: 10pt;
-	background-color: whitesmoke;
+	background-color: #023;
 	padding: 1em;
-	border: 1pt solid #ccc;
+	border: 1px solid #bbb;
 	border-radius: 1em;
 	line-height: 1.2;
 	white-space: pre-wrap;
@@ -217,6 +232,7 @@ pre {
 	body {
 		background-color: white;
 		margin: 0;
+		color: #000;
 	}
 
 	header {
@@ -236,7 +252,7 @@ pre {
 		font-family: "Linux Biolinum O", serif;
 	}
 
-	a[href^='htt'] {
+	a[href^='htt'], a[href^='htt']:visited {
 		color: #006;
 	}
 
@@ -262,5 +278,32 @@ pre {
 
 	a[data-href]:after {
 		content: attr(data-href) !important;
+	}
+
+	pre {
+		border: 1pt solid #ccc;
+		color: #000;
+		background-color: whitesmoke;
+	}
+
+	table {
+		page-break-inside: avoid;
+	}
+
+	th {
+		background-color: #eee;
+	}
+
+	td {
+		border: 1pt solid #000;
+	}
+
+	.highlight {
+		background-color: inherit;
+		color: #f00;
+	}
+
+	h1, h2, h3 {
+		color:#000;
 	}
 }
