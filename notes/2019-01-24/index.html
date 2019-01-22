@@ -151,7 +151,7 @@ int main() {
 
 	<h2>Zuhair and Strings</h2>
 	<h3>Using brute force</h3>
-	<p>The strings are guaranteed to match <code>^[a-z]+$</code>, so there are only 26 possible characters that could yield the largest <i>x</i>. Furthermore, the string can be a maximum of 20,000 characters in length. This means that there are at most 520,000 possible combinations of character and starting position for a substring. Perhaps simply checking the string like this (<a href="/solutions/1105b-brute.cpp">1105b-brute.cpp</a>) will be good enough:
+	<p>The strings are guaranteed to match <code>/^[a-z]+$/</code>, so there are only 26 possible characters that could yield the largest <i>x</i>. Furthermore, the string can be a maximum of 20,000 characters in length. This means that there are at most 520,000 possible combinations of character and starting position for a substring. Perhaps simply checking the string like this (<a href="/solutions/1105b-brute.cpp">1105b-brute.cpp</a>) will be good enough:
 	<pre>#include &lt;iostream&gt;
 #include &lt;string&gt;
 
@@ -234,7 +234,7 @@ int main() {
 
 	<h3>Analyzing the problem</h3>
 	<p>At this point, I made tables to show the state of the array in the na&iuml;ve solution after each day for each sample input:
-	<div style="position: relative; width: 100%; text-align: right;">
+	<div style="width: 100%; text-align: right;">
 		<div style="float: left; max-width: 50%;">
 			<table style="margin-top: 0; margin-left: 0;">
 				<thead>
@@ -335,15 +335,123 @@ int main() {
 	<p>How can we determine the day on which each pen runs out of ink mathematically rather than with brute force?
 
 	<h3>Another idea</h3>
-	<p>What if we combined days into blocks such that each pen's ink is decreased by the same amount in each row of the table?
+	<p>What if we combined days into blocks such that each pen's ink is decreased by the same amount in each row of the table? In order to see the benefit of this, we'll need to come up with a new example. The table below corresponds to the following input:
+	<pre>5<br>14 14 14 14 13</pre>
+	<div style="width: 100%; text-align: right;">
+		<div style="float: left; max-width: 50%;">
+			<table style="margin: 0;">
+				<thead>
+					<tr><th rowspan="2">Sample 2</th><th>Pen 1</th><th>Pen 2</th><th>Pen 3</th><th>Pen 4</th><th>Pen 5</th></tr>
+					<tr><th><code>a[0]</code></th><th><code>a[1]</code></th><th><code>a[2]</code></th><th><code>a[3]</code></th><th><code>a[4]</code></th></tr>
+				</thead>
+				<tbody>
+				    <tr><th>Start</th><td>14</td><td>14</td><td>14</td><td>14</td><td>13</td></tr>
+					<tr><th colspan="6" style="font-weight: bold; text-align: center; padding-top: 0.5em;">Days 0&ndash;34</th></tr>
+				    <tr><th>After day 0</th><td class="highlight">13</td><td>14</td><td>14</td><td>14</td><td>13</td></tr>
+				    <tr><th>After day 1</th><td>13</td><td class="highlight">13</td><td>14</td><td>14</td><td>13</td></tr>
+				    <tr><th>After day 2</th><td>13</td><td>13</td><td class="highlight">13</td><td>14</td><td>13</td></tr>
+				    <tr><th>After day 3</th><td>13</td><td>13</td><td>13</td><td class="highlight">13</td><td>13</td></tr>
+				    <tr><th>After day 4</th><td>13</td><td>13</td><td>13</td><td>13</td><td class="highlight">12</td></tr>
+				    <tr><th>After day 5</th><td class="highlight">12</td><td>13</td><td>13</td><td>13</td><td>12</td></tr>
+				    <tr><th><strong>After day 6</strong></th><td>12</td><td class="highlight">13</td><td>13</td><td>13</td><td>12</td></tr>
+				    <tr><th>After day 7</th><td>12</td><td>13</td><td class="highlight">12</td><td>13</td><td>12</td></tr>
+				    <tr><th>After day 8</th><td>12</td><td>13</td><td>12</td><td class="highlight">12</td><td>12</td></tr>
+				    <tr><th>After day 9</th><td>12</td><td>13</td><td>12</td><td>12</td><td class="highlight">11</td></tr>
+				    <tr><th>After day 10</th><td class="highlight">11</td><td>13</td><td>12</td><td>12</td><td>11</td></tr>
+				    <tr><th>After day 11</th><td>11</td><td class="highlight">12</td><td>12</td><td>12</td><td>11</td></tr>
+				    <tr><th>After day 12</th><td>11</td><td>12</td><td class="highlight">11</td><td>12</td><td>11</td></tr>
+				    <tr><th><strong>After day 13</strong></th><td>11</td><td>12</td><td>11</td><td class="highlight">12</td><td>11</td></tr>
+				    <tr><th>After day 14</th><td>11</td><td>12</td><td>11</td><td>12</td><td class="highlight">10</td></tr>
+				    <tr><th>After day 15</th><td class="highlight">10</td><td>12</td><td>11</td><td>12</td><td>10</td></tr>
+				    <tr><th>After day 16</th><td>10</td><td class="highlight">11</td><td>11</td><td>12</td><td>10</td></tr>
+				    <tr><th>After day 17</th><td>10</td><td>11</td><td class="highlight">10</td><td>12</td><td>10</td></tr>
+				    <tr><th>After day 18</th><td>10</td><td>11</td><td>10</td><td class="highlight">11</td><td>10</td></tr>
+				    <tr><th>After day 19</th><td>10</td><td>11</td><td>10</td><td>11</td><td class="highlight">9</td></tr>
+				    <tr><th><strong>After day 20</strong></th><td class="highlight">10</td><td>11</td><td>10</td><td>11</td><td>9</td></tr>
+				    <tr><th>After day 21</th><td>10</td><td class="highlight">10</td><td>10</td><td>11</td><td>9</td></tr>
+				    <tr><th>After day 22</th><td>10</td><td>10</td><td class="highlight">9</td><td>11</td><td>9</td></tr>
+				    <tr><th>After day 23</th><td>10</td><td>10</td><td>9</td><td class="highlight">10</td><td>9</td></tr>
+				    <tr><th>After day 24</th><td>10</td><td>10</td><td>9</td><td>10</td><td class="highlight">8</td></tr>
+				    <tr><th>After day 25</th><td class="highlight">9</td><td>10</td><td>9</td><td>10</td><td>8</td></tr>
+				    <tr><th>After day 26</th><td>9</td><td class="highlight">9</td><td>9</td><td>10</td><td>8</td></tr>
+				    <tr><th><strong>After day 27</strong></th><td>9</td><td>9</td><td class="highlight">9</td><td>10</td><td>8</td></tr>
+				    <tr><th>After day 28</th><td>9</td><td>9</td><td>9</td><td class="highlight">9</td><td>8</td></tr>
+				    <tr><th>After day 29</th><td>9</td><td>9</td><td>9</td><td>9</td><td class="highlight">7</td></tr>
+				    <tr><th>After day 30</th><td class="highlight">8</td><td>9</td><td>9</td><td>9</td><td>7</td></tr>
+				    <tr><th>After day 31</th><td>8</td><td class="highlight">8</td><td>9</td><td>9</td><td>7</td></tr>
+				    <tr><th>After day 32</th><td>8</td><td>8</td><td class="highlight">8</td><td>9</td><td>7</td></tr>
+				    <tr><th>After day 33</th><td>8</td><td>8</td><td>8</td><td class="highlight">8</td><td>7</td></tr>
+				    <tr><th><strong>After day 34</strong></th><td>8</td><td>8</td><td>8</td><td>8</td><td class="highlight">7</td></tr>
+					<tr><th colspan="6" style="font-weight: bold; font-style: italic; text-align: center; padding-top: 0.5em;">Continued on right</th></tr>
+				</tbody>
+			</table>
+			<p style="font-style: italic; text-align: left;">This could be displayed as a very wide table, each row consisting of one block of days, but it wouldn't fit on this page.
+		</div>
+		<div style="display: inline-block; max-width: 50%;">
+			<table style="margin: 0;">
+				<thead>
+					<tr><th rowspan="2">Sample 2<br>(continued)</th><th>Pen 1</th><th>Pen 2</th><th>Pen 3</th><th>Pen 4</th><th>Pen 5</th></tr>
+					<tr><th><code>a[0]</code></th><th><code>a[1]</code></th><th><code>a[2]</code></th><th><code>a[3]</code></th><th><code>a[4]</code></th></tr>
+				</thead>
+				<tbody>
+				    <tr><th>After day 34</th><td>8</td><td>8</td><td>8</td><td>8</td><td>7</td></tr>
+					<tr><th colspan="6" style="font-weight: bold; text-align: center; padding-top: 0.5em;">Days 35&ndash;69</th></tr>
+				    <tr><th>After day 35</th><td class="highlight">7</td><td>8</td><td>8</td><td>8</td><td>7</td></tr>
+				    <tr><th>After day 36</th><td>7</td><td class="highlight">7</td><td>8</td><td>8</td><td>7</td></tr>
+				    <tr><th>After day 37</th><td>7</td><td>7</td><td class="highlight">7</td><td>8</td><td>7</td></tr>
+				    <tr><th>After day 38</th><td>7</td><td>7</td><td>7</td><td class="highlight">7</td><td>7</td></tr>
+				    <tr><th>After day 39</th><td>7</td><td>7</td><td>7</td><td>7</td><td class="highlight">6</td></tr>
+				    <tr><th>After day 40</th><td class="highlight">6</td><td>7</td><td>7</td><td>7</td><td>6</td></tr>
+				    <tr><th><strong>After day 41</strong></th><td>6</td><td class="highlight">7</td><td>7</td><td>7</td><td>6</td></tr>
+				    <tr><th>After day 42</th><td>6</td><td>7</td><td class="highlight">6</td><td>7</td><td>6</td></tr>
+				    <tr><th>After day 43</th><td>6</td><td>7</td><td>6</td><td class="highlight">6</td><td>6</td></tr>
+				    <tr><th>After day 44</th><td>6</td><td>7</td><td>6</td><td>6</td><td class="highlight">5</td></tr>
+				    <tr><th>After day 45</th><td class="highlight">5</td><td>7</td><td>6</td><td>6</td><td>5</td></tr>
+				    <tr><th>After day 46</th><td>5</td><td class="highlight">6</td><td>6</td><td>6</td><td>5</td></tr>
+				    <tr><th>After day 47</th><td>5</td><td>6</td><td class="highlight">5</td><td>6</td><td>5</td></tr>
+				    <tr><th><strong>After day 48</strong></th><td>5</td><td>6</td><td>5</td><td class="highlight">6</td><td>5</td></tr>
+				    <tr><th>After day 49</th><td>5</td><td>6</td><td>5</td><td>6</td><td class="highlight">4</td></tr>
+				    <tr><th>After day 50</th><td class="highlight">4</td><td>6</td><td>5</td><td>6</td><td>4</td></tr>
+				    <tr><th>After day 51</th><td>4</td><td class="highlight">5</td><td>5</td><td>6</td><td>4</td></tr>
+				    <tr><th>After day 52</th><td>4</td><td>5</td><td class="highlight">4</td><td>6</td><td>4</td></tr>
+				    <tr><th>After day 53</th><td>4</td><td>5</td><td>4</td><td class="highlight">5</td><td>4</td></tr>
+				    <tr><th>After day 54</th><td>4</td><td>5</td><td>4</td><td>5</td><td class="highlight">3</td></tr>
+				    <tr><th><strong>After day 55</strong></th><td class="highlight">4</td><td>5</td><td>4</td><td>5</td><td>3</td></tr>
+				    <tr><th>After day 56</th><td>4</td><td class="highlight">4</td><td>4</td><td>5</td><td>3</td></tr>
+				    <tr><th>After day 57</th><td>4</td><td>4</td><td class="highlight">3</td><td>5</td><td>3</td></tr>
+				    <tr><th>After day 58</th><td>4</td><td>4</td><td>3</td><td class="highlight">4</td><td>3</td></tr>
+				    <tr><th>After day 59</th><td>4</td><td>4</td><td>3</td><td>4</td><td class="highlight">2</td></tr>
+				    <tr><th>After day 60</th><td class="highlight">3</td><td>4</td><td>3</td><td>4</td><td>2</td></tr>
+				    <tr><th>After day 61</th><td>3</td><td class="highlight">3</td><td>3</td><td>4</td><td>2</td></tr>
+				    <tr><th><strong>After day 62</strong></th><td>3</td><td>3</td><td class="highlight">3</td><td>4</td><td>2</td></tr>
+				    <tr><th>After day 63</th><td>3</td><td>3</td><td>3</td><td class="highlight">3</td><td>2</td></tr>
+				    <tr><th>After day 64</th><td>3</td><td>3</td><td>3</td><td>3</td><td class="highlight">1</td></tr>
+				    <tr><th>After day 65</th><td class="highlight">2</td><td>3</td><td>3</td><td>3</td><td>1</td></tr>
+				    <tr><th>After day 66</th><td>2</td><td class="highlight">2</td><td>3</td><td>3</td><td>1</td></tr>
+				    <tr><th>After day 67</th><td>2</td><td>2</td><td class="highlight">2</td><td>3</td><td>1</td></tr>
+				    <tr><th>After day 68</th><td>2</td><td>2</td><td>2</td><td class="highlight">2</td><td>1</td></tr>
+				    <tr><th><strong>After day 69</strong></th><td>2</td><td>2</td><td>2</td><td>2</td><td class="highlight">1</td></tr>
+					<tr><th colspan="6" style="font-weight: bold; text-align: center; padding-top: 0.5em;">Days 70&ndash;104</th></tr>
+				    <tr><th>After day 70</th><td class="highlight">1</td><td>2</td><td>2</td><td>2</td><td>1</td></tr>
+				    <tr><th>After day 71</th><td>1</td><td class="highlight">1</td><td>2</td><td>2</td><td>1</td></tr>
+				    <tr><th>After day 72</th><td>1</td><td>1</td><td class="highlight">1</td><td>2</td><td>1</td></tr>
+				    <tr><th>After day 73</th><td>1</td><td>1</td><td>1</td><td class="highlight">1</td><td>1</td></tr>
+				    <tr><th>After day 74</th><td>1</td><td>1</td><td>1</td><td>1</td><td class="highlight">0</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
-	[table]
+	<p>In this example, after each block of 35 days, each pen's ink level is decreased by 6. Why?
 
-	<p>This would make it very easy to determine how many rows of the table are needed before each pen runs out of ink. But how do we know which pen runs out of ink first if two pens now run out in the same row (block of days)?
 
-	<p>The width of this table is lcm(7, n). A full LCM implementation is not needed&mdash;not only because one is <a href="https://en.cppreference.com/w/cpp/numeric/lcm" class="lnum">included in C++17</a>, but because lcm of a prime (7) and a variable integer can be simplified to:
+ 	<p>But how do we know which pen runs out of ink first if two pens now run out in the same block?
+
+	<p>The number of entries in each block is lcm(7, n). A full LCM implementation is not needed&mdash;not only because one is <a href="https://en.cppreference.com/w/cpp/numeric/lcm" class="lnum">included in C++17</a>, but because lcm of a prime (7) and a variable integer can be simplified to:
 
 <pre>int lcm7(int x) {
     return x % 7 ? x * 7 : x;
 }</pre>
+
+	<p>This means the maximum size of a block is 350,000
 </article>
