@@ -1,13 +1,24 @@
 #include <iostream>
-#include <string>
+
+class Card {
+public:
+	bool operator==(const Card& c) {
+		return rank == c.rank || suit == c.suit;
+	}
+	friend std::istream& operator>>(std::istream& in, Card& c) {
+		in >> c.rank >> c.suit;
+	}
+private:
+	char rank, suit;
+};
 
 int main() {
-	std::string tableCard;
+	Card tableCard;
 	std::cin >> tableCard;
 	for(int i = 0; i < 5; i++) {
-		std::string card;
+		Card card;
 		std::cin >> card;
-		if(card[0] == tableCard[0] || card[1] == tableCard[1]) {
+		if(card == tableCard) {
 			std::cout << "YES\n";
 			return 0;
 		}

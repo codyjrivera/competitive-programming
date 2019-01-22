@@ -50,7 +50,7 @@
 	<p>Six standard playing cards are given. Each card is two characters: the first is the rank in <code>{'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'}</code> and the second is the suit in <code>{'D', 'C', 'S', 'H'}</code>.
 	<p>If any of the last five cards have the same rank or suit as the first card, print <code>"YES"</code>. Otherwise, print <code>"NO"</code>.
 	<h3>Solutions</h3>
-	<p><strong>C++</strong>: <a href="/solutions/1097a.cpp">1097a.cpp</a> &ndash; this solution runs in <strong class="lnum">30 ms</strong> in Codeforces' environment.
+	<p><strong>C++</strong>: <a href="/solutions/1097a.cpp">1097a.cpp</a> &ndash; this solution runs in <strong class="lnum">0.28 ms</strong> on my system and <span class="lnum">30 ms</span> (which seems to be the minimum with overhead) in Codeforces' environment.
 	<pre>#include <iostream>
 #include &lt;string&gt;
 
@@ -68,7 +68,7 @@ int main() {
     std::cout &lt;&lt; "NO\n";
     return 0;
 }</pre>
-	<p><strong>C</strong>: <a href="/solutions/1097a.c">1097a.c</a> &ndash; this solution runs in TIME in Codeforces' environment.
+	<p><strong>C</strong>: <a href="/solutions/1097a.c">1097a.c</a> &ndash; this solution runs in <span class="lnum">31 ms</span> in Codeforces' environment.
 	<pre>#include &lt;stdio.h&gt;
 
 int main() {
@@ -114,9 +114,37 @@ print("NO")</pre>
         }
     }</pre>
 	<h3>An object-oriented solution</h3>
-	<p>Conventionally, better style (in C++) would be to write something like the following (<a href="/solutions/1097a-oo.cpp">1097a-oo.cpp</a>):
-	<pre></pre>
-	<p>But this is <strong>not good for competitive programming</strong>! It takes longer to write, there is more that can go wrong, and it takes longer to run and uses more memory! Remember, you aren't scored on style (in the usual competitions)&mdash;only on how long it takes you to submit a solution that runs within the time and memory limits.
+	<p>Conventionally, better style would be to write something like the following (<a href="/solutions/1097a-oo.cpp">1097a-oo.cpp</a>):
+	<pre>#include &lt;iostream&gt;
+
+    class Card {
+    public:
+        bool operator==(const Card&amp; c) {
+            return rank == c.rank || suit == c.suit;
+        }
+        friend std::istream&amp; operator&gt;&gt;(std::istream&amp; in, Card&amp; c) {
+            in &gt;&gt; c.rank &gt;&gt; c.suit;
+        }
+    private:
+        char rank, suit;
+    };
+
+    int main() {
+        Card tableCard;
+        std::cin &gt;&gt; tableCard;
+        for(int i = 0; i &lt; 5; i++) {
+            Card card;
+            std::cin &gt;&gt; card;
+            if(card == tableCard) {
+                std::cout &lt;&lt; "YES\n";
+                return 0;
+            }
+        }
+        std::cout &lt;&lt; "NO\n";amp;
+        return 0;
+    }
+</pre>
+	<p>But this is <strong>not good for competitive programming</strong>! It takes longer to write, there is more that can go wrong, and it takes about 28% longer to run (<span class="lnum">0.36 ms</span> on my system)! Remember, you aren't scored on style&mdash;only on how long it takes you to submit a solution that runs within the time and memory limits.
 
 	<h2>Zuhair and Strings</h2>
 
