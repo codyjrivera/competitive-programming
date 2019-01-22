@@ -83,7 +83,7 @@ int main() {
     return 0;
 }</pre>
 
-	<p><strong>This isn't good enough.</strong> Though the solution is correct (it always produces the correct answer, I think), it is not nearly efficient enough to process the maximum input. For the two sample cases, it completes in 2 ms on my system&mdash;pretty good, right?&mdash;but when given the <a href="pens.in">maximal input file</a> (50,000 pens each with 1,000,000,000 ml of ink; input file generated with <a href="pens.py">pens.py</a>), it segfaulted because <code>x</code> did not have enough bytes. After changing <code>x</code> to an <code>unsigned long long int</code> and adding some signal handling (see: <a href="pens-naive-modified.cpp">pens-naive-modified.cpp</a>), I estimated based on the <a href="pens.1h">state after one hour</a> that this algorithm would complete on my system in <strong>10 days, 13 hours, and 18 minutes</strong>.
+	<p><strong>This isn't good enough.</strong> Though the solution is correct (it always produces the correct answer, I think), it is not nearly efficient enough to process the maximum input. For the two sample cases, it completes in 2 ms on my system&mdash;pretty good, right?&mdash;but when given the <a href="pens.in">maximal input file</a> (50,000 pens each with 1,000,000,000 ml of ink; input file generated with <a href="pens.py">pens.py</a>), it segfaulted because <code>x</code> did not have enough bytes. After changing <code>x</code> to an <code>unsigned long long int</code> and adding some signal handling (see: <a href="pens-naive-modified.cpp">pens-naive-modified.cpp</a>), I estimated based on the <a href="pens.1h">state after one hour</a> that this algorithm would complete on my system in <strong class="lnum">10 days, 13 hours, and 18 minutes</strong>.
 
 	<p>That is more than three seconds.
 
@@ -183,7 +183,7 @@ int main() {
     return 0;
 }</pre>
 
-	<p>Guess what? <strong>This isn't good enough either.</strong> If it is billions of days before a pen runs out of ink, there are still millions of calculations to be done on each pen. I again <a href="pens-vertical-modified.cpp">modified this program</a> to report the <a href="pens-vert.1h">state after one hour</a> and used this data to estimate that this program would complete in <strong>22 hours and 15 minutes</strong> on my system&mdash;much faster than the first algorithm, but still more than 3 seconds.
+	<p>Guess what? <strong>This isn't good enough either.</strong> If it is billions of days before a pen runs out of ink, there are still millions of calculations to be done on each pen. I again <a href="pens-vertical-modified.cpp">modified this program</a> to report the <a href="pens-vert.1h">state after one hour</a> and used this data to estimate that this program would complete in <strong class="lnum">22 hours and 15 minutes</strong> on my system&mdash;much faster than the first algorithm, but still more than 3 seconds.
 
 	<h3>Optimizing the above algorithm</h3>
 	<p>This algorithm certainly <em>feels</em> nicer than the first one (to me, anyway)&mdash;the calculations it's doing are much more straightforward, but there are still too many of them.
