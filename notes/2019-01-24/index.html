@@ -442,16 +442,88 @@ int main() {
 		</div>
 	</div>
 
-	<p>In this example, after each block of 35 days, each pen's ink level is decreased by 6. Why?
+	<p>In this example, after each block of 35 days, each pen's ink level is decreased by 6. Why? Because the width of the block is <code>7 * n</code>, so each day of the week except Sunday sees each pen decremented once during the block. <strong>The result will always be 6 if <code>n % 7 != 0</code>.</strong>
 
+	<p>The other case is of course when <code>n % 7 == 0</code>. In this case, the pattern becomes much simpler: some pens (those with indices <code>i % 7 == 6</code>) are <em>never</em> decremented, and the others are decremented once per block.
 
- 	<p>But how do we know which pen runs out of ink first if two pens now run out in the same block?
-
-	<p>The number of entries in each block is lcm(7, n). A full LCM implementation is not needed&mdash;not only because one is <a href="https://en.cppreference.com/w/cpp/numeric/lcm" class="lnum">included in C++17</a>, but because lcm of a prime (7) and a variable integer can be simplified to:
-
-<pre>int lcm7(int x) {
-    return x % 7 ? x * 7 : x;
+	<p>The length of these blocks (lcm(7, <i>n</i>) days) turns out to be irrelevant&mdash;what matters is now how many <em>blocks</em>, not how many <em>days</em>, it takes for each pen to run out of ink. This calculation is simple!
+	<pre>int endBlocks[n] = {0}; // The block in which pen n runs out of ink.
+for(int i = 0; i < n; i++) {
+    if(i % 7 == 6) endBlocks[n] = -1; // The pen never runs out of ink.
+    else endBlocks[n] = a[n] / 6 + !!(a[n] % 6); // This is a safe implementation of ceil(a[n] / 6)
 }</pre>
 
-	<p>This means the maximum size of a block is 350,000
+ 	<p>But how do we know which pen runs out of ink first if two pens run out in the same block? It's not guaranteed to be the pen with the lowest index that runs out during this block, since that pen could be used on Sunday before another pen runs out in the following week within the same block. Because blocks always end on Sunday, it is sufficient for our needs to simply skip to the beginning of the first block in which a pen runs out of ink, then run the na&iuml;ve algorithm (<a href="pens.cpp">pens.cpp</a>):
+
+	<pre>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;climits&gt;
+
+int main() {
+    int n;
+    std::cin &gt;&gt; n;
+    int ink[n];
+    int minBlock = INT_MAX;
+    for(int i = 0; i &lt; n; i++) {
+        std::cin &gt;&gt; ink[i];
+        int endBlock = -1; // -1 if this pen is never depleted
+        if(n % 7) {
+            endBlock = ink[i] / 6 + !!(ink[i] % 6) - 1; // Last block before this pen runs out of ink
+        }
+        else {
+            if(i % 7 != 6) {
+                endBlock = ink[i] - 1;
+            }
+        }
+        if(endBlock != -1 &amp;&amp; endBlock &lt; minBlock) {
+            minBlock = endBlock;
+        }
+    }
+
+    // Determine the state at the end of the minBlock.
+    for(int i = 0; i &lt; n; i++) {
+        if(n % 7) {
+            ink[i] -= minBlock * 6;
+        }
+        else {
+            if(i % 7 != 6) {
+                ink[i] -= minBlock;
+            }
+        }
+    }
+
+    // Calculate from the beginning of the minBlock.
+    int minDay = INT_MAX;
+    int minPen = 0;
+    for(int i = 0; i &lt; n; i++) {
+        int a = ink[i];
+        int day = i;
+        for(;;) {
+            if(day % 7 == 6) {
+                day += n;
+                if(day % 7 == 6) {
+                    break; // pen is never used
+                }
+            }
+            a--;
+            if(day &gt;= minDay) {
+                break; // pen is not the first to run out of ink
+            }
+            if(!a) {
+                minDay = day;
+                minPen = i;
+                break; // pen ran out of ink
+            }
+            day += n;
+        }
+    }
+    std::cout &lt;&lt; minPen + 1 &lt;&lt; '\n';
+    return 0;
+}</pre>
+
+	<p>This solution runs in <strong class="lnum">27 ms</strong> on my machine and <span class="lnum">124 ms</span> in Codeforces' environment.
+
+	<p>It would also be acceptable to use the first na&iuml;ve algorithm for the final stage (<a href="/solutions/pens-using-naive.cpp">pens-using-naive.cpp</a>). This solution takes almost exactly the same amount of time since there is very little to be done in this final loop.
+
+	<p>Of course, we could also find a more efficient algorithm to determine which pen runs out first in the final block. But we do not need to.
 </article>
