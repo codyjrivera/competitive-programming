@@ -40,8 +40,8 @@
 
     <h2>Problems for this week</h2>
     <ul>
-        <li><strong>Easy</strong>: </li>
-        <li><strong>Medium</strong>: </li>
+        <li><strong>Easy</strong>: Codeforces Problem 1097A (from Hello 2019) &ndash; <a href="https://codeforces.com/problemset/problem/1097/A" class="noprint">Gennady and a Card Game</a></li>
+        <li><strong>Medium</strong>: Codeforces Problem 1105B (from Round 533) &ndash; <a href="https://codeforces.com/problemset/problem/1105/B" class="noprint">Zuhair and Strings</a></li>
         <li><strong>Hard</strong>: Codeforces Problem 774F (from VK Cup 2017) &ndash; <a href="https://codeforces.com/problemset/problem/774/F" class="noprint">Pens and Days of Week</a></li>
     </ul>
 
@@ -143,17 +143,9 @@ int main() {
 		</div>
 	</div>
 
-	<h3>The mistake I made last week</h3>
-	<p>At this point, I decided to try to find a way to determine the state of the system after all the values had been decremented such that the smallest value was equal to 1, then continue the daily loop from there. That is, I would start on day 3 in sample 1 and on day 14 in sample 2 (and on day several billion in the maximal case).
+	<p><strong>Tip: Always try to calculate the sample inputs on paper to make sure you understand the problem correctly!</strong> You may even stumble into an efficient solution in the process. I spent some time at last week's meeting trying to figure out why my program wasn't working before realizing my algorithm was based on an incorrect interpretation of the problem statement.
 
-	<p>While struggling to find an efficient algorithm to find this day and its corresponding values, I forgot part of the problem. I started thinking that not only was ink not used on Sundays, <em>but also that the pen pointer was not incremented on Sundays</em>. In hindsight, this is exactly equivalent to simply decrementing the ink and advancing the pen pointer each day, which would be very easy indeed to implement. By coincidence, my implementation of this incorrect algorithm (which I hadn't then realized could be simplified that much) had an off-by-one error that caused it to return the correct result for the first sample case.
-
-	<p>I spent the next hour or so trying to find the error in my implementation causing the answer for the second test case to be incorrect before realizing it was the algorithm itself that was entirely incorrect.
-
-	<p><strong>Tip: Always try to calculate the sample inputs on paper to make sure you understand the problem correctly!</strong> You may even stumble into an efficient solution in the process.
-
-	<h3>Another insufficiently efficient solution</h3>
-	<p>After recollecting myself and going back to the correct tables above, I noticed that the pattern in the value in the table was obvious for each pen, rather than each day. Take pen 4 in sample 2, for instance. It starts with 4 ml of ink. This is then decremented on day 5<i>n</i> + 3 (n ∈ <b>Z</b>), except when <code>day % 7 == 6</code>. The following algorithm (<a href="/solutions/pens-vertical.cpp">pens-vertical.cpp</a>) naturally arises from this observation:
+	<p>After completing the above tables, I noticed that the pattern in the ink values was more obvious for each pen than for each day. Take pen 4 in sample 2, for instance. It starts with 4 ml of ink. This is then decremented on day 5<i>n</i> + 3 (n ∈ <b>Z</b>), except when <code>day % 7 == 6</code>. The following algorithm (<a href="/solutions/pens-vertical.cpp">pens-vertical.cpp</a>) naturally arises from this observation:
 
 <pre>#include &lt;iostream&gt;
 #include &lt;climits&gt;
@@ -191,8 +183,7 @@ int main() {
     return 0;
 }</pre>
 
-	<p>Guess what? <strong>This isn't good enough either.</strong> If it is billions of days before a pen runs out of ink, there are still millions of calculations to be done on each pen. I again <a href="pens-vertical-modified.cpp">modified this program</a> to report the <a href="pens-vert.1h">state after one hour</a> and used this data to estimate that this program would complete in <strong>TIME</strong>on my system.
-	<p>Really, this algorithm is only marginally better than the first algorithm; the only calculations that are skipped by this algorithm are those for days after the first pen runs out of ink&mdash;and then only if the first pen given is the first to run out of ink.
+	<p>Guess what? <strong>This isn't good enough either.</strong> If it is billions of days before a pen runs out of ink, there are still millions of calculations to be done on each pen. I again <a href="pens-vertical-modified.cpp">modified this program</a> to report the <a href="pens-vert.1h">state after one hour</a> and used this data to estimate that this program would complete in <strong>22 hours and 15 minutes</strong> on my system&mdash;much faster than the first algorithm, but still more than 3 seconds.
 
 	<h3>Optimizing the above algorithm</h3>
 	<p>This algorithm certainly <em>feels</em> nicer than the first one (to me, anyway)&mdash;the calculations it's doing are much more straightforward, but there are still too many of them.
@@ -205,7 +196,9 @@ int main() {
 
 	<p>This would make it very easy to determine how many rows of the table are needed before each pen runs out of ink. But how do we know which pen runs out of ink first if two pens now run out in the same row (block of days)?
 
-	<p>The width of this table is lcm(7, n). A full LCM implementation is not needed&mdash;not only because one is now <a href="https://en.cppreference.com/w/cpp/numeric/lcm">included in CPP</a>, but because lcm of a prime and a variable integer can be simplified to:
+	<p>The width of this table is lcm(7, n). A full LCM implementation is not needed&mdash;not only because one is <a href="https://en.cppreference.com/w/cpp/numeric/lcm" class="lnum">included in C++17</a>, but because lcm of a prime (7) and a variable integer can be simplified to:
 
-	[code]
+<pre>int lcm7(int x) {
+    return x % 7 ? x * 7 : x;
+}</pre>
 </article>
