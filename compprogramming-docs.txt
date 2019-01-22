@@ -6,3 +6,4 @@ https://en.wikipedia.org/wiki/Euclidean_algorithm
 https://stackoverflow.com/questions/3154454/what-is-the-most-efficient-way-to-calculate-the-least-common-multiple-of-two-int
 https://docs.python.org/dev/library/collections.html#collections.Counter
 https://forgetcode.com/c/91-getchar-read-a-character-from-stdin
+https://stackoverflow.com/questions/2477850/how-to-use-string-substr-function
