@@ -236,11 +236,11 @@ pre {
 		font-family: "Linux Biolinum O", serif;
 	}
 
-	a[href] {
+	a[href^='htt'] {
 		color: #006;
 	}
 
-	a[href].noprint {
+	a[href].noprint, a[href]:not([href^='htt']) {
 		color: #000;
 	}
 
