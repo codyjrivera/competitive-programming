@@ -97,55 +97,55 @@ print("NO")</pre>
 	<p><strong>Java</strong>: <a href="/solutions/Cardgame.java">Cardgame.java</a> &ndash; this solution runs in <strong class="lnum">80.6 ms</strong> on my system and <strong class="lnum">124 ms</strong> in Codeforces' environment.
 	<pre>import java.util.Scanner;
 
-    public class Cardgame {
-        public static void main(String[] args) {
-            Scanner scanner = new Scanner(System.in);
-            String tableCard = scanner.nextLine();
-            String[] myCards = scanner.nextLine().split(" ");
-            for(String card : myCards) {
-                if(card.charAt(0) == tableCard.charAt(0) || card.charAt(1) == tableCard.charAt(1)) {
-                    System.out.println("YES");
-                    scanner.close();
-                    System.exit(0);
-                }
+public class Cardgame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String tableCard = scanner.nextLine();
+        String[] myCards = scanner.nextLine().split(" ");
+        for(String card : myCards) {
+            if(card.charAt(0) == tableCard.charAt(0) || card.charAt(1) == tableCard.charAt(1)) {
+                System.out.println("YES");
+                scanner.close();
+                System.exit(0);
             }
-            System.out.println("NO");
-            scanner.close();
-            System.exit(0);
         }
-    }</pre>
+        System.out.println("NO");
+        scanner.close();
+        System.exit(0);
+    }
+}</pre>
 	<p><strong>Brainfuck</strong> See <a href="/solutions/1097a.bf">1097a.bf</a> for an annotated version. This solution runs in <strong class="lnum">0.26 ms</strong> on my system&mdash;sometimes C/C++ aren't the fastest languages! If there's a language supported by the contest in which you're participating that offers a more efficient way to implement your solution, and you're comfortable enough with the language to do so, by all means use it over another language!
 	<pre>&gt;,&gt;,&lt;&lt;+++++&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;+++++[&gt;+++++++++++++&lt;-]&gt;[&gt;+&gt;+&gt;+&gt;+&gt;+&lt;&lt;&lt;&lt;&lt;-]+&gt;+++++++++++++++ +++++++++&gt;++++&gt;++++++++++++++++++&gt;+++++++++++++&gt;++++++++++++++&gt;++++++++++&lt;&lt;&lt;&lt;&lt;&lt;&lt; &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[&gt;&gt;&gt;[-]&gt;[-]&lt;&lt;&lt;[&gt;&gt;+&gt;+&lt;&lt;&lt;-]&gt;&gt;&gt;[&lt;&lt;&lt;+&gt;&gt;&gt;-]&lt;&lt;[&gt;&gt;+&gt;+&lt;&lt;&lt;-]&gt;&gt;&gt;[&lt;&lt;&lt;+&gt;&gt;&gt;-],,&gt;,&lt;[ &lt;&lt;-&gt;&gt;-]&gt;&gt;+&lt;&lt;&lt;&lt;[&gt;&gt;&gt;[&lt;&lt;-&gt;&gt;-]&gt;&gt;&gt;+&lt;&lt;&lt;&lt;&lt;[&gt;&gt;&gt;&gt;&gt;-&lt;&lt;&lt;&lt;&lt;[&gt;&gt;&gt;&gt;&gt;&gt;+&lt;&lt;&lt;&lt;&lt;&lt;-]]&gt;&gt;&gt;&gt;&gt;&gt;[&lt;&lt;&lt;&lt;&lt;&lt;+&gt;&gt; &gt;&gt;&gt;&gt;-]&lt;[&gt;&gt;&gt;.&gt;.&gt;.&gt;&gt;&gt;.&lt;&lt;&lt;&lt;&lt;&lt;-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;-]&lt;&lt;-&lt;&lt;&lt;&lt;[&gt;&gt;&gt;&gt;&gt;+&lt;&lt;&lt;&lt;&lt;-]]&gt;&gt;&gt;&gt;&gt;[ &lt;&lt;&lt;&lt;&lt;+&gt;&gt;&gt;&gt;&gt;-]&lt;[&gt;&gt;&gt;&gt;&gt;.&gt;.&gt;.&gt;&gt;&gt;.&lt;&lt;&lt;&lt;&lt;&lt;-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]&gt;&gt;&gt;&gt;&gt;&gt;&gt;-]&lt;&lt;&lt;&lt;&lt;&lt;&lt;-]&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[ &gt;&gt;&gt;&gt;.&gt;.&gt;.&lt;&lt;&lt;&lt;&lt;&lt;-]</pre>
 	<h3>An object-oriented solution</h3>
 	<p>Conventionally, better style would be to write something like the following (<a href="/solutions/1097a-oo.cpp">1097a-oo.cpp</a>):
 	<pre>#include &lt;iostream&gt;
 
-    class Card {
-    public:
-        bool operator==(const Card&amp; c) {
-            return rank == c.rank || suit == c.suit;
-        }
-        friend std::istream&amp; operator&gt;&gt;(std::istream&amp; in, Card&amp; c) {
-            in &gt;&gt; c.rank &gt;&gt; c.suit;
-        }
-    private:
-        char rank, suit;
-    };
-
-    int main() {
-        Card tableCard;
-        std::cin &gt;&gt; tableCard;
-        for(int i = 0; i &lt; 5; i++) {
-            Card card;
-            std::cin &gt;&gt; card;
-            if(card == tableCard) {
-                std::cout &lt;&lt; "YES\n";
-                return 0;
-            }
-        }
-        std::cout &lt;&lt; "NO\n";amp;
-        return 0;
+class Card {
+public:
+    bool operator==(const Card&amp; c) {
+        return rank == c.rank || suit == c.suit;
     }
+    friend std::istream&amp; operator&gt;&gt;(std::istream&amp; in, Card&amp; c) {
+        in &gt;&gt; c.rank &gt;&gt; c.suit;
+    }
+private:
+    char rank, suit;
+};
+
+int main() {
+    Card tableCard;
+    std::cin &gt;&gt; tableCard;
+    for(int i = 0; i &lt; 5; i++) {
+        Card card;
+        std::cin &gt;&gt; card;
+        if(card == tableCard) {
+            std::cout &lt;&lt; "YES\n";
+            return 0;
+        }
+    }
+    std::cout &lt;&lt; "NO\n";amp;
+    return 0;
+}
 </pre>
 	<p>But this is <strong>not good for competitive programming</strong>! It takes longer to write, there is more that can go wrong, and it takes about 28% longer to run (<span class="lnum">0.36 ms</span> on my system)! Remember, you aren't scored on style&mdash;only on how long it takes you to submit a solution that runs within the time and memory limits.
 
@@ -153,41 +153,41 @@ print("NO")</pre>
 	<h3>Using brute force</h3>
 	<p>The strings are guaranteed to match <code>^[a-z]+$</code>, so there are only 26 possible characters that could yield the largest <i>x</i>. Furthermore, the string can be a maximum of 20,000 characters in length. This means that there are at most 520,000 possible combinations of character and starting position for a substring. Perhaps simply checking the string like this (<a href="/solutions/1105b-brute.cpp">1105b-brute.cpp</a>) will be good enough:
 	<pre>#include &lt;iostream&gt;
-    #include &lt;string&gt;
+#include &lt;string&gt;
 
-    using std::cin;
-    using std::cout;
-    using std::string;
+using std::cin;
+using std::cout;
+using std::string;
 
-    int main() {
-        int n, k;
-        string s;
-        cin &gt;&gt; n &gt;&gt; k &gt;&gt; s;
-        int level = 0;
-        for(int i = 0; i &lt; 26; i++) {
-            char c = 'a' + i;
-            string sub = "";
-            for(int x = 0; x &lt; k; x++) {
-                sub += c;
-            }
-            int charLevel = 0;
-            for(int j = 0; j &lt;= n - k * level + 1; j++) {
-                int start = j;
-                while(start &lt;= n - k * (level + 1) + 1) {
-                    if(s.substr(start, k) == sub) {
-                        start += k;
-                        charLevel++;
-                    }
-                    else {
-                        start++;
-                    }
-                }
-                if(charLevel &gt; level) level = charLevel;
-                charLevel = 0;
-            }
+int main() {
+    int n, k;
+    string s;
+    cin &gt;&gt; n &gt;&gt; k &gt;&gt; s;
+    int level = 0;
+    for(int i = 0; i &lt; 26; i++) {
+        char c = 'a' + i;
+        string sub = "";
+        for(int x = 0; x &lt; k; x++) {
+            sub += c;
         }
-        cout &lt;&lt; level &lt;&lt; '\n';
+        int charLevel = 0;
+        for(int j = 0; j &lt;= n - k * level + 1; j++) {
+            int start = j;
+            while(start &lt;= n - k * (level + 1) + 1) {
+                if(s.substr(start, k) == sub) {
+                    start += k;
+                    charLevel++;
+                }
+                else {
+                    start++;
+                }
+            }
+            if(charLevel &gt; level) level = charLevel;
+            charLevel = 0;
+        }
     }
+    cout &lt;&lt; level &lt;&lt; '\n';
+}
 </pre>
 	<p>Unfortunately, when given <a href="strings.in">a particularly troubling input</a> (generated with <a href="strings.py">strings.py</a>), this program takes <strong class="lnum">8.25 seconds</strong> to complete on my system&mdash;well over the 1-second time limit.
 

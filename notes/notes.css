@@ -210,10 +210,7 @@ pre {
 	border: 1pt solid #ccc;
 	border-radius: 1em;
 	line-height: 1.2;
-}
-
-div>pre {
-
+	white-space: pre-wrap;
 }
 
 @media print {
