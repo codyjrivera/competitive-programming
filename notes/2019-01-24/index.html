@@ -150,6 +150,46 @@ print("NO")</pre>
 	<p>But this is <strong>not good for competitive programming</strong>! It takes longer to write, there is more that can go wrong, and it takes about 28% longer to run (<span class="lnum">0.36 ms</span> on my system)! Remember, you aren't scored on style&mdash;only on how long it takes you to submit a solution that runs within the time and memory limits.
 
 	<h2>Zuhair and Strings</h2>
+	<h3>Using brute force</h3>
+	<p>The strings are guaranteed to match <code>^[a-z]+$</code>, so there are only 26 possible characters that could yield the largest <i>x</i>. Furthermore, the string can be a maximum of 20,000 characters in length. This means that there are at most 520,000 possible combinations of character and starting position for a substring. Perhaps simply checking the string like this (<a href="/solutions/1105b-brute.cpp">1105b-brute.cpp</a>) will be good enough:
+	<pre>#include &lt;iostream&gt;
+    #include &lt;string&gt;
+
+    using std::cin;
+    using std::cout;
+    using std::string;
+
+    int main() {
+        int n, k;
+        string s;
+        cin &gt;&gt; n &gt;&gt; k &gt;&gt; s;
+        int level = 0;
+        for(int i = 0; i &lt; 26; i++) {
+            char c = 'a' + i;
+            string sub = "";
+            for(int x = 0; x &lt; k; x++) {
+                sub += c;
+            }
+            int charLevel = 0;
+            for(int j = 0; j &lt;= n - k * level + 1; j++) {
+                int start = j;
+                while(start &lt;= n - k * (level + 1) + 1) {
+                    if(s.substr(start, k) == sub) {
+                        start += k;
+                        charLevel++;
+                    }
+                    else {
+                        start++;
+                    }
+                }
+                if(charLevel &gt; level) level = charLevel;
+                charLevel = 0;
+            }
+        }
+        cout &lt;&lt; level &lt;&lt; '\n';
+    }
+</pre>
+	<p>Unfortunately, when given <a href="strings.in">a particularly troubling input</a> (generated with <a href="strings.py">strings.py</a>), this program takes <strong class="lnum">8.25 seconds</strong> to complete on my system&mdash;well over the 1-second time limit.
 
     <h2>Pens and Days of Week</h2>
 
