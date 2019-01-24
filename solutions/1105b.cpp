@@ -1,36 +1,32 @@
 #include <iostream>
-#include <string>
-
-using std::cin;
-using std::cout;
-using std::string;
+#include <algorithm>
 
 int main() {
 	int n, k;
-	string s;
-	cin >> n >> k >> s;
-	int level = 0;
-	for(int i = 0; i < 26; i++) {
-		char c = 'a' + i;
-		string sub = "";
-		for(int x = 0; x < k; x++) {
-			sub += c;
-		}
-		int charLevel = 0;
-		for(int j = 0; j <= n - k * level + 1; j++) {
-			int start = j;
-			while(start <= n - k * (level + 1) + 1) {
-				if(s.substr(start, k) == sub) {
-					start += k;
-					charLevel++;
-				}
-				else {
-					start++;
-				}
+	std::cin >> n >> k;
+	char last = ' '; // a non-letter
+	int run = 0;
+	int levels[26] = {0};
+
+	for(int i = 0; i < n; i++) {
+		char c;
+		std::cin >> c;
+		if(c == last) {
+			run++;
+			if(run == k) {
+				levels[c - 'a']++;
+				run = 0;
+				last = ' ';
 			}
-			if(charLevel > level) level = charLevel;
-			charLevel = 0;
+		}
+		else if(k == 1) {
+			levels[c - 'a']++;
+		}
+		else {
+			last = c;
+			run = 1;
 		}
 	}
-	cout << level << '\n';
+
+	std::cout << *std::max_element(levels, levels + 26) << std::endl;
 }

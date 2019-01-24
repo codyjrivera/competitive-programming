@@ -46,119 +46,56 @@
 
     <h2>Problems for this week</h2>
     <ul>
-        <li><strong>Easy</strong>: Codeforces Problem 1097A (from Hello 2019) &ndash; <a href="https://codeforces.com/problemset/problem/1097/A" class="noprint">Gennady and a Card Game</a></li>
-        <li><strong>Medium</strong>: Codeforces Problem 1105B (from Round 533) &ndash; <a href="https://codeforces.com/problemset/problem/1105/B" class="noprint">Zuhair and Strings</a></li>
-        <li><strong>Hard</strong>: Codeforces Problem 774F (from VK Cup 2017) &ndash; <a href="https://codeforces.com/problemset/problem/774/F" class="noprint">Pens and Days of Week</a></li>
+        <li><strong>Easy</strong>: Codeforces Problem 131A (from Beta Round 95) &ndash; <a href="https://codeforces.com/problemset/problem/131/A" class="noprint">cAPS lOCK</a></li>
+        <li><strong>Medium</strong>: from ACM-ICPC SER 2018 &ndash; <a href="http://serjudging.vanb.org/wp-content/uploads/goldbach.pdf" class="noprint">Repeating Goldbachs</a></li>
+        <li><strong>Hard</strong>: from Mercer 2018 &ndash; <a href="/archive/mercer/2018/prob1.pdf" class="noprint">Arena Survival</a></li>
     </ul>
 
-	<h2>Gennady and a Card Game</h2>
+	<h2>cAPS lOCK</h2>
 	<h3>Simplified problem description</h3>
-	<p>Six standard playing cards are given. Each card is two characters: the first is the rank in <code>{'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'}</code> and the second is the suit in <code>{'D', 'C', 'S', 'H'}</code>.
-	<p>If any of the last five cards have the same rank or suit as the first card, print <code>"YES"</code>. Otherwise, print <code>"NO"</code>.
+	<p>If all characters or all but the first character in the input word (which matches <code>/^[A-Za-z]+$/</code>) are uppercase, swap the case of all characters in the word and output it. Otherwise, output the input word.
 	<h3>Solutions</h3>
-	<p>Since the algorithm for this one is pretty straightforward, I've implemented it in a few different languages to demonstrate the difference in runtimes that can become very significant for more complex problems:
-	<p><strong>C++</strong>: <a href="/solutions/1097a.cpp">1097a.cpp</a> &ndash; this solution runs in <strong class="lnum">0.28 ms</strong> on my system and <span class="lnum">30 ms</span> (which seems to be the minimum with overhead) in Codeforces' environment.
+	<p>Processing strings of arbitrary length and doing nothing else? C++ probably isn't the way to go here! I'd use Python, or Perl if possible:
+	<p><strong>Python</strong>: <a href="/solutions/capslock.py">capslock.py</a> &ndash; this solution runs in <strong class="lnum">14.1 ms</strong> on my system and <span class="lnum">140 ms</span> in Codeforces' environment.
+	<pre>import re
+word = input().strip()
+if re.match('^[a-z]?[A-Z]*$', word) is not None:
+    word = word.swapcase()
+print(word)</pre>
+	<p><strong>Perl</strong>: <a href="/solutions/capslock.pl">capslock.pl</a> &ndash; this solution runs in <strong class="lnum">0.35 ms</strong> on my system and <span class="lnum">30 ms</span> in Codeforces' environment.
+	<pre>$_ = &lt;&gt;;
+tr/A-Za-z/a-zA-Z/ if /^[a-z]?[A-Z]*\s*$/;
+print;</pre>
+	<p><strong>C++</strong>: <a href="/solutions/capslock.cpp">capslock.cpp</a> &ndash; this solution runs in <strong class="lnum">0.34 ms</strong> on my system and <span class="lnum">30 ms</span> in Codeforces' environment.
 	<pre>#include &lt;iostream&gt;
 #include &lt;string&gt;
+#include &lt;cctype&gt;
 
 int main() {
-    std::string tableCard;
-    std::cin &gt;&gt; tableCard;
-    for(int i = 0; i &lt; 5; i++) {
-        std::string card;
-        std::cin &gt;&gt; card;
-        if(card[0] == tableCard[0] || card[1] == tableCard[1]) {
-            std::cout &lt;&lt; "YES\n";
+    std::string word, converted;
+    std::cin &gt;&gt; word;
+    if(std::isupper(word[0])) {
+        converted += std::tolower(word[0]);
+    }
+    else {
+        converted += std::toupper(word[0]);
+    }
+    for(int i = 1; i &lt; word.length(); i++) {
+        if(std::isupper(word[i])) {
+            converted += std::tolower(word[i]);
+        }
+        else {
+            std::cout &lt;&lt; word &lt;&lt; std::endl;
             return 0;
         }
     }
-    std::cout &lt;&lt; "NO\n";
+    std::cout &lt;&lt; converted &lt;&lt; std::endl;
     return 0;
 }</pre>
-	<p><strong>C</strong>: <a href="/solutions/1097a.c">1097a.c</a> &ndash; this solution runs in <strong class="lnum">0.48 ms</strong> on my system and <span class="lnum">30 ms</span> in Codeforces' environment.
-	<pre>#include &lt;stdio.h&gt;
-
-int main() {
-    char tableCard[2];
-    scanf("%2s", tableCard);
-    char card[2];
-    for(int i = 0; i &lt; 5; i++) {
-        scanf("%2s", card);
-        if(card[0] == tableCard[0] || card[1] == tableCard[1]) {
-            puts("YES");
-            return 0;
-        }
-    }
-    puts("NO");
-    return 0;
-}</pre>
-	<p><strong>Python 3</strong>: <a href="/solutions/1097a.py">1097a.py</a> &ndash; this solution runs in <strong class="lnum">12.3 ms</strong> on my system and <span class="lnum">109 ms</span> in Codeforces' environment.
-	<pre>tableCard = input()
-cards = input().split(' ')
-for card in cards:
-    if card[0] == tableCard[0] or card[1] == tableCard[1]:
-        print("YES")
-        exit()
-print("NO")</pre>
-	<p><strong>Java</strong>: <a href="/solutions/Cardgame.java">Cardgame.java</a> &ndash; this solution runs in <strong class="lnum">80.6 ms</strong> on my system and <span class="lnum">124 ms</span> in Codeforces' environment.
-	<pre>import java.util.Scanner;
-
-public class Cardgame {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String tableCard = scanner.nextLine();
-        String[] myCards = scanner.nextLine().split(" ");
-        for(String card : myCards) {
-            if(card.charAt(0) == tableCard.charAt(0) || card.charAt(1) == tableCard.charAt(1)) {
-                System.out.println("YES");
-                scanner.close();
-                System.exit(0);
-            }
-        }
-        System.out.println("NO");
-        scanner.close();
-        System.exit(0);
-    }
-}</pre>
-	<p><strong>Brainfuck</strong>: This solution (annotated version: <a href="/solutions/1097a.bf">1097a.bf</a>) runs in <strong class="lnum">0.26 ms</strong> on my system (compiled with <a href="https://github.com/skeeto/bf-x86">bf-x86</a>) and is included here as evidence that <strong>C and C++ are not necessarily the fastest languages for a given problem</strong>. (Brainfuck lacks the overhead C and C++'s string implementations add in processing standard input.) If there's a language better suited to the problem that is supported by the contest, feel free use it! <i>Sadly, Codeforces does not support Brainfuck&mdash;but CodeChef does!</i>
-	<pre>&gt;,&gt;,&lt;&lt;+++++&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;+++++[&gt;+++++++++++++&lt;-]&gt;[&gt;+&gt;+&gt;+&gt;+&gt;+&lt;&lt;&lt;&lt;&lt;-]+&gt;+++++++++++++++ +++++++++&gt;++++&gt;++++++++++++++++++&gt;+++++++++++++&gt;++++++++++++++&gt;++++++++++&lt;&lt;&lt;&lt;&lt;&lt;&lt; &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[&gt;&gt;&gt;[-]&gt;[-]&lt;&lt;&lt;[&gt;&gt;+&gt;+&lt;&lt;&lt;-]&gt;&gt;&gt;[&lt;&lt;&lt;+&gt;&gt;&gt;-]&lt;&lt;[&gt;&gt;+&gt;+&lt;&lt;&lt;-]&gt;&gt;&gt;[&lt;&lt;&lt;+&gt;&gt;&gt;-],,&gt;,&lt;[ &lt;&lt;-&gt;&gt;-]&gt;&gt;+&lt;&lt;&lt;&lt;[&gt;&gt;&gt;[&lt;&lt;-&gt;&gt;-]&gt;&gt;&gt;+&lt;&lt;&lt;&lt;&lt;[&gt;&gt;&gt;&gt;&gt;-&lt;&lt;&lt;&lt;&lt;[&gt;&gt;&gt;&gt;&gt;&gt;+&lt;&lt;&lt;&lt;&lt;&lt;-]]&gt;&gt;&gt;&gt;&gt;&gt;[&lt;&lt;&lt;&lt;&lt;&lt;+&gt;&gt; &gt;&gt;&gt;&gt;-]&lt;[&gt;&gt;&gt;.&gt;.&gt;.&gt;&gt;&gt;.&lt;&lt;&lt;&lt;&lt;&lt;-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;-]&lt;&lt;-&lt;&lt;&lt;&lt;[&gt;&gt;&gt;&gt;&gt;+&lt;&lt;&lt;&lt;&lt;-]]&gt;&gt;&gt;&gt;&gt;[ &lt;&lt;&lt;&lt;&lt;+&gt;&gt;&gt;&gt;&gt;-]&lt;[&gt;&gt;&gt;&gt;&gt;.&gt;.&gt;.&gt;&gt;&gt;.&lt;&lt;&lt;&lt;&lt;&lt;-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]&gt;&gt;&gt;&gt;&gt;&gt;&gt;-]&lt;&lt;&lt;&lt;&lt;&lt;&lt;-]&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[ &gt;&gt;&gt;&gt;.&gt;.&gt;.&lt;&lt;&lt;&lt;&lt;&lt;-]</pre>
-	<h3>An object-oriented solution</h3>
-	<p>Conventionally, better style would be to write something like the following (<a href="/solutions/1097a-oo.cpp">1097a-oo.cpp</a>):
-	<pre>#include &lt;iostream&gt;
-
-class Card {
-public:
-    bool operator==(const Card&amp; c) {
-        return rank == c.rank || suit == c.suit;
-    }
-    friend std::istream&amp; operator&gt;&gt;(std::istream&amp; in, Card&amp; c) {
-        in &gt;&gt; c.rank &gt;&gt; c.suit;
-    }
-private:
-    char rank, suit;
-};
-
-int main() {
-    Card tableCard;
-    std::cin &gt;&gt; tableCard;
-    for(int i = 0; i &lt; 5; i++) {
-        Card card;
-        std::cin &gt;&gt; card;
-        if(card == tableCard) {
-            std::cout &lt;&lt; "YES\n";
-            return 0;
-        }
-    }
-    std::cout &lt;&lt; "NO\n";amp;
-    return 0;
-}
-</pre>
-	<p>But this is <strong>not good for competitive programming</strong>! It takes longer to write, there is more that can go wrong, and it takes about 28% longer to run (<span class="lnum">0.36 ms</span> on my system)! Remember, you aren't scored on style&mdash;only on how long it takes you to submit a solution that runs within the time and memory limits.
 
 	<h2>Zuhair and Strings</h2>
-	<h3>Brute force algorithm</h3>
-	<p>The strings are guaranteed to match <code>/^[a-z]+$/</code>, so there are only 26 possible characters that could yield the largest <i>x</i>. Furthermore, the string can be a maximum of 200,000 characters in length. This means that there are at most 5,200,000 possible combinations of character and starting position for a substring.
-	<p>Perhaps a brute-force algorithm like this (<a href="/solutions/1105b-brute.cpp">1105b-brute.cpp</a>) will be good enough:
+	<h3>Using brute force</h3>
+	<p>The strings are guaranteed to match <code>/^[a-z]+$/</code>, so there are only 26 possible characters that could yield the largest <i>x</i>. Furthermore, the string can be a maximum of 20,000 characters in length. This means that there are at most 520,000 possible combinations of character and starting position for a substring. Perhaps simply checking the string like this (<a href="/solutions/1105b-brute.cpp">1105b-brute.cpp</a>) will be good enough:
 	<pre>#include &lt;iostream&gt;
 #include &lt;string&gt;
 
@@ -171,134 +108,32 @@ int main() {
     string s;
     cin &gt;&gt; n &gt;&gt; k &gt;&gt; s;
     int level = 0;
-    for(char c = 'a'; c &lt;= 'z'; c++) {
+    for(int i = 0; i &lt; 26; i++) {
+        char c = 'a' + i;
         string sub = "";
         for(int x = 0; x &lt; k; x++) {
             sub += c;
         }
         int charLevel = 0;
-		int start = 0;
-        while(start &lt;= n - k * (level + 1) + 1) {
-            if(s.substr(start, k) == sub) {
-                start += k;
-                charLevel++;
+        for(int j = 0; j &lt;= n - k * level + 1; j++) {
+            int start = j;
+            while(start &lt;= n - k * (level + 1) + 1) {
+                if(s.substr(start, k) == sub) {
+                    start += k;
+                    charLevel++;
+                }
+                else {
+                    start++;
+                }
             }
-            else {
-                start++;
-            }
-        }
-        if(charLevel &gt; level) {
-            level = charLevel;
+            if(charLevel &gt; level) level = charLevel;
+            charLevel = 0;
         }
     }
     cout &lt;&lt; level &lt;&lt; '\n';
 }
 </pre>
-	<p>
-	<p>Unfortunately, when given <a href="strings.in">a particularly troubling input</a> (generated with <a href="strings.py">strings.py</a>), this program takes <strong class="lnum">8.1 seconds</strong> to complete on my system&mdash;well over the 1-second time limit.
-
-	<h3>Using regular expressions for testing</h3>
-	<p>Why don't we match the string against a regular expression that tells us whether its level for each character is less than or equal to <i>i</i>, decreasing <i>i</i> until we get a positive result? For example, <code>/(b{3}.*){5}/</code> will match a string that has level 5 for letter b if k = 3.
-	<p>Since Python's regular expression library is easier to use (in my opinion) than C++'s, I implemented this in Python (<a href="/solutions/1105b-bad.py">1105b-bad.py</a>):
-	<pre>import re
-from string import ascii_lowercase
-
-nk = input().strip().split(' ')
-n = int(nk[0])
-k = int(nk[1])
-s = input().strip()
-
-maxLevel = 0
-for c in ascii_lowercase:
-    x = n // k # Maximum level based on n and k
-    while x &gt; maxLevel and not re.match('({0}{{{1}}}.{{0,{2}}}){{{3}}}'.format(c, k, n // x - k, x), s):
-        # Maximum of n // x - k characters after each run of k characters c
-        x -= 1
-    maxLevel = x
-
-print(maxLevel)</pre>
-
-	<p>But regular expressions are <strong>slow</strong>. For the <a href="strings.in">same input file as before</a>, this script completes in just <span class="lnum">57 ms</span> on my system, but for <a href="strings2.in">another troubling input</a> (generated with <a href="strings2.py">strings2.py</a>) it takes <strong class="lnum">3 minutes, 8 seconds</strong>&mdash;over 22 times slower than the first brute force algorithm!
-
-	<h3>Using regular expressions for counting</h3>
-	<p>But with regular expressions we can not only match a string against an expression, but <em>count</em> the matches&mdash;which is what we want to do! Python's <code><a href="https://docs.python.org/2/library/re.html#re.findall">re.findall</a></code> will give us a list of all the matches&mdash;the length of this list is the level for a given character!
-	<pre>import re
-from string import ascii_lowercase
-
-nk = input().strip().split(' ')
-n = int(nk[0])
-k = int(nk[1])
-s = input().strip()
-
-maxLevel = 0
-for c in ascii_lowercase:
-    charLevel = len(re.findall('{0}{{{1}}}'.format(c, k), s))
-    maxLevel = max(maxLevel, charLevel)
-
-print(maxLevel)
-</pre>
-	<p>This program (<a href="/solutions/1105b.py">1105b.py</a>) runs in <strong class="lnum">3.1 seconds</strong> for the <a href="strings2.in">second troubling input file</a> on my system. Close&mdash;maybe if I reimplement it in C++ (<a href="/solutions/1105b-regex.cpp">1105b-regex.cpp</a>) it will be sufficient:
-	<pre>#define _GLIBCXX_REGEX_STATE_LIMIT 200000 // To increase the regex state limit imposed by g++
-
-#include &lt;iostream&gt;
-#include &lt;regex&gt;
-#include &lt;sstream&gt;
-
-int main() {
-    int n, k;
-    std::string s;
-    std::cin &gt;&gt; n &gt;&gt; k &gt;&gt; s;
-
-    int maxLevel = 0;
-    for(char c = 'a'; c &lt;= 'z'; c++) {
-        std::ostringstream exprStream;
-        exprStream &lt;&lt; c &lt;&lt; '{' &lt;&lt; k &lt;&lt; '}';
-        std::regex expr(exprStream.str());
-        int charLevel = std::distance(std::sregex_iterator(s.begin(), s.end(), expr), std::sregex_iterator());
-        if(charLevel &gt; maxLevel) {
-            maxLevel = charLevel;
-        }
-    }
-
-    std::cout &lt;&lt; maxLevel &lt;&lt; std::endl;
-}</pre>
-	<p>This completes the <a href="strings2.in">second troubling input file</a> in just <strong class="lnum">150 ms</strong> on my system, but segfaults when given <a href="strings.in">the new input</a>, apparently due to <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=61582">a long-standing bug in libstdc++</a>. (I submitted it as a Visual C++ solution on Codeforces in case Microsoft's C++ implementation is any better, but it ran out of time on an even simpler test than the Python one did.)
-
-	<h3>Solution: Processing a character at a time</h3>
-	<p>So I finally caved and implemented the checks for matching runs myself. Moreover, instead of calculating the level for each letter separately, I can now calculate all their levels as I go. Here is the resulting code (<a href="/solutions/1105b.cpp">1105b.cpp</a>):
-	<pre>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-
-int main() {
-    int n, k;
-    std::cin &gt;&gt; n &gt;&gt; k;
-    char last = ' '; // a non-letter
-    int run = 0;
-    int levels[26] = {0};
-
-    for(int i = 0; i &lt; n; i++) {
-        char c;
-        std::cin &gt;&gt; c;
-        if(c == last) {
-            run++;
-            if(run == k) {
-                levels[c - 'a']++;
-                run = 0;
-                last = ' ';
-            }
-        }
-        else if(k == 1) {
-            levels[c - 'a']++;
-        }
-        else {
-            last = c;
-            run = 1;
-        }
-    }
-
-    std::cout &lt;&lt; *std::max_element(levels, levels + 26) &lt;&lt; std::endl;
-}</pre>
-	<p>This solution runs in <strong class="lnum">8.2 ms</strong> on my system and <strong class="lnum">62 ms</strong> in Codeforces' environment.
+	<p>Unfortunately, when given <a href="strings.in">a particularly troubling input</a> (generated with <a href="strings.py">strings.py</a>), this program takes <strong class="lnum">8.25 seconds</strong> to complete on my system&mdash;well over the 1-second time limit.
 
     <h2>Pens and Days of Week</h2>
 
@@ -311,7 +146,7 @@ int main() {
     <br>Output format: The index of the solution plus 1 (since the problem uses a 1-indexed array of pens).
     <br>Time limit: 3 seconds; memory limit: 256 MB.
 
-    <h3>Na&iuml;ve algorithm</h3>
+    <h3>Na&iuml;ve solution</h3>
     <p>At first, this problem may appear easy. It is tempting to write something like the following (<a href="/solutions/pens-naive.cpp">pens-naive.cpp</a>):
     <pre>#include &lt;iostream&gt;
 #include &lt;vector&gt;
@@ -443,7 +278,7 @@ int main() {
 	<p>This algorithm certainly <em>feels</em> nicer than the first one (to me, anyway)&mdash;the calculations it's doing are much more straightforward, but there are still too many of them.
 	<p>How can we determine the day on which each pen runs out of ink mathematically rather than with brute force?
 
-	<h3>The solution</h3>
+	<h3>Another idea</h3>
 	<p>What if we combined days into blocks such that each pen's ink is decreased by the same amount in each row of the table? In order to see the benefit of this, we'll need to come up with a new example. The table below corresponds to the following input:
 	<pre>5<br>14 14 14 14 13</pre>
 	<div style="width: 100%; text-align: right;" data-appendix="A">
