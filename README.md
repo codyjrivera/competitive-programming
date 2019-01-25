@@ -6,7 +6,7 @@ This repository is a mirror of [my competitive programming site](http://competit
 * [Spoj](https://spoj.com)
 * [Code Drills](https://code-drills.com) will recommend problems from the above based on your past submissions
 
-More listed in notes: 2019-01-17, 2019-01-24
+More listed in notes: [2019-01-17](http://competitive-programming.seangillen.com/notes/2019-01-17/), [2019-01-24](http://competitive-programming.seangillen.com/notes/2019-01-24/)
 
 ## Books
 * [Competitive Programming 3](https://cpbook.net/) by Steven & Felix Halim
