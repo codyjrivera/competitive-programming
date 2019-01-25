@@ -5,6 +5,7 @@ This repository is a mirror of [my competitive programming site](http://competit
 * [CodeChef](https://codechef.com)
 * [Spoj](https://spoj.com)
 * [Code Drills](https://code-drills.com) will recommend problems from the above based on your past submissions
+
 More listed in notes: 2019-01-17, 2019-01-24
 
 ## Books
