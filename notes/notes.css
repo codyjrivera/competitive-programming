@@ -228,7 +228,7 @@ pre {
 	white-space: pre-wrap;
 }
 
-aside[data-appendix] {
+aside[data-appendix], .light-only {
 	display: none;
 }
 
@@ -329,6 +329,10 @@ aside[data-appendix] {
 
 	aside[data-appendix] {
 		display: block;
+	}
+
+	.light-only {
+		display: inline-block;
 	}
 
 	aside[data-appendix]:before {
