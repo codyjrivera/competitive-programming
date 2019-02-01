@@ -39,7 +39,7 @@ int main() {
 				);
 		}
 		double p = A / (M_PI * R * R);
-        if(std::isnan(p) || p > 1.0) printf("1.00\n"); // fix for certain text cases with very large arenas
+        if(std::isnan(p) || p > 1.0) printf("1.00\n"); // fix for certain test cases with very large arenas
 		else printf("%.2f\n", p);
 	}
 }
