@@ -14,3 +14,4 @@ https://stackoverflow.com/questions/8283735/count-number-of-matches
 https://www.regular-expressions.info/backref.html
 https://stackoverflow.com/questions/5466451/how-can-i-print-literal-curly-brace-characters-in-python-string-and-also-use-fo
 https://stackoverflow.com/questions/34315002/max-in-a-c-array
+https://stackoverflow.com/questions/3450860/check-if-a-stdvector-contains-a-certain-object
