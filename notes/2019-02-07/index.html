@@ -3,6 +3,15 @@
 <title>Competitive Programming - February 7, 2019</title>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/notes/notes.css">
+<script src="https://fred-wang.github.io/mathjax.js/mpadded-min.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	CommonHTML: { linebreaks: { automatic: true } },
+	"HTML-CSS": { linebreaks: { automatic: true } },
+			SVG: { linebreaks: { automatic: true } }
+});
+</script>
+
 
 <header>
     <h1>Competitive Programming</h1>
@@ -21,10 +30,9 @@
 
     <h2>Problems for this week</h2>
     <ul>
-        <!-- <li><strong>Easy</strong>: Codeforces Problem 131A (from Beta Round 95) &ndash; <a href="https://codeforces.com/problemset/problem/131/A" class="noprint">cAPS lOCK</a></li>
-        <li><strong>Medium</strong>: from ACM-ICPC SER 2018 &ndash; <a href="http://serjudging.vanb.org/wp-content/uploads/goldbach.pdf" class="noprint">Repeating Goldbachs</a></li>
-		<li><strong>Hard</strong>: from Mercer 2018 &ndash; <a href="/archive/mercer/2018/prob1.pdf" class="noprint">Arena Survival</a></li> -->
-		¯\_(ツ)_/¯
+        <li><strong>Easy</strong>: ¯\_(ツ)_/¯
+        <li><strong>Medium</strong>: ¯\_(ツ)_/¯
+		<li><strong>Hard</strong>: Codeforces Problem 1100F (from Round 532) &ndash; <a href="https://codeforces.com/problemset/problem/1100/F" class="noprint">Ivan and Burgers</a>
 	</ul>
 	
 	<h2>Update on Arena Survival</h2>
@@ -67,5 +75,41 @@ int main() {
         printf("%.2f\n", p);
     }
 }</pre>
+
+	<h2>Ivan and Burgers</h2>
+	<p>There are a couple things we can do to simplify this problem. First, the starting balance of Ivan's bank account is <math>
+		<msup>
+			<mn>2</mn>
+			<msup>
+				<mn>2</mn>
+				<mn>100</mn>
+			</msup>
+		</msup>
+		<mo>-</mo>
+		<mn>1</mn>
+	</math>, a number decidedly too large to work with comfortably. But since each transaction is a bitwise XOR on this balance rather than a subtraction, and the "price" of each burger <math>
+		<mo>≤</mo>
+		<msup>
+			<mn>10</mn>
+			<mn>6</mn>
+		</msup>
+		<mo>&lt;</mo>
+		<msup>
+			<mn>2</mn>
+			<mn>20</mn>
+		</msup>
+	</math>, we need only concern ourselves with the lower 20 bits of the balance&mdash; the upper <math>
+		<msup>
+			<mn>2</mn>
+			<mn>100</mn>
+		</msup>
+	</math> bits cannot change. Furthermore, we know all bits of the balance are initally set to 1, so for our purposes Ivan's balance is the much more wieldy <math>
+		<msup>
+			<mn>2</mn>
+			<mn>21</mn>
+		</msup>
+		<mo>-</mo>
+		<mn>1</mn>
+	</math>.
 
 </article>
