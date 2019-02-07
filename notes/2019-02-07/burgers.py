@@ -1,5 +1,5 @@
 from random import randint
-friends = 1
+friends = 500000
 print("500000")
 for i in range(500000):
 	print(randint(0,1000000), end=' ')
