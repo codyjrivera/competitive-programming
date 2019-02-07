@@ -87,7 +87,7 @@ int main() {
 		</msup>
 		<mo>-</mo>
 		<mn>1</mn>
-	</math>, a number decidedly too large to work with comfortably. But since each transaction is a bitwise XOR on this balance rather than a subtraction, and the "price" of each burger <math>
+	</math>, a number decidedly too large to work with comfortably (to store it would use nearly 160 billion exabytes of memory, which is greater than the 256 MB limit imposed by Codeforces). But since each transaction is a bitwise XOR on this balance rather than a subtraction, and the "price" of each burger <math>
 		<mo>≤</mo>
 		<msup>
 			<mn>10</mn>
@@ -98,12 +98,14 @@ int main() {
 			<mn>2</mn>
 			<mn>20</mn>
 		</msup>
-	</math>, we need only concern ourselves with the lower 20 bits of the balance&mdash; the upper <math>
+	</math>, we need only concern ourselves with the lower <span class="lnum">20</span> bits of the balance&mdash;the upper <math>
 		<msup>
 			<mn>2</mn>
 			<mn>100</mn>
 		</msup>
-	</math> bits cannot change. Furthermore, we know all bits of the balance are initally set to 1, so for our purposes Ivan's balance is the much more wieldy <math>
+		<mo>-</mo>
+		<mn>21</mn>
+	</math> bits cannot change. Furthermore, we know all bits of the balance are initally set to <span class="lnum">1</span>, so for our purposes Ivan's balance is the much more wieldy <math>
 		<msup>
 			<mn>2</mn>
 			<mn>21</mn>
@@ -111,5 +113,125 @@ int main() {
 		<mo>-</mo>
 		<mn>1</mn>
 	</math>.
+
+	<!-- <p>XOR is both commutative and associative (see <a href="https://en.wikipedia.org/w/index.php?title=Exclusive_or&oldid=881222237#Properties">Wikipedia's diagrams</a> if you are not immediately convinced). -->
+
+	<p>Since Ivan's starting balance contains only set bits, the final bitwise XOR to calculate his expenditure is equivalent to a bitwise NOT. This means that to get the minimum final balance in his account, we need to find the <em>maximum</em> value with which to XOR his balance.
+	
+	<h3>An ineffective solution</h3>
+	<p>Let's start by solving for one friend. We can develop an algorithm using very small numbers then extend it to larger numbers later.
+	<p class="lnum">A simple test case with values of 3, 5, and 4 for <i>c<sub>i</sub></i> demonstrates that a simple greedy algorithm tracking the maximum expenditure after each restaurant will not work: after the first shop, we can spend a maximum of 3 burles; after the second shop, we can spend a maximum of 6 burles; but after the third shop, we can spend a maximum of 7 burles (by eating at the first and third shops)&mdash;if we already ate at the first two shops to get an expenditure of 6 burles, eating here would <em>reduce</em> our total expenditure to 2 burles, so this algorithm would not select this shop.
+	<p>We could keep track of all the possible expenditure values after eating at each shop. In the above example, we can achieve any expenditure except for <span class="lnum">1</span> burle with some combination of the three shops. As previously discussed, we can spend a maximum of <math>
+			<msup>
+				<mn>2</mn>
+				<mn>21</mn>
+			</msup>
+			<mo>-</mo>
+			<mn>1</mn>
+		</math> burles, so it is not unreasonable to store an array of whether each value is reachable&mdash;if each boolean takes up one bit, the size of this array would be <span class="lnum">262,144</span> bytes (of course, in C++ the behavior of an array or vector would be to store each boolean in its own byte, but this still isn't near the 256 MB limit).
+	<p>How long would this take? At each shop, we would have to read the entire array, xor-ing indices of true values with that shop's price and setting the value at that index, so we'd be looking at up to a trillion operations. The compiler would probably optimize some of those away, but it's still far too many, particularly when we would have to do it for each of Ivan's 500,000 friends.
+	<p>We could store a vector of reachable values and separately store the maximum reachable value. Then we can simply iterate over the vector at every shop, xor-ing values in the vector with the cost of that shop's burger and updating the stored maximum reachable value as needed. Furthermore, if the maximum reachable value reaches its maximum possible value of <math>
+			<msup>
+				<mn>2</mn>
+				<mn>21</mn>
+			</msup>
+			<mo>-</mo>
+			<mn>1</mn>
+		</math>, we can break out early:
+	<pre>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+int main(void) {
+	int maxPossible = (1 &lt;&lt; 21) - 1;
+	int n, q;
+	std::cin &gt;&gt; n;
+	int c[n];
+	for(int i = 0; i &lt; n; i++) {
+		std::cin &gt;&gt; c[i];
+	}
+	std::cin &gt;&gt; q;
+	for(int i = 0; i &lt; q; i++) {
+		int li, ri;
+		std::cin &gt;&gt; li &gt;&gt; ri;
+
+		std::vector&lt;bool&gt; reachable(maxPossible + 1, 0);
+		std::vector&lt;int&gt; reachableVector = {0};
+		int maxReachable = 0;
+		for(int j = li - 1; j &lt; ri; j++) {
+			reachableVector.push_back(c[j]); // We can always reach this value by eating only here
+			if(c[j] &gt; maxReachable) {
+				maxReachable = c[j];
+			}
+			for(int i = 0; i &lt; reachableVector.size(); i++) { // can't use range-based for since we modify vector
+				int reachableValue = reachableVector.at(i);
+				int xord = reachableValue ^ c[j];
+				if(reachable.at(xord)) {
+					continue; // already reached
+				}
+				reachable.at(xord) = 1;
+				if(xord &gt; maxReachable) {
+					maxReachable = xord;
+					if(xord == maxPossible) {
+						break;
+					}
+				}
+				reachableVector.push_back(xord);
+			}
+			if(maxReachable == maxPossible) {
+				break;
+			}
+		}
+
+		std::cout &lt;&lt; maxReachable &lt;&lt; '\n';
+	}
+}</pre>
+	<p>This program (<a href="burgers-partial.cpp">burgers-partial.cpp</a>) works, but even with one friend is a bit too slow when there are many burger joints. An input file (<a href="burgers_singlefriend.in">burgers_singlefriend.in</a>) generated with <a href="burgers.py">burgers.py</a> caused it to take <strong class="lnum">3 minutes, 10 seconds</strong> on my system&mdash;and the input file only had Ivan and his friend walk from joint <span class="lnum">191,248 to joint 267,253, a tiny fraction of the possible 500,000-joint walk. With an actual maximal input, it would take 18.8 years to complete even if the time complexity were linear, and since the number of calculations at each restaurant increases when more restaurants have been visited previously, it could potentially take millions of years.</span>
+	
+	<h3>Another approach</h3>
+	<p>We want to find the maximum xor-summation of any subset of a given subarray of <i>c<sub>i</sub></i>. We can do this by maximizing the most significant bit, then maximizing the next bit out of the combinations that remain after maximizing the most significant bit, and so on.
+	<p>For each bit, we know the result bit will be set if and only if we xor together an odd number of values with this bit set. It does not matter how many values with this bit unset we xor together. So whenever possible we want to come up with a subset of joints in which an odd number of elements have their most significant bit set.
+	<p>Since we don't need to know <em>which</em> burger joints yield the optimal solution, we can start by separating the set of burger joints into a set of burger joints with the most significant bit set and another set of those with the most significant bit unset.
+		When the size of the former set is zero, we don't need to do anything&mdash;we can simply continue to the next bit, as there's no way to get a value of 1 out of the most significant bit. When it isn't zero, we will always want to use an odd number of the elements in that set.
+	<p>If we implement this using brute force&mdash;checking every combination of an odd number of <i>n</i>> elements&mdash;we'll have to recursively test <math>
+		<mrow>
+			<munderover>
+				<mo>&Sum;</mo>
+				<mrow>
+					<mi>k</mi>
+					<mo>=</mo>
+					<mn>1</mn>
+				</mrow>
+				<mrow>
+					<mfenced open="⌊" close="⌋">
+						<mfrac bevelled="true">
+							<mi>n</mi>
+							<mn>2</mn>
+						</mfrac>
+					</mfenced>
+				</mrow>
+			</munderover>
+			<mfenced open="(" close=")">
+				<mfrac linethickness="0">
+					<mi>n</mi>
+					<mi>k</mi>
+				</mfrac>
+			</mfenced>
+		</mrow>
+		<mo>=</mo>
+		<mrow>
+			<mfenced open="⌊" close="⌋">
+				<mfrac>
+					<mi>n</mi>
+					<mn>2</mn>
+				</mfrac>
+			</mfenced>
+			<mfenced open="(" close=")">
+				<mfrac linethickness="0">
+					<mi>n</mi>
+					<mi>k</mi>
+				</mfrac>
+			</mfenced>
+		</mrow>
+	</math> combinations, a number which grows <em>very</em> quickly with <i>n</i>. So a simple recursive algorithm for that won't do.
 
 </article>
