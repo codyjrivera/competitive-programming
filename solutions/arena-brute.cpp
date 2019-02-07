@@ -16,7 +16,8 @@ int main() {
 		long long int hits, tests;
 		hits = tests = 0;
 
-		double epsilon = (r1 - r2) / 1000;
+		double epsilon = r1 / 1500.0; 
+		// 1500 is the maximum divisor that seems to result in an acceptable runtime
 
 		for(double x1 = -r1; x1 <= r1; x1 += epsilon) {
 			for(double y1 = -r1; y1 <= r1; y1 += epsilon) {

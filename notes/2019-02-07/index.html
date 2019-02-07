@@ -12,11 +12,11 @@
 <article>
     <h2>Upcoming competitions</h2>
     <ul>
-		<li><time datetime="2019-02-02T11:00:00.000-05:00"><strong>Friday, February 8</strong>, 10:00 am &ndash; noon</time> &ndash; Topcoder SRM 750 (Individual, Online)</li>
+		<li><time datetime="2019-02-02T11:00:00.000-05:00"><strong>Friday, February 8</strong>, 10:00 am &ndash; noon</time> &ndash; Topcoder SRM 750 (individual, online)</li>
 		<li><time datetime="2019-02-16"><strong>Saturday, February 16</strong></time>: <a href="http://springcontest.cs.mercer.edu/" class="noprint">Mercer Spring Programming Contest</a> (teams of 3, Macon, GA) &ndash; <strong>next weekend!</strong> (Contestants: We're currently planning to leave at <time datetime="2019-02-15T14:00:00.000-06:00">2pm on Friday</time>).</li>
-		<li><time datetime="2019-02-22T11:00:00.000-06:00"><strong>Friday, February 22</strong>, 11:00 am</time> &ndash; <time datetime="2019-02-25T11:00:00.000-06:00"><strong>Monday, February 25</strong>, 11:00 am</time> &ndash; Microsoft Q# Coding Contest Warm-Up Round (Individual, Online)
-		<li><time datetime="2019-03-01T11:00:00.000-06:00"><strong>Friday, March 1</strong>, 11:00 am</time> &ndash; <time datetime="2019-03-04T11:00:00.000-06:00"><strong>Monday, March 4</strong>, 11:00 am</time> &ndash; Microsoft Q# Coding Contest (Individual, Online)
-        <li><time datetime="2019-03-02T12:00:00.000-06:00"><strong>Saturday, March 2</strong>, noon &ndash; 5:00 pm</time>: <a href="http://naipc.uchicago.edu" class="noprint">North American Invitational Programming Contest</a> (Online, teams of 3)</li>
+		<li><time datetime="2019-02-22T11:00:00.000-06:00"><strong>Friday, February 22</strong>, 11:00 am</time> &ndash; <time datetime="2019-02-25T11:00:00.000-06:00"><strong>Monday, February 25</strong>, 11:00 am</time> &ndash; Microsoft Q# Coding Contest Warm-Up Round (individual, online)
+		<li><time datetime="2019-03-01T11:00:00.000-06:00"><strong>Friday, March 1</strong>, 11:00 am</time> &ndash; <time datetime="2019-03-04T11:00:00.000-06:00"><strong>Monday, March 4</strong>, 11:00 am</time> &ndash; Microsoft Q# Coding Contest (individual, online)
+        <li><time datetime="2019-03-02T12:00:00.000-06:00"><strong>Saturday, March 2</strong>, noon &ndash; 5:00 pm</time>: <a href="http://naipc.uchicago.edu" class="noprint">North American Invitational Programming Contest</a> (teams of 3, online)</li>
     </ul>
 
     <h2>Problems for this week</h2>
@@ -28,9 +28,44 @@
 	</ul>
 	
 	<h2>Update on Arena Survival</h2>
-	<p>The following brute force solution (<a href="/solutions/arena-brute.cpp">arena-brute.cpp</a>) completes in TIME on my machine and seems to be sufficiently accurate:
-	<pre>something
+	<p>The following brute force solution (<a href="/solutions/arena-brute.cpp">arena-brute.cpp</a>) completes in <strong class="lnum">50 ms</strong> on my machine and seems to be sufficiently accurate, so this is probably the intended solution:
+	<pre>#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;cstdio&gt;
 
-</pre>
+double distance(double x1, double y1, double x2, double y2) {
+    return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+}
+
+int main() {
+    int n;
+    std::cin &gt;&gt; n;
+    for(int i = 0; i &lt; n; i++) {
+        double r1, r2, x, y;
+        std::cin &gt;&gt; r1 &gt;&gt; r2 &gt;&gt; x &gt;&gt; y;
+
+        long long int hits, tests;
+        hits = tests = 0;
+
+        double epsilon = r1 / 1500.0; 
+        // 1500 is the maximum divisor that seems to result in an acceptable runtime
+
+        for(double x1 = -r1; x1 &lt;= r1; x1 += epsilon) {
+            for(double y1 = -r1; y1 &lt;= r1; y1 += epsilon) {
+                if(distance(x1, y1, 0, 0) &gt; r1 - r2) {
+                    // point is not a possible center for the new arena
+                    continue;
+                }
+                tests++;
+                if(distance(x1, y1, x, y) &lt; r2) {
+                    hits++;
+                }
+            }
+        }
+
+        double p = (double) hits / (double) tests;
+        printf("%.2f\n", p);
+    }
+}</pre>
 
 </article>
