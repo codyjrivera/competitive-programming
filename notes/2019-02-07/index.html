@@ -199,40 +199,41 @@ int main(void) {
 				<mrow>
 					<mi>k</mi>
 					<mo>=</mo>
-					<mn>1</mn>
+					<mn>0</mn>
 				</mrow>
 				<mrow>
-					<mfenced open="⌊" close="⌋">
-						<mfrac bevelled="true">
-							<mi>n</mi>
-							<mn>2</mn>
-						</mfrac>
+					<mfenced open="⌈" close="⌉">
+						<mrow>
+							<mfrac bevelled="true">
+								<mi>n</mi>
+								<mn>2</mn>
+							</mfrac>
+							<mo>-</mo>
+							<mn>1</mn>
+						</mrow>
 					</mfenced>
 				</mrow>
 			</munderover>
 			<mfenced open="(" close=")">
 				<mfrac linethickness="0">
 					<mi>n</mi>
-					<mi>k</mi>
+					<mrow>
+						<mn>2</mn>
+						<mi>k</mi>
+						<mo>+</mo>
+						<mn>1</mn>
+					</mrow>
 				</mfrac>
 			</mfenced>
 		</mrow>
-		<mo>=</mo>
-		<mrow>
-			<mfenced open="⌊" close="⌋">
-				<mfrac>
-					<mi>n</mi>
-					<mn>2</mn>
-				</mfrac>
-			</mfenced>
-			<mfenced open="(" close=")">
-				<mfrac linethickness="0">
-					<mi>n</mi>
-					<mi>k</mi>
-				</mfrac>
-			</mfenced>
-		</mrow>
-	</math> combinations, a number which grows <em>very</em> quickly with <i>n</i>. So a simple recursive algorithm for that won't do.
+	</math> combinations, a number which grows <em>very</em> quickly with <i>n</i> (it can exceed <a href="https://www.wolframalpha.com/input/?i=summation&assumption=%7B%22F%22,+%22Sum%22,+%22sumfunction%22%7D+-%3E%22500000+choose+(2*x%2B1)%22&assumption=%7B%22F%22,+%22Sum%22,+%22sumlowerlimit%22%7D+-%3E%220%22&assumption=%7B%22F%22,+%22Sum%22,+%22sumupperlimit2%22%7D+-%3E%22ceil(500000%2F2+-+1)%22&assumption=%7B%22FVarOpt%22,+%221%22%7D+-%3E+%7B%7B%7D,+%7B%7B%7B%22Sum%22,+%22sumvariable%22%7D%7D%7D,+%7B%7D%7D&assumption=%7B%22C%22,+%22summation%22%7D+-%3E+%7B%22Calculator%22,+%22dflt%22%7D"><math>
+		<mn>3.5</mn>
+		<mo>&times;</mo>
+		<msup>
+			<mn>10</mn>
+			<mn>150514</mn>
+		</msup>
+	</math></a>). So a simple recursive algorithm for that won't do.
 
 	<p>If you think you know how to do this, here is a maximal input file for testing purposes: <a href="burgers.in">burgers.in</a>
 
