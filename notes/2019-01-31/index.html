@@ -39,7 +39,7 @@ MathJax.Hub.Config({
 	<h3>Simplified problem description</h3>
 	<p>If all characters or all but the first character in the input word (which matches <code>/^[A-Za-z]+$/</code>) are uppercase, swap the case of all characters in the word and output it. Otherwise, output the input word.
 	<h3>Solutions</h3>
-	<p>For doing nothing but manipulating a string of arbitrary length, I'd use Python, or Perl if possible.
+	<p>For doing nothing but manipulating a string of arbitrary length, I'd use Python, or Perl if possible. There isn't much to this problem&mdash;indeed, the <a href="https://codeforces.com/blog/entry/3253">official solution</a> when translated from Russian effectively reads "Do everything that is requested in the problem" with a recap of the problem.
 	<p><strong>Python</strong>: <a href="/solutions/capslock.py">capslock.py</a> &ndash; this solution runs in <strong class="lnum">14.1 ms</strong> on my system and <span class="lnum">140 ms</span> in Codeforces' environment.
 	<pre>import re
 word = input().strip()

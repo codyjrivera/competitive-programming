@@ -56,7 +56,7 @@
 	<p>Six standard playing cards are given. Each card is two characters: the first is the rank in <code>{'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'}</code> and the second is the suit in <code>{'D', 'C', 'S', 'H'}</code>.
 	<p>If any of the last five cards have the same rank or suit as the first card, print <code>"YES"</code>. Otherwise, print <code>"NO"</code>.
 	<h3>Solutions</h3>
-	<p>Since the algorithm for this one is pretty straightforward, I've implemented it in a few different languages to demonstrate the difference in runtimes that can become very significant for more complex problems:
+	<p>Since the algorithm for this one is pretty straightforward (see the <a href="https://codeforces.com/blog/entry/64310">Codeforces editorial</a>), I've implemented it in a few different languages to demonstrate the difference in runtimes that can become very significant for more complex problems:
 	<p><strong>C++</strong>: <a href="/solutions/1097a.cpp">1097a.cpp</a> &ndash; this solution runs in <strong class="lnum">0.28 ms</strong> on my system and <span class="lnum">30 ms</span> (which seems to be the minimum with overhead) in Codeforces' environment.
 	<pre>#include &lt;iostream&gt;
 #include &lt;string&gt;
@@ -298,7 +298,9 @@ int main() {
 
     std::cout &lt;&lt; *std::max_element(levels, levels + 26) &lt;&lt; std::endl;
 }</pre>
-	<p>This solution runs in <strong class="lnum">8.2 ms</strong> on my system and <strong class="lnum">62 ms</strong> in Codeforces' environment.
+    <p>This solution runs in <strong class="lnum">8.2 ms</strong> on my system and <strong class="lnum">62 ms</strong> in Codeforces' environment.
+        
+    <p>This is the intended solution, per the <a href="https://codeforces.com/blog/entry/64664">editorial</a>.</p>
 
     <h2>Pens and Days of Week</h2>
 
@@ -555,7 +557,7 @@ int main() {
 
 	<p>The length of these blocks (lcm(7, <i>n</i>) days) turns out to be irrelevant&mdash;what matters is now how many <em>blocks</em>, not how many <em>days</em>, it takes for each pen to run out of ink. This calculation is simple!
 	<pre>int endBlocks[n] = {0}; // The block in which pen n runs out of ink.
-for(int i = 0; i < n; i++) {
+for(int i = 0; i &lt; n; i++) {
     if(i % 7 == 6) endBlocks[n] = -1; // The pen never runs out of ink.
     else endBlocks[n] = a[n] / 6 + !!(a[n] % 6); // A safe implementation of ceil(a[n] / 6)
 }</pre>
@@ -630,7 +632,7 @@ int main() {
 
 	<p>This solution runs in <strong class="lnum">27 ms</strong> on my machine and <span class="lnum">124 ms</span> in Codeforces' environment.
 
-	<p>It would also be acceptable to use the first na&iuml;ve algorithm for the final stage (<a href="/solutions/pens-using-naive.cpp">pens-using-naive.cpp</a>). This solution takes almost exactly the same amount of time since there is very little to be done in this final loop.
+	<p>It would also be acceptable to use the first na&iuml;ve algorithm for the final stage (<a href="/solutions/pens-using-naive.cpp">pens-using-naive.cpp</a>). This solution takes almost exactly the same amount of time since there is very little to be done in this final loop and is the intended solution per the <a href="https://codeforces.com/blog/entry/51441">Codeforces editorial</a> <em>(in Russian)</em>.
 
 	<p>Of course, we could also find a more efficient algorithm to determine which pen runs out first in the final block. But we do not need to.
 </article>
