@@ -5,3 +5,10 @@ a.out
 *.class
 in
 .vscode
+_minted-docs/
+*.aux
+*_latexmk
+*.fls
+*.log
+*.pdf
+*.gz
