@@ -6,16 +6,37 @@
 \usepackage{minted}
 \usepackage{longtable}
 \usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hhline}
 \setminted{tabsize=4,linenos,breaklines}
 
 \begin{document}
 
 \section*{Operators}
 \input{operators.tex}
-\newpage
 
+\newpage
 \section*{C++ Demo}
 The following C++ program demonstrates templates, operator overloading, and operations on vectors and deques:
 \inputminted{cpp}{demos.cpp}
+
+\newpage
+\section*{C++ User-Defined Literals}
+Potentially useful but probably not:
+\inputminted{cpp}{literals.cpp}
+The following parameter lists are allowed on literal operators:
+\begin{itemize}[noitemsep]
+	\item \texttt{(const char *)}
+	\item \texttt{(unsigned long long int)}
+	\item \texttt{(long double)}
+	\item \texttt{(char)}
+	\item \texttt{(wchar\_t)}
+	\item \texttt{(char16\_t)}
+	\item \texttt{(char32\_t)}
+	\item \texttt{(const char *, std::size\_t)}
+	\item \texttt{(const wchar\_t *, std::size\_t)}
+	\item \texttt{(const char16\_t *, std::size\_t)}
+	\item \texttt{(cosnt char32\_t *, std::size\_t)}
+\end{itemize}
 
 \end{document}

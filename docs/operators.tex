@@ -3,8 +3,8 @@ Below is a table of operators in C++, Java, and Python. Assignment operators are
 \newmintinline[inline]{python}{fontsize=\normalsize}
 \noindent
 \begin{longtable}{c c | c | c | c | c}
-	\multicolumn{2}{c|}{Name and symbol} & C++ & Java & Python & Example (these return \inline{True}) \\
-	\hline
+	\multicolumn{2}{c|}{\textbf{Name and symbol}} & \textbf{C++} & \textbf{Java} & \textbf{Python} & \textbf{Example} (these return \inline{True}) \\
+	\hhline{==|=|=|=|=}
 	\endhead
 	Assignment\footnote{In C++ and Java, assignment operators return the value of the variable after assignment (so \texttt{(a = b) == b}). In Python, they do not.} & \makecell{$:$ \\ $:=$} & 
 		\color{red} \texttt{a = b} & 
@@ -129,7 +129,7 @@ Below is a table of operators in C++, Java, and Python. Assignment operators are
 		\texttt{\textasciitilde a} & 
 		\texttt{\textasciitilde a} & 
 		\makecell{
-			\inline{~0b100101 & 0b111111 == 0b11010} \\
+			\inline{~0b100101&0b111111==0b11010} \\
 			\inline{~37 & 0x3F == 26} \\
 			\scriptsize{Be careful when using this with signed integers!} \\
 			\inline{~37 == -38}
@@ -139,14 +139,14 @@ Below is a table of operators in C++, Java, and Python. Assignment operators are
 		\makecell{\texttt{a \& b} \\ \texttt{a bitand b} \\ \color{red} \texttt{a \&= b} \\ \color{red} \texttt{a and\_eq b}} & 
 		\makecell{\texttt{a \& b} \\ \color{red} \texttt{a \&= b}} & 
 		\makecell{\texttt{a \& b} \\ \color{red} \texttt{a \&= b}} & 
-		\inline{0b110101 & 0b101111 == 0b100101} \\
+		\inline{0b110101&0b101111==0b100101} \\
 	\hline
 	Bitwise OR &  & 
 		\makecell{\texttt{a | b} \\ \texttt{a bitor b} \\ \color{red} \texttt{a |= b} \\ \color{red} \texttt{a or\_eq b}} & 
 		\makecell{\texttt{a | b} \\ \color{red} \texttt{a |= b}} & 
 		\makecell{\texttt{a | b} \\ \color{red} \texttt{a |= b}} & 
 		\makecell {
-			\inline{0b100101 | 0b101000 == 0b101101} \\
+			\inline{0b100101|0b101000==0b101101} \\
 			\inline{37 | 40 == 45}
 		} \\
 	\hline
@@ -155,7 +155,7 @@ Below is a table of operators in C++, Java, and Python. Assignment operators are
 		\makecell{\texttt{a \textasciicircum\ b} \\ \color{red} \texttt{a \textasciicircum= b}} & 
 		\makecell{\texttt{a \textasciicircum\ b} \\ \color{red} \texttt{a \textasciicircum= b}} & 
 		\makecell{
-			\inline{0b100101 ^ 0b101111 == 0b001010} \\
+			\inline{0b100101^0b101111==0b001010} \\
 			\inline{37 ^ 47 == 10}
 		} \\
 	\hline
