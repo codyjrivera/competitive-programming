@@ -1,13 +1,20 @@
 \documentclass[12pt,letterpaper,oneside]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[margin=0.75in]{geometry}
-
+\usepackage{makecell}
+\usepackage{textcomp}
 \usepackage{minted}
+\usepackage{longtable}
+\usepackage{xcolor}
 \setminted{tabsize=4,linenos,breaklines}
 
 \begin{document}
 
+\section*{Operators}
+\input{operators.tex}
+\newpage
 
+\section*{C++ Demo}
 The following C++ program demonstrates templates, operator overloading, and operations on vectors and deques:
 \inputminted{cpp}{demos.cpp}
 

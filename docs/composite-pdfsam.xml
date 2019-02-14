@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pdfsam_saved_jobs version="1.1.4" savedate="14-Feb-2019">
+  <plugin class="org.pdfsam.guiclient.gui.panels.JInfoPanel" name="About"/>
+  <plugin class="org.pdfsam.plugin.split.GUI.SplitMainGUI" name="Split">
+    <source/>
+    <split_option/>
+    <npages value=""/>
+    <thispage value=""/>
+    <splitsize value=""/>
+    <bookmarkslevel/>
+    <destination value=""/>
+    <prefix value="pdfsam_"/>
+    <overwrite value="true"/>
+    <compressed value="true"/>
+    <pdfversion value="5"/>
+  </plugin>
+  <plugin class="org.pdfsam.guiclient.gui.panels.JSettingsPanel" name="Settings"/>
+  <plugin class="org.pdfsam.plugin.merge.GUI.MergeMainGUI" name="Merge/Extract">
+    <filelist>
+      <file name="/home/tortoise/school/competitive-programming/docs/docs.pdf" pageselection="All"/>
+      <file name="/home/tortoise/school/competitive-programming/archive/ASCII-Conversion-Chart.pdf" pageselection="All"/>
+      <file name="/home/tortoise/school/competitive-programming/notes/2019-01-24.pdf" pageselection="All"/>
+      <file name="/home/tortoise/school/competitive-programming/notes/2019-01-31.pdf" pageselection="All"/>
+      <file name="/home/tortoise/school/competitive-programming/notes/2019-02-07.pdf" pageselection="All"/>
+      <file name="/home/tortoise/school/competitive-programming/archive/codeforces/editorials/1100.pdf" pageselection="1-3"/>
+      <file name="/home/tortoise/school/competitive-programming/archive/codeforces/editorials/1108.pdf" pageselection="1-13"/>
+      <file name="/home/tortoise/school/competitive-programming/archive/codeforces/editorials/1114.pdf" pageselection="1-32"/>
+    </filelist>
+    <destination value="/home/tortoise/school/competitive-programming/docs/composite.pdf"/>
+    <overwrite value="true"/>
+    <merge_type value="false"/>
+    <compressed value="true"/>
+    <pdfversion value="5"/>
+  </plugin>
+</pdfsam_saved_jobs>

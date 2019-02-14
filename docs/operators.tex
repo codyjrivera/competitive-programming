@@ -1,0 +1,212 @@
+Below is a table of operators in C++, Java, and Python. Assignment operators are in red. Some operators dealing with type checking and casting and storage allocation have been omitted.
+
+\newmintinline[inline]{python}{fontsize=\normalsize}
+\noindent
+\begin{longtable}{c c | c | c | c | c}
+	\multicolumn{2}{c|}{Name and symbol} & C++ & Java & Python & Example (these return \inline{True}) \\
+	\hline
+	\endhead
+	Assignment\footnote{In C++ and Java, assignment operators return the value of the variable after assignment (so \texttt{(a = b) == b}). In Python, they do not.} & \makecell{$:$ \\ $:=$} & 
+		\color{red} \texttt{a = b} & 
+		\color{red} \texttt{a = b} & 
+		\color{red} \texttt{a = b} & 
+		\inline{a = True; a} \\
+	\hline
+	Addition & $+$ & 
+		\makecell{ \texttt{a + b} \\ \color{red} \texttt{a += b} } & 
+		\makecell{ \texttt{a + b} \\ \color{red} \texttt{a += b} } & 
+		\makecell{ \texttt{a + b} \\ \color{red} \texttt{a += b} } & 
+		\inline{6 + 2 == 8} \\
+	\hline
+	Subtraction & $-$ & 
+		\makecell{ \texttt{a - b} \\ \color{red} \texttt{a -= b} } & 
+		\makecell{ \texttt{a - b} \\ \color{red} \texttt{a -= b} } & 
+		\makecell{ \texttt{a - b} \\ \color{red} \texttt{a -= b} } & 
+		\inline{6 - 2 == 4} \\
+	\hline
+	Multiplication & $\times$ & 
+		\makecell{ \texttt{a * b} \\ \color{red} \texttt{a *= b} } & 
+		\makecell{ \texttt{a * b} \\ \color{red} \texttt{a *= b} } & 
+		\makecell{ \texttt{a * b} \\ \color{red} \texttt{a *= b} } & 
+		\inline{6 * 2 == 12} \\
+	\hline
+	Division\footnote{In C++ and Java, \texttt{/} performs floating-point division on floats and integer division on integers. In Python, \texttt{/} performs floating-point division and \texttt{//} performs floor division. Floor division is like integer division, except that it always rounds down but integer division rounds toward zero. For example, in C++, \mintinline{c}{-5 / 2 == -2}, but in Python, \mintinline{python}{-5 // 2 == -3}.} & $\div$ & 
+		\makecell{ \texttt{a / b} \\ \color{red} \texttt{a /= b} } & 
+		\makecell{ \texttt{a / b} \\ \color{red} \texttt{a /= b} } & 
+		\makecell{ \texttt{a / b} \\ \color{red} \texttt{a /= b} \\ \texttt{a // b} \\ \color{red} \texttt{a //= b} } & 
+		\makecell{ \inline{5 / 2 == 2.5} \\ \inline{5 // 2 == 2} } \\
+	\hline
+	Modulo\footnote{In C++ and Java, the result of a modulo operation has the same sign as the dividend (\texttt{-5 \% 4 == -1} because $-5=-(1\times4+1)$). In Python, it has the same sign as the divisor (\texttt{-5 \% 4 == 3} because $-5=-2\times4+3$). In Java, Python's behavior can be obtained using the \mintinline{java}{Math.floorMod} function.} & $\mathrm{mod}$ & 
+		\makecell{ \texttt{a \% b} \\ \color{red} \texttt{a \%= b} } & 
+		\makecell{ \texttt{a \% b} \\ \color{red} \texttt{a \%= b} } & 
+		\makecell{ \texttt{a \% b} \\ \color{red} \texttt{a \%= b} } & 
+		\inline{7 % 3 == 1} \\
+	\hline
+	Exponent\footnote{In C++, \texttt{\#import <cmath>} and use \mintinline{cpp}{std::pow(a, b)}. In Java, use \mintinline{java}{Math.pow(a, b)}. In Python, \mintinline{python}{math.pow(a, b)} is also available after \mintinline{python}{from math import pow} and may produce slightly different floating-point results.} & $a^b$ & 
+		&
+		&
+		\makecell{ \texttt{a ** b} \\ \color{red} \texttt{a **= b} } &
+		\inline{4 ** 2 == 16} \\
+	\hline
+	Unary plus\footnote{You probably do not want this, especially in Python. In statically typed languages it is occasionally useful because it casts its operand to an \mintinline{c}{int}; for example, in C/C++, \mintinline{c}{+'a'} is the integer 97.} & &
+		\texttt{+a} &
+		\texttt{+a} &
+		\texttt{+a} &
+		\inline{a = 2; +a == 2} \\
+	\hline 
+	Unary minus & $-$ & 
+		\texttt{-a} &
+		\texttt{-a} &
+		\texttt{-a} &
+		\inline{a = 2; -a == -2} \\
+	\hline
+	Increment\footnote{When used in an expression, \texttt{++a} returns the value of \texttt{a} after incrementing whereas \texttt{a++} returns the value of \texttt{a} before incrementing. \texttt{int a = 6, b = ++a, c = a++; printf("\%i \%i \%i\textbackslash n", a, b, c);} prints \texttt{6 7 7}. In Python, the increment operator is unavailable; use \inline{a += 1}.}  & &
+		\makecell{ \color{red} \texttt{++a} \\ \color{red} \texttt{a++} } &
+		\makecell{ \color{red} \texttt{++a} \\ \color{red} \texttt{a++} } &
+		& \\
+	\hline
+	Decrement\footnote{When used in an expression, \texttt{--a} returns the value of \texttt{a} after decrementing whereas \texttt{a--} returns the value of \texttt{a} before decrementing. \texttt{int a = 6, b = --a, c = a--; printf("\%i \%i \%i\textbackslash n", a, b, c);} prints \texttt{4 5 5}. In Python, the decrement operator is unavailable; use \inline{a -= 1}.}  & &
+		\makecell{ \color{red} \texttt{--a} \\ \color{red} \texttt{a--} } &
+		\makecell{ \color{red} \texttt{--a} \\ \color{red} \texttt{a--} } &
+		& \\
+	\hline
+	Equality & $=$ &
+		\texttt{a == b} &
+		\texttt{a == b} &
+		\texttt{a == b} &
+		\inline{6 == 6} \\
+	\hline
+	Inequality & $\ne$ &
+		\makecell{\texttt{a != b} \\ \texttt{a not\_eq b}} &
+		\texttt{a != b} &
+		\makecell{\texttt{a != b} \\ \texttt{a <> b}} &
+		\inline{6 != 7} \\
+	\hline
+	Greater than & $>$ &
+		\texttt{a > b} &
+		\texttt{a > b} &
+		\texttt{a > b} &
+		\inline{88 > 4} \\
+	\hline
+	Less than & $<$ &
+		\texttt{a < b} &
+		\texttt{a < b} &
+		\texttt{a < b} &
+		\inline{8 < 43} \\
+	\hline
+	\makecell{Greater than\\or equal} & $\ge$ &
+		\texttt{a >= b} &
+		\texttt{a >= b} &
+		\texttt{a >= b} &
+		\makecell{\inline{88 >= 4} \\ \inline{4 >= 4}} \\
+	\hline
+	\makecell{Less than\\or equal} & $\le$ &
+		\texttt{a <= b} &
+		\texttt{a <= b} &
+		\texttt{a <= b} &
+		\makecell{\inline{8 <= 43} \\ \inline{8 <= 8}} \\
+	\hline
+	Boolean NOT & \makecell{$\sim$\\$\neg$} &
+		\makecell{\texttt{!a} \\ \texttt{not a}} &
+		\texttt{!a} &
+		\texttt{not a} &
+		\inline{not False} \\
+	\hline
+	Boolean AND & $\land$ &
+		\makecell{\texttt{a \&\& b} \\ \texttt{a and b}} &
+		\texttt{a \&\& b} &
+		\texttt{a and b} &
+		\inline{True and True} \\
+	\hline
+	Boolean OR & $\lor$ &
+		\makecell{\texttt{a || b} \\ \texttt{a or b}} &
+		\texttt{a || b} &
+		\texttt{a or b} &
+		\inline{True or False} \\
+	\hline
+	Bitwise NOT & & 
+		\makecell{\texttt{\textasciitilde a} \\ \texttt{compl a} } & 
+		\texttt{\textasciitilde a} & 
+		\texttt{\textasciitilde a} & 
+		\makecell{
+			\inline{~0b100101 & 0b111111 == 0b11010} \\
+			\inline{~37 & 0x3F == 26} \\
+			\scriptsize{Be careful when using this with signed integers!} \\
+			\inline{~37 == -38}
+		} \\
+	\hline
+	Bitwise AND & & 
+		\makecell{\texttt{a \& b} \\ \texttt{a bitand b} \\ \color{red} \texttt{a \&= b} \\ \color{red} \texttt{a and\_eq b}} & 
+		\makecell{\texttt{a \& b} \\ \color{red} \texttt{a \&= b}} & 
+		\makecell{\texttt{a \& b} \\ \color{red} \texttt{a \&= b}} & 
+		\inline{0b110101 & 0b101111 == 0b100101} \\
+	\hline
+	Bitwise OR &  & 
+		\makecell{\texttt{a | b} \\ \texttt{a bitor b} \\ \color{red} \texttt{a |= b} \\ \color{red} \texttt{a or\_eq b}} & 
+		\makecell{\texttt{a | b} \\ \color{red} \texttt{a |= b}} & 
+		\makecell{\texttt{a | b} \\ \color{red} \texttt{a |= b}} & 
+		\makecell {
+			\inline{0b100101 | 0b101000 == 0b101101} \\
+			\inline{37 | 40 == 45}
+		} \\
+	\hline
+	Bitwise XOR &  & 
+		\makecell{\texttt{a \textasciicircum\ b} \\ \texttt{a xor b} \\ \color{red} \texttt{a \textasciicircum= b} \\ \color{red} \texttt{a xor\_eq b}} & 
+		\makecell{\texttt{a \textasciicircum\ b} \\ \color{red} \texttt{a \textasciicircum= b}} & 
+		\makecell{\texttt{a \textasciicircum\ b} \\ \color{red} \texttt{a \textasciicircum= b}} & 
+		\makecell{
+			\inline{0b100101 ^ 0b101111 == 0b001010} \\
+			\inline{37 ^ 47 == 10}
+		} \\
+	\hline
+	Left shift &  & 
+		\makecell{\texttt{a << n} \\ \color{red} \texttt{a <<= n}} & 
+		\makecell{\texttt{a << n} \\ \color{red} \texttt{a <<= n}} & 
+		\makecell{\texttt{a << n} \\ \color{red} \texttt{a <<= n}} & 
+		\makecell{
+			\inline{0b100101 << 2 == 0b10010100} \\
+			\inline{37 << 2 == 148}
+		} \\
+	\hline
+	Right shift &  & 
+		\makecell{\texttt{a >> n} \\ \color{red} \texttt{a >>= n}} & 
+		\makecell{\texttt{a >> n} \\ \color{red} \texttt{a >>= n}} & 
+		\makecell{\texttt{a >> n} \\ \color{red} \texttt{a >>= n}} & 
+		\makecell{
+			\inline{0b100101 >> 2 == 0b1001} \\
+			\inline{37 >> 2 == 9}
+		} \\
+	\hline
+	Subscript & $a_b$ &
+		\texttt{a[b]} &
+		\texttt{a[b]} &
+		\texttt{a[b]} &
+		\inline{[True, False][0]} \\
+	\hline
+	\makecell{Indirection\footnote{Gets the object pointed to by a pointer a. Can be used in Python to pass a list to a variadic function.} \\ Dereference} & &
+		\texttt{*a} &
+		&
+		\texttt{*a} &
+		\\
+	\hline
+	Reference & & \texttt{\&a} & & & \\
+	\hline
+	Member\footnote{In C++, \mintinline{cpp}{a->b} dereferences the pointer \texttt{a} to an object with a member \texttt{(*a).b}.} & & \makecell{\texttt{a.b}\\\texttt{a->b}} & \texttt{a.b} & \texttt{a.b} & \\
+	\hline
+	Function call & & \texttt{f(a)} & \texttt{f(a)} & \texttt{f(a)} & \\
+	\hline
+	\multicolumn{2}{l|}{Scope resolution} & \texttt{::} & \texttt{::} & & \\
+	\hline
+	Comma & & \texttt{a, b} & & & \\
+	\hline
+	Ternary\footnote{Shorthand for \mintinline{c}{if(a) { b; } else { c; }}.} & &
+		\texttt{a\ ?\ b\ :\ c} &
+		\texttt{a\ ?\ b\ :\ c} &
+		\tiny{\texttt{b if a else c}} &
+		\inline{True if 3 > 2 else False} \\
+	\hline
+	\multicolumn{2}{l|}{\small{User-defined literal}} & \texttt{"a"\_b} & & \\
+	\hline
+
+\end{longtable}
+
