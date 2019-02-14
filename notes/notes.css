@@ -84,6 +84,7 @@ article {
 	background-color: #222;
 	display: block;
 	max-width: 7.5in;
+	min-height: calc(100vh - 3in);
 	border: 1px solid #bbb;
 	border-radius: 1em;
 	padding: 0.5in;
@@ -245,6 +246,7 @@ aside[data-appendix], .light-only {
 
 	article {
 		margin-top: 0;
+		min-height: 0;
 		border: none;
 		font-family: "Linux Libertine O", serif;
 		padding: 0;
