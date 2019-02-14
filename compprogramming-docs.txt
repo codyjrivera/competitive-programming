@@ -15,3 +15,9 @@ https://www.regular-expressions.info/backref.html
 https://stackoverflow.com/questions/5466451/how-can-i-print-literal-curly-brace-characters-in-python-string-and-also-use-fo
 https://stackoverflow.com/questions/34315002/max-in-a-c-array
 https://stackoverflow.com/questions/3450860/check-if-a-stdvector-contains-a-certain-object
+https://stackoverflow.com/questions/671423/c-stl-vectors-get-iterator-from-index
+https://stackoverflow.com/questions/17289324/assign-int-value-to-vector-using-iterator
+https://stackoverflow.com/questions/9874802/how-can-i-get-the-max-or-min-value-in-a-vector
+http://www.cs.trincoll.edu/~ram/cpsc110/inclass/conversions.html
+https://stackoverflow.com/questions/20052674/how-to-convert-vector-to-set
+https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
