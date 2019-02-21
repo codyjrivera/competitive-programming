@@ -1,55 +1,143 @@
 #!/bin/bash
 
-echo ==== COMPILER MESSAGES ====
-set -e
-g++ -O2 -std=gnu++17 -lm -s -static -Wall -Wextra -o $1 $1.cpp
-set +e
+if [ -z "$1" ]
+then
+	echo No program specified
+	exit 1
+fi
 
-if [ -e $1.in ]
+if [ -n "$2" ]
+then
+	echo ==== DEBUG MODE ENABLED ====
+	echo
+fi
+
+if [[ $1 == *.cpp ]]
+then
+	L=cpp
+	PROG=${1:0:-4}
+elif [[ $1 == *.py ]]
+then
+	L=py
+	PROG=${1:0:-3}
+elif [[ $1 == *.c ]]
+then
+	L=c
+	PROG=${1:0:-2}
+elif [[ $1 == *.java ]]
+then
+	L=java
+	PROG=${1:0:-5}
+elif [[ $1 == *.pl ]]
+then
+	L=pl
+	PROG=${1:0:-3}
+else
+	L=cpp
+	PROG=$1
+fi
+
+set -e
+if [ $L != "pl" -a $L != "py" ]
 then
 	echo
+	echo ==== COMPILER MESSAGES ====
+	case $L in
+		cpp)
+			if [ -n "$2" ]
+			then
+				g++ -O2 -std=gnu++17 -lm -s -static -Wall -Wextra -o $PROG $PROG.cpp
+			else
+				g++ -O2 -std=gnu++17 -lm -s -static -o $PROG $PROG.cpp
+			fi
+			;;
+		c)
+			gcc -O2 -static -std=c11 -fno-asm -lm -s -o $PROG $PROG.c
+			;;
+		java)
+			javac $PROG.java
+			;;
+		*)
+			echo "Unrecognized language"
+			exit 2
+			;;
+	esac
 	echo
-	echo ==== TESTING $1.in ====
+fi
+set +e
+
+if [ -e $PROG.in ]
+then
+	echo
+	echo ==== TESTING $PROG.in ====
 	echo ==== YOUR STDERR ====
-	./$1 < $1.in > $1.output
+	case $L in
+		py)
+			python3 $PROG.py $2 < $PROG.in > $PROG.output
+			;;
+		pl)
+			perl $PROG.pl $2 < $PROG.in > $PROG.output
+			;;
+		java)
+			java $PROG $2 < $PROG.in > $PROG.output
+			;;
+		*)
+			./$PROG $2 < $PROG.in > $PROG.output
+			;;
+	esac
 	echo
 
 	echo ==== YOUR STDOUT ====
-	cat $1.output
+	cat $PROG.output
 	echo
 
 	echo ==== DIFF WITH EXPECTED OUTPUT ====
-	diff --color $1.out $1.output
+	diff --color $PROG.out $PROG.output
 	if [ $? -ne 0 ]
 	then
-		rm $1.output $1
+		rm $PROG.output $PROG
 		exit $?
 	fi
+	echo
 fi
 
 i=1
-while [ -e $1.in$i ]
+while [ -e $PROG.in$i ]
 do
 	echo
-	echo
-	echo ==== TESTING $1.in$i ====
+	echo ==== TESTING $PROG.in$i ====
 	echo ==== YOUR STDERR ====
-	./$1 < $1.in$i > $1.output
+	case $L in
+		py)
+			python3 $PROG.py $2 < $PROG.in$i > $PROG.output
+			;;
+		pl)
+			perl $PROG.pl $2 < $PROG.in$i > $PROG.output
+			;;
+		java)
+			java $PROG $2 < $PROG.in$i > $PROG.output
+			;;
+		*)
+			./$PROG $2 < $PROG.in$i > $PROG.output
+			;;
+	esac
+	echo
 	echo
 
 	echo ==== YOUR STDOUT ====
-	cat $1.output
+	cat $PROG.output
 	echo
 
 	echo ==== DIFF WITH EXPECTED OUTPUT ====
-	diff --color $1.out$i $1.output
+	diff --color $PROG.out$i $PROG.output
 	if [ $? -ne 0 ]
 	then
-		rm $1.output $1
+		rm -f $PROG.output $PROG.class $PROG
 		exit $?
 	fi
 
 	((i++))
+	echo
 done
 
-rm $1.output $1
+rm -f $PROG.output $PROG.class $PROG
