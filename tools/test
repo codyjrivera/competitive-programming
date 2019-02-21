@@ -38,7 +38,7 @@ else
 fi
 
 set -e
-if [ $L != "pl" -a $L != "py" ]
+if [ $L != "pl" ] && [ $L != "py" ]
 then
 	echo
 	echo ==== COMPILER MESSAGES ====
@@ -93,7 +93,7 @@ then
 
 	echo ==== DIFF WITH EXPECTED OUTPUT ====
 	diff --color $PROG.out $PROG.output
-	if [ $? -ne 0 ]
+	if [ $? -ne 0 ] && [ -z "$2" ]
 	then
 		rm $PROG.output $PROG
 		exit $?
@@ -130,7 +130,7 @@ do
 
 	echo ==== DIFF WITH EXPECTED OUTPUT ====
 	diff --color $PROG.out$i $PROG.output
-	if [ $? -ne 0 ]
+	if [ $? -ne 0 ] && [ -z "$2" ]
 	then
 		rm -f $PROG.output $PROG.class $PROG
 		exit $?

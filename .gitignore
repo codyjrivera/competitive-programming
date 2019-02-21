@@ -13,3 +13,5 @@ _minted-docs/
 *.pdf
 *.gz
 tools/pens.*
+solutions/*.in*
+solutions/*.out*
