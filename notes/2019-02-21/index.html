@@ -14,6 +14,7 @@
 	<ul>
 		<li>NAIPC Rules &amp; Registration
 		<li>Documentation
+		<li>Some helpful code
 		<li>Mercer review
 		<li>
 	</ul>
@@ -24,7 +25,45 @@
 			<li><a href="http://cp-algorithms.com/">CP-Algorithms</a>
 			<li><a href="http://www.cs.northwestern.edu/~riesbeck/programming/c++/">Dr. Chris Riesbeck's C++ site</a>, including <a href="http://www.cs.northwestern.edu/~riesbeck/programming/c++/stl-summary.html">an excellent (if a bit outdated) reference to STL containers</a>
 		</ul>
-	<h2>
+	<h2>Some helpful code</h2>
+	<h3>C++ boilerplate</h3>
+	<p>The following (<a href="/tools/boilerplate.cpp">boilerplate.cpp</a>) is a good starting point for solving problems in C++: 
+	<pre>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+bool DB = 0;
+
+template &lt;typename T1, typename... T2&gt;
+void db(T1&amp;&amp; x1, T2&amp;&amp;... x2) {
+	if(!DB) return;
+	cout &lt;&lt; forward&lt;T1&gt;(x1);
+	((cout &lt;&lt; ' ' &lt;&lt; forward&lt;T2&gt;(x2)), ...);
+	cout &lt;&lt; endl;
+}
+
+#define PULSE db("Alive at line", __LINE__)
+
+int main(int argc, char *argv[]) {
+	DB = !!(argc - 1);
+	(void) argv;
+	
+	PULSE;
+}</pre>
+	<p>This template provides a <code>db</code> function that prints its arguments only if a command-line argument is passed to the program (which also sets the global <code>DB</code> boolean). Since (in almost all problems) no command line argument is passed to the executable, you do not have to comment this code out before submission. It also provides the <code>PULSE</code> macro, which prints the line number on which it is placed when the program reaches that line, and uses <code>bits/stdc++.h</code> and <code>using namespace std</code> to import the entire standard library into the current scope so you don't have to deal with header files or scope resolution. (This does increase compilation time, but this is not <em>usually</em> a concern for competitive programming. Note that this is <strong>very poor</strong> style in production C++.) Finally, it typedefs <code>ll</code> to <code>long long int</code>, which should be used in place of <code>int</code> whenever possible to avoid overflows.
+	<p>It uses C++17 features, so be sure to compile it with <code>-std=c++17</code> or <code>-std=gnu++17</code>
+	<h3>More robust C++ debug headers</h3>
+	<p>Codeforces user Danila Danko (<a href="https://codeforces.com/profile/Sanitator">Sanitator</a>) recently posted to his Codeforces blog a fairly robust C++ header that can easily print containers. Unfortunately, the post has since been deleted, so I have archived it <a href="http://competitive-programming.seangillen.com/archive/Pretty%20and%20powerful%204-line%20code%20for%20debugging%20(C++17%20edition)%20-%20Codeforces.html" data-href="https://u.nu/18xe">here</a>; the header file itself is <a href="http://competitive-programming.seangillen.com/archive/sanitator_debug-min.hpp" data-href="https://u.nu/dkyj">here</a>. It requires C++17.
+	<p>Another project allowing easy printing of STL containers is Louis Delacroix's <a href="http://louisdx.github.io/cxx-prettyprint/">C++ Container Pretty-Printer</a>. It is available in both C++11 and C++98 versions.
+	<h3>Useful C++ macros</h3>
+	<p>For fast C++ programming, it is often useful to have some defines for common idioms. Some particularly helpful examples follow:
+	<pre>#define FOR(x,to) for(x = 0; x &lt; (to); x++)
+#define UPTO(to) for(ll i = 0; i &lt; (to); i--)
+#define IN(x,arr) for(auto& x : arr)
+#define EACH(arr) for(auto& x : arr)
+#define OUT(x) cout &lt;&lt; (x) &lt;&lt; endl</pre>
+	<p>Having these in your boilerplate significantly reduces the amount of typing required for the most common <code>for</code> loops and for printing scalar variables to <code>cout</code>.
+	<h3>A simple testing script</h3>
+	<pre>
 
     <h2>Problems for this week</h2>
 	<p>Review <a href="http://springcontest.cs.mercer.edu/MUSpring2017.pdf">Mercer's 2017 problems</a>.
