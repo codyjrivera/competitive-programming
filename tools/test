@@ -1,0 +1,55 @@
+#!/bin/bash
+
+echo ==== COMPILER MESSAGES ====
+set -e
+g++ -O2 -std=gnu++17 -lm -s -static -Wall -Wextra -o $1 $1.cpp
+set +e
+
+if [ -e $1.in ]
+then
+	echo
+	echo
+	echo ==== TESTING $1.in ====
+	echo ==== YOUR STDERR ====
+	./$1 < $1.in > $1.output
+	echo
+
+	echo ==== YOUR STDOUT ====
+	cat $1.output
+	echo
+
+	echo ==== DIFF WITH EXPECTED OUTPUT ====
+	diff --color $1.out $1.output
+	if [ $? -ne 0 ]
+	then
+		rm $1.output $1
+		exit $?
+	fi
+fi
+
+i=1
+while [ -e $1.in$i ]
+do
+	echo
+	echo
+	echo ==== TESTING $1.in$i ====
+	echo ==== YOUR STDERR ====
+	./$1 < $1.in$i > $1.output
+	echo
+
+	echo ==== YOUR STDOUT ====
+	cat $1.output
+	echo
+
+	echo ==== DIFF WITH EXPECTED OUTPUT ====
+	diff --color $1.out$i $1.output
+	if [ $? -ne 0 ]
+	then
+		rm $1.output $1
+		exit $?
+	fi
+
+	((i++))
+done
+
+rm $1.output $1

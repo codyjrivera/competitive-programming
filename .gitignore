@@ -12,3 +12,4 @@ _minted-docs/
 *.log
 *.pdf
 *.gz
+tools/pens.*
