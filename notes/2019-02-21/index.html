@@ -6,9 +6,9 @@
 <script src="https://fred-wang.github.io/mathjax.js/mpadded-min.js"></script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
-	CommonHTML: { linebreaks: { automatic: true } },
-	"HTML-CSS": { linebreaks: { automatic: true } },
-			SVG: { linebreaks: { automatic: true } }
+    CommonHTML: { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+            SVG: { linebreaks: { automatic: true } }
 });
 </script>
 
@@ -18,536 +18,536 @@ MathJax.Hub.Config({
 </header>
 
 <article>
-	<h2>Main points for today</h2>
-	<ul>
-		<li>NAIPC Rules &amp; Registration
-		<li>Practicing with virtual contests
-		<li>Documentation
-		<li>Some helpful code
-		<li>Mercer review
-		<li>Some recent Codeforces problems
-	</ul>
-	<h2>NAIPC Rules &amp; Registration</h2>
-	<p>The <a href="http://naipc.uchicago.edu"><strong>North American Invitational Programming Contest</strong></a> will take place from <strong><time datetime="2019-03-02T12:00-06:00">noon</time> to <time datetime="2019-03-02T17:00-06:00">5pm</time> on Friday, March 2</strong>.
-	<p>Form <strong>teams of up to 3</strong>. The registration deadline is next Thursday, but I'm not sure of the time so if you want to participate you should find a team and register before next week's meeting.
-	<p>All contestants will need an <a href="https://icpc.baylor.edu/">ICPC</a> account.
-	<p>Register for the <strong>Open Division (USA &amp; Canada)</strong>.
-	<p>No rule about internet access is enforced, but participants are <strong>strongly encouraged</strong> to follow ICPC rules&mdash;that is, <strong>one computer per team</strong> and <strong>no internet access</strong> other than the submission system standard language documentation like would be provided at an ICPC competition.
-	<p>In lieu of printed documentation alongside the standard language documentation, it will be fine for teams to have a second computer as long as it is <strong>dedicated to viewing documentation that would otherwise be printed</strong>&mdash;in our case, that's anything in <a href="/ref">this folder</a> and anything that has been posted on Slack.
-	<p>Supported languages and the recommended reference documentation:
-		<ul>
-			<li>C
-				<ul>
-					<li>Reference: <a href="https://en.cppreference.com/w/c/language">cppreference</a>
-					<li>Compiler: gcc 7.3.0 with flags <code>-g -O2 -std=gnu99 -lm -static</code> &ndash; note that <strong>GNU C99, not ISO C11, is used</strong>
-				</ul>
-			<li>C++
-				<ul>
-					<li>Reference: <a href="http://cppreference.com/">cppreference</a>
-					<li>It is recommended to use <code>ios::sync_with_stdio(false);</code> to disable <code>cout</code> and <code>cin</code> from syncing with C <code>stdio</code> and to avoid usinig <code>endl</code> (favor <code>\n</code>) for performance reasons.
-					<li>Compiler: gcc (g++) 7.3.0 with flags <code>-g -O2 -static -std=gnu++17</code>
-				</ul>
-			<li>Java
-				<ul>
-					<li>Reference: <a href="https://docs.oracle.com/javase/10/docs/api/index.html?overview-summary.html">Java SE 10 API Specification</a>
-					<li>Compiler: OpenJDK 10.0.2
-					<li>Runtime flags: <code>-XX:+UseSerialGC -Xss64m -Xms{memlim}m -Xmx{memlim}m -Dfile.encoding=UTF-8</code> (memory limit is set per problem)
-					<li>You may (and are encouraged to) use Kattis's <a href="https://open.kattis.com/download/Kattio.java?1a0093">Kattio</a> library for input and output.
-					<li>Uncaught exceptions are judged as Run Time Errors or, when related to memory consumption, Memory Limit Exceeded.
-					<li>You can submit multiple classes but must specify the mainclass to use.
-				</ul>
-			<li>Python 2
-				<ul>
-					<li>Reference: <a href="https://docs.python.org/release/2.7.13/">Python 2.7.13 Documentation</a>
-					<li>Compiler: PyPy 2.7.13 v5.10.0 (note <a href="https://pypy.readthedocs.io/en/latest/cpython_differences.html">the differences from CPython</a>)
-				</ul>
-			<li>Python 3
-				<ul>
-					<li>Reference: <a href="https://docs.python.org/release/3.6.7/">Python 3.6.7 Documentation</a>
-					<li>Interpreter: CPython 3.6.7
-				</ul>
-			<li>Kotlin
-				<ul>
-					<li>Reference: <a href="https://kotlinlang.org/docs/reference/">Kotlin Reference</a>
-					<li>Compiler: Kotlin 1.3.0 (JRE 10.0.2+13)
-					<li>Runtime flags: <code>-J-XX:+UseSerialGC -J-Xss64m -J-Xms{memlim}m -J-Xmx{memlim}m</code> (memory limit is set per problem)
-					<li>Uncaught exceptions are judged as Run Time Errors or, when related to memory consumption, Memory Limit Exceeded.
-					<li>You can submit multiple classes but must specify the mainclass to use.
-				</ul>
-		</ul>
-	<p>Read input from stdin and output to stdout. Anything written on stderr will be ignored. All standard libraries included with each language are allowed. All submissions must exit with code 0; submissions exiting with a non-zero code will be judged as Run Time Errors.
+    <h2>Main points for today</h2>
+    <ul>
+        <li>NAIPC Rules &amp; Registration
+        <li>Practicing with virtual contests
+        <li>Documentation
+        <li>Some helpful code
+        <li>Mercer review
+        <li>Some recent Codeforces problems
+    </ul>
+    <h2>NAIPC Rules &amp; Registration</h2>
+    <p>The <a href="http://naipc.uchicago.edu"><strong>North American Invitational Programming Contest</strong></a> will take place from <strong><time datetime="2019-03-02T12:00-06:00">noon</time> to <time datetime="2019-03-02T17:00-06:00">5pm</time> on Friday, March 2</strong>.
+    <p>Form <strong>teams of up to 3</strong>. The registration deadline is next Thursday, but I'm not sure of the time so if you want to participate you should find a team and register before next week's meeting.
+    <p>All contestants will need an <a href="https://icpc.baylor.edu/">ICPC</a> account.
+    <p>Register for the <strong>Open Division (USA &amp; Canada)</strong>.
+    <p>No rule about internet access is enforced, but participants are <strong>strongly encouraged</strong> to follow ICPC rules&mdash;that is, <strong>one computer per team</strong> and <strong>no internet access</strong> other than the submission system standard language documentation like would be provided at an ICPC competition.
+    <p>In lieu of printed documentation alongside the standard language documentation, it will be fine for teams to have a second computer as long as it is <strong>dedicated to viewing documentation that would otherwise be printed</strong>&mdash;in our case, that's anything in <a href="/ref">this folder</a> and anything that has been posted on Slack.
+    <p>Supported languages and the recommended reference documentation:
+        <ul>
+            <li>C
+                <ul>
+                    <li>Reference: <a href="https://en.cppreference.com/w/c/language">cppreference</a>
+                    <li>Compiler: gcc 7.3.0 with flags <code>-g -O2 -std=gnu99 -lm -static</code> &ndash; note that <strong>GNU C99, not ISO C11, is used</strong>
+                </ul>
+            <li>C++
+                <ul>
+                    <li>Reference: <a href="http://cppreference.com/">cppreference</a>
+                    <li>It is recommended to use <code>ios::sync_with_stdio(false);</code> to disable <code>cout</code> and <code>cin</code> from syncing with C <code>stdio</code> and to avoid usinig <code>endl</code> (favor <code>\n</code>) for performance reasons.
+                    <li>Compiler: gcc (g++) 7.3.0 with flags <code>-g -O2 -static -std=gnu++17</code>
+                </ul>
+            <li>Java
+                <ul>
+                    <li>Reference: <a href="https://docs.oracle.com/javase/10/docs/api/index.html?overview-summary.html">Java SE 10 API Specification</a>
+                    <li>Compiler: OpenJDK 10.0.2
+                    <li>Runtime flags: <code>-XX:+UseSerialGC -Xss64m -Xms{memlim}m -Xmx{memlim}m -Dfile.encoding=UTF-8</code> (memory limit is set per problem)
+                    <li>You may (and are encouraged to) use Kattis's <a href="https://open.kattis.com/download/Kattio.java?1a0093">Kattio</a> library for input and output.
+                    <li>Uncaught exceptions are judged as Run Time Errors or, when related to memory consumption, Memory Limit Exceeded.
+                    <li>You can submit multiple classes but must specify the mainclass to use.
+                </ul>
+            <li>Python 2
+                <ul>
+                    <li>Reference: <a href="https://docs.python.org/release/2.7.13/">Python 2.7.13 Documentation</a>
+                    <li>Compiler: PyPy 2.7.13 v5.10.0 (note <a href="https://pypy.readthedocs.io/en/latest/cpython_differences.html">the differences from CPython</a>)
+                </ul>
+            <li>Python 3
+                <ul>
+                    <li>Reference: <a href="https://docs.python.org/release/3.6.7/">Python 3.6.7 Documentation</a>
+                    <li>Interpreter: CPython 3.6.7
+                </ul>
+            <li>Kotlin
+                <ul>
+                    <li>Reference: <a href="https://kotlinlang.org/docs/reference/">Kotlin Reference</a>
+                    <li>Compiler: Kotlin 1.3.0 (JRE 10.0.2+13)
+                    <li>Runtime flags: <code>-J-XX:+UseSerialGC -J-Xss64m -J-Xms{memlim}m -J-Xmx{memlim}m</code> (memory limit is set per problem)
+                    <li>Uncaught exceptions are judged as Run Time Errors or, when related to memory consumption, Memory Limit Exceeded.
+                    <li>You can submit multiple classes but must specify the mainclass to use.
+                </ul>
+        </ul>
+    <p>Read input from stdin and output to stdout. Anything written on stderr will be ignored. All standard libraries included with each language are allowed. All submissions must exit with code 0; submissions exiting with a non-zero code will be judged as Run Time Errors.
 
-	<h2>Practicing with virtual contests</h2>
-	<p>Just a reminder that <strong>virtual contests</strong> on Codeforces are a great way to practice! These allow you to simulate a past Codeforces round at any time and see how you would have placed in the contest rankings. It's just like participating in an actual contest, but it does not affect your Codeforces rating.
-	<p>Furthermore, <strong>teams</strong> can participate in virtual contests for team practice&mdash;register a team at <a href="https://codeforces.com/teams/new" class="noprint">https://codeforces.com/teams/new</a>
-	<p>Most Codeforces rounds last 2 hours.
+    <h2>Practicing with virtual contests</h2>
+    <p>Just a reminder that <strong>virtual contests</strong> on Codeforces are a great way to practice! These allow you to simulate a past Codeforces round at any time and see how you would have placed in the contest rankings. It's just like participating in an actual contest, but it does not affect your Codeforces rating.
+    <p>Furthermore, <strong>teams</strong> can participate in virtual contests for team practice&mdash;register a team at <a href="https://codeforces.com/teams/new" class="noprint">https://codeforces.com/teams/new</a>
+    <p>Most Codeforces rounds last 2 hours.
 
-	<h2>Documentation</h2>
-	<p>Please post links to helpful resources in #compprogramming-docs
-	<p>Some content that will be integrated into our printed notes into the future:
-		<ul>
-			<li><a href="http://cp-algorithms.com/">CP-Algorithms</a>
-			<li><a href="http://www.cs.northwestern.edu/~riesbeck/programming/c++/">Dr. Chris Riesbeck's C++ site</a>, including <a href="http://www.cs.northwestern.edu/~riesbeck/programming/c++/stl-summary.html">an excellent (if a bit outdated) reference to STL containers</a>
-		</ul>
-	<h2>Some helpful code</h2>
-	<h3>C++ boilerplate</h3>
-	<p>The following (<a href="/tools/boilerplate.cpp">boilerplate.cpp</a>) is a good starting point for solving problems in C++: 
-	<pre>#include &lt;bits/stdc++.h&gt;
+    <h2>Documentation</h2>
+    <p>Please post links to helpful resources in #compprogramming-docs
+    <p>Some content that will be integrated into our printed notes into the future:
+        <ul>
+            <li><a href="http://cp-algorithms.com/">CP-Algorithms</a>
+            <li><a href="http://www.cs.northwestern.edu/~riesbeck/programming/c++/">Dr. Chris Riesbeck's C++ site</a>, including <a href="http://www.cs.northwestern.edu/~riesbeck/programming/c++/stl-summary.html">an excellent (if a bit outdated) reference to STL containers</a>
+        </ul>
+    <h2>Some helpful code</h2>
+    <h3>C++ boilerplate</h3>
+    <p>The following (<a href="/tools/boilerplate.cpp">boilerplate.cpp</a>) is a good starting point for solving problems in C++: 
+    <pre>#include &lt;bits/stdc++.h&gt;
 using namespace std;
 typedef long long ll;
 bool DB = 0;
 
 template &lt;typename T1, typename... T2&gt;
 void db(T1&amp;&amp; x1, T2&amp;&amp;... x2) {
-	if(!DB) return;
-	cout &lt;&lt; forward&lt;T1&gt;(x1);
-	((cout &lt;&lt; ' ' &lt;&lt; forward&lt;T2&gt;(x2)), ...);
-	cout &lt;&lt; endl;
+    if(!DB) return;
+    cout &lt;&lt; forward&lt;T1&gt;(x1);
+    ((cout &lt;&lt; ' ' &lt;&lt; forward&lt;T2&gt;(x2)), ...);
+    cout &lt;&lt; endl;
 }
 
 #define PULSE db("Alive at line", __LINE__)
 
 int main(int argc, char *argv[]) {
-	DB = !!(argc - 1);
-	(void) argv;
-	
-	PULSE;
+    DB = !!(argc - 1);
+    (void) argv;
+    
+    PULSE;
 }</pre>
-	<p>This template provides a <code>db</code> function that prints its arguments to stderr only if a command-line argument is passed to the program (which also sets the global <code>DB</code> boolean). Since (in almost all problems) no command line argument is passed to the executable, you do not have to comment this code out before submission. It also provides the <code>PULSE</code> macro, which prints the line number on which it is placed when the program reaches that line, and uses <code>bits/stdc++.h</code> and <code>using namespace std</code> to import the entire standard library into the current scope so you don't have to deal with header files or scope resolution. (This does increase compilation time, but this is not <em>usually</em> a concern for competitive programming. Note that this is <strong>very poor</strong> style in production C++.) Finally, it typedefs <code>ll</code> to <code>long long int</code>, which should be used in place of <code>int</code> whenever possible to avoid overflows.
-	<p>It uses C++17 features, so be sure to compile it with <code>-std=c++17</code> or <code>-std=gnu++17</code>
-	<h3>More robust C++ debug headers</h3>
-	<p>Codeforces user Danila Danko (<a href="https://codeforces.com/profile/Sanitator">Sanitator</a>) recently posted to his Codeforces blog a fairly robust C++ header that can easily print containers. Unfortunately, the post has since been deleted, so I have archived it <a href="http://competitive-programming.seangillen.com/archive/Pretty%20and%20powerful%204-line%20code%20for%20debugging%20(C++17%20edition)%20-%20Codeforces.html" data-href="https://u.nu/18xe">here</a>; the header file itself is <a href="http://competitive-programming.seangillen.com/archive/sanitator_debug-min.hpp" data-href="https://u.nu/dkyj">here</a>. It requires C++17.
-	<p>Another project allowing easy printing of STL containers is Louis Delacroix's <a href="http://louisdx.github.io/cxx-prettyprint/">C++ Container Pretty-Printer</a>. It is available in both C++11 and C++98 versions.
-	<h3>Useful C++ macros</h3>
-	<p>For fast C++ programming, it is often useful to have some defines for common idioms. Some particularly helpful examples follow:
-	<pre>#define FOR(x,to) for(x = 0; x &lt; (to); x++)
+    <p>This template provides a <code>db</code> function that prints its arguments to stderr only if a command-line argument is passed to the program (which also sets the global <code>DB</code> boolean). Since (in almost all problems) no command line argument is passed to the executable, you do not have to comment this code out before submission. It also provides the <code>PULSE</code> macro, which prints the line number on which it is placed when the program reaches that line, and uses <code>bits/stdc++.h</code> and <code>using namespace std</code> to import the entire standard library into the current scope so you don't have to deal with header files or scope resolution. (This does increase compilation time, but this is not <em>usually</em> a concern for competitive programming. Note that this is <strong>very poor</strong> style in production C++.) Finally, it typedefs <code>ll</code> to <code>long long int</code>, which should be used in place of <code>int</code> whenever possible to avoid overflows.
+    <p>It uses C++17 features, so be sure to compile it with <code>-std=c++17</code> or <code>-std=gnu++17</code>
+    <h3>More robust C++ debug headers</h3>
+    <p>Codeforces user Danila Danko (<a href="https://codeforces.com/profile/Sanitator">Sanitator</a>) recently posted to his Codeforces blog a fairly robust C++ header that can easily print containers. Unfortunately, the post has since been deleted, so I have archived it <a href="http://competitive-programming.seangillen.com/archive/Pretty%20and%20powerful%204-line%20code%20for%20debugging%20(C++17%20edition)%20-%20Codeforces.html" data-href="https://u.nu/18xe">here</a>; the header file itself is <a href="http://competitive-programming.seangillen.com/archive/sanitator_debug-min.hpp" data-href="https://u.nu/dkyj">here</a>. It requires C++17.
+    <p>Another project allowing easy printing of STL containers is Louis Delacroix's <a href="http://louisdx.github.io/cxx-prettyprint/">C++ Container Pretty-Printer</a>. It is available in both C++11 and C++98 versions.
+    <h3>Useful C++ macros</h3>
+    <p>For fast C++ programming, it is often useful to have some defines for common idioms. Some particularly helpful examples follow:
+    <pre>#define FOR(x,to) for(x = 0; x &lt; (to); x++)
 #define UPTO(to) for(ll i = 0; i &lt; (to); i--)
 #define IN(x,arr) for(auto& x : arr)
 #define EACH(arr) for(auto& x : arr)
 #define OUT(x) cout &lt;&lt; (x) &lt;&lt; endl</pre>
-	<p>Having these in your boilerplate significantly reduces the amount of typing required for the most common <code>for</code> loops and for printing scalar variables to <code>cout</code>.
-	<h3>A simple testing script</h3>
-	<p>After noticing I spent a lot of time manually entering test cases and comparing their output to the expected output, I wrote a small shell script to assist in testing. Place your source file (say, <code>prob3.cpp</code>) and sample inputs and outputs with names like <code>prob3.in1</code>, <code>prob3.out1</code>, <code>prob3.in2</code>, <code>prob3.out2</code>, etc. in the same directory and run <code>tester prob3</code> in this directory.
-	<p>For further details, see <a href="https://github.com/TortoiseWrath/competitive-programming/tree/master/tools#tester">the readme</a>. The script itself can be found <a href="/tools/tester">here</a>. It is also reproduced below so it can be manually entered at a competition if I am so inclined.
-	<pre>#!/bin/bash
+    <p>Having these in your boilerplate significantly reduces the amount of typing required for the most common <code>for</code> loops and for printing scalar variables to <code>cout</code>.
+    <h3>A simple testing script</h3>
+    <p>After noticing I spent a lot of time manually entering test cases and comparing their output to the expected output, I wrote a small shell script to assist in testing. Place your source file (say, <code>prob3.cpp</code>) and sample inputs and outputs with names like <code>prob3.in1</code>, <code>prob3.out1</code>, <code>prob3.in2</code>, <code>prob3.out2</code>, etc. in the same directory and run <code>tester prob3</code> in this directory.
+    <p>For further details, see <a href="https://github.com/TortoiseWrath/competitive-programming/tree/master/tools#tester">the readme</a>. The script itself can be found <a href="/tools/tester">here</a>. It is also reproduced below so it can be manually entered at a competition if I am so inclined.
+    <pre>#!/bin/bash
 
 if [ -z "$1" ]
 then
-	echo No program specified
-	exit 1
+    echo No program specified
+    exit 1
 fi
 
 if [ -n "$2" ]
 then
-	echo ==== DEBUG MODE ENABLED ====
-	echo
+    echo ==== DEBUG MODE ENABLED ====
+    echo
 fi
 
 if [[ $1 == *.cpp ]]
 then
-	L=cpp
-	PROG=${1:0:-4}
+    L=cpp
+    PROG=${1:0:-4}
 elif [[ $1 == *.py ]]
 then
-	L=py
-	PROG=${1:0:-3}
+    L=py
+    PROG=${1:0:-3}
 elif [[ $1 == *.c ]]
 then
-	L=c
-	PROG=${1:0:-2}
+    L=c
+    PROG=${1:0:-2}
 elif [[ $1 == *.java ]]
 then
-	L=java
-	PROG=${1:0:-5}
+    L=java
+    PROG=${1:0:-5}
 elif [[ $1 == *.pl ]]
 then
-	L=pl
-	PROG=${1:0:-3}
+    L=pl
+    PROG=${1:0:-3}
 else
-	L=cpp
-	PROG=$1
+    L=cpp
+    PROG=$1
 fi
 
 set -e
 if [ $L != "pl" ] &amp;&amp; [ $L != "py" ]
 then
-	echo
-	echo ==== COMPILER MESSAGES ====
-	case $L in
-		cpp)
-			if [ -n "$2" ]
-			then
-				g++ -O2 -std=gnu++17 -lm -s -static -Wall -Wextra -o $PROG $PROG.cpp
-			else
-				g++ -O2 -std=gnu++17 -lm -s -static -o $PROG $PROG.cpp
-			fi
-			;;
-		c)
-			gcc -O2 -static -std=c11 -fno-asm -lm -s -o $PROG $PROG.c
-			;;
-		java)
-			javac $PROG.java
-			;;
-		*)
-			echo "Unrecognized language"
-			exit 2
-			;;
-	esac
-	echo
+    echo
+    echo ==== COMPILER MESSAGES ====
+    case $L in
+        cpp)
+            if [ -n "$2" ]
+            then
+                g++ -O2 -std=gnu++17 -lm -s -static -Wall -Wextra -o $PROG $PROG.cpp
+            else
+                g++ -O2 -std=gnu++17 -lm -s -static -o $PROG $PROG.cpp
+            fi
+            ;;
+        c)
+            gcc -O2 -static -std=c11 -fno-asm -lm -s -o $PROG $PROG.c
+            ;;
+        java)
+            javac $PROG.java
+            ;;
+        *)
+            echo "Unrecognized language"
+            exit 2
+            ;;
+    esac
+    echo
 fi
 set +e
 
 if [ -e $PROG.in ]
 then
-	echo
-	echo ==== TESTING $PROG.in ====
-	echo ==== YOUR STDERR ====
-	case $L in
-		py)
-			python3 $PROG.py $2 &lt; $PROG.in &gt; $PROG.output
-			;;
-		pl)
-			perl $PROG.pl $2 &lt; $PROG.in &gt; $PROG.output
-			;;
-		java)
-			java $PROG $2 &lt; $PROG.in &gt; $PROG.output
-			;;
-		*)
-			./$PROG $2 &lt; $PROG.in &gt; $PROG.output
-			;;
-	esac
-	echo
+    echo
+    echo ==== TESTING $PROG.in ====
+    echo ==== YOUR STDERR ====
+    case $L in
+        py)
+            python3 $PROG.py $2 &lt; $PROG.in &gt; $PROG.output
+            ;;
+        pl)
+            perl $PROG.pl $2 &lt; $PROG.in &gt; $PROG.output
+            ;;
+        java)
+            java $PROG $2 &lt; $PROG.in &gt; $PROG.output
+            ;;
+        *)
+            ./$PROG $2 &lt; $PROG.in &gt; $PROG.output
+            ;;
+    esac
+    echo
 
-	echo ==== YOUR STDOUT ====
-	cat $PROG.output
-	echo
+    echo ==== YOUR STDOUT ====
+    cat $PROG.output
+    echo
 
-	echo ==== DIFF WITH EXPECTED OUTPUT ====
-	diff --color $PROG.out $PROG.output
-	if [ $? -ne 0 ] &amp;&amp; [ -z "$2" ]
-	then
-		rm $PROG.output $PROG
-		exit $?
-	fi
-	echo
+    echo ==== DIFF WITH EXPECTED OUTPUT ====
+    diff --color $PROG.out $PROG.output
+    if [ $? -ne 0 ] &amp;&amp; [ -z "$2" ]
+    then
+        rm $PROG.output $PROG
+        exit $?
+    fi
+    echo
 fi
 
 i=1
 while [ -e $PROG.in$i ]
 do
-	echo
-	echo ==== TESTING $PROG.in$i ====
-	echo ==== YOUR STDERR ====
-	case $L in
-		py)
-			python3 $PROG.py $2 &lt; $PROG.in$i &gt; $PROG.output
-			;;
-		pl)
-			perl $PROG.pl $2 &lt; $PROG.in$i &gt; $PROG.output
-			;;
-		java)
-			java $PROG $2 &lt; $PROG.in$i &gt; $PROG.output
-			;;
-		*)
-			./$PROG $2 &lt; $PROG.in$i &gt; $PROG.output
-			;;
-	esac
-	echo
-	echo
+    echo
+    echo ==== TESTING $PROG.in$i ====
+    echo ==== YOUR STDERR ====
+    case $L in
+        py)
+            python3 $PROG.py $2 &lt; $PROG.in$i &gt; $PROG.output
+            ;;
+        pl)
+            perl $PROG.pl $2 &lt; $PROG.in$i &gt; $PROG.output
+            ;;
+        java)
+            java $PROG $2 &lt; $PROG.in$i &gt; $PROG.output
+            ;;
+        *)
+            ./$PROG $2 &lt; $PROG.in$i &gt; $PROG.output
+            ;;
+    esac
+    echo
+    echo
 
-	echo ==== YOUR STDOUT ====
-	cat $PROG.output
-	echo
+    echo ==== YOUR STDOUT ====
+    cat $PROG.output
+    echo
 
-	echo ==== DIFF WITH EXPECTED OUTPUT ====
-	diff --color $PROG.out$i $PROG.output
-	if [ $? -ne 0 ] &amp;&amp; [ -z "$2" ]
-	then
-		rm -f $PROG.output $PROG.class $PROG
-		exit $?
-	fi
+    echo ==== DIFF WITH EXPECTED OUTPUT ====
+    diff --color $PROG.out$i $PROG.output
+    if [ $? -ne 0 ] &amp;&amp; [ -z "$2" ]
+    then
+        rm -f $PROG.output $PROG.class $PROG
+        exit $?
+    fi
 
-	((i++))
-	echo
+    ((i++))
+    echo
 done
 
 rm -f $PROG.output $PROG.class $PROG</pre>
-			
+            
 
     <h2>Mercer review</h2>
-	<h3>Fake Binaries</h3>
-	<p>I am 99% sure the following (<a href="/solutions/fakebin.py">fakebin.py</a>) is a solution to Fake Binaries:
-	<pre>number = input().strip()
+    <h3>Fake Binaries</h3>
+    <p>I am 99% sure the following (<a href="/solutions/fakebin.py">fakebin.py</a>) is a solution to Fake Binaries:
+    <pre>number = input().strip()
 outputs = []
 while len(number) == 0:
-	number = input().strip()
+    number = input().strip()
 while number[0] != '-':
-	total = 0
-	i = 1
-	while True:
-		fakeBin = int("{0:b}".format(i))
-		if fakeBin &gt; int(number):
-			break
-		total += fakeBin
-		i += 1
-	outputs.append(total)
-	number = input().strip()
-	while len(number) == 0:
-		number = input().strip()
+    total = 0
+    i = 1
+    while True:
+        fakeBin = int("{0:b}".format(i))
+        if fakeBin &gt; int(number):
+            break
+        total += fakeBin
+        i += 1
+    outputs.append(total)
+    number = input().strip()
+    while len(number) == 0:
+        number = input().strip()
 for output in outputs:
-	print(output)</pre>
-	<p>The output buffering is necessary only because of a quirk in Mercer's judging system that may have been fixed partway through the competition; as such, the following is probably also a solution:
-	<pre>number = input().strip()
+    print(output)</pre>
+    <p>The output buffering is necessary only because of a quirk in Mercer's judging system that may have been fixed partway through the competition; as such, the following is probably also a solution:
+    <pre>number = input().strip()
 while len(number) == 0:
-	number = input().strip()
+    number = input().strip()
 while number[0] != '-':
-	total = 0
-	i = 1
-	while True:
-		fakeBin = int("{0:b}".format(i))
-		if fakeBin &gt; int(number):
-			break
-		total += fakeBin
-		i += 1
-	print(total)
-	number = input().strip()
-	while len(number) == 0:
-		number = input().strip()</pre>
-	<p>The <code>while len(number) == 0</code> loops are to deal with blank lines, which we were required to ignore.
-	
-	<h3>Counting the delta-permutations of a string</h3>
-	<p>"Delta-permutations" are actually called <a href="https://en.wikipedia.org/wiki/Derangement"><strong>derangements</strong></a>. The total number of derangements&mdash;<strong>not</strong> considering letters that appear multiple times in the input word&mdash;can be found with the subfactorial function. The solution to this problem is described in detail by <a href="https://math.stackexchange.com/a/2189723">this Mathematics Stack Exchange answer</a>.
-		
-	<h2>Some interesting recent Codeforces problems</h2>
-	<h3>Palindromic Matrix</h3>
-	<p><a href="https://codeforces.com/problemset/problem/1118/C">This problem</a> was featured in Tuesday's Division 3 round. Consider the following palindromic matrices:
-	<p style="display: flex; justify-content: space-around; align-items: center;">
-	<math>
-		<mrow>
-			<mo>[</mo>
-			<mtable>
-				<mtr>
-					<mtd class="highlight">
-						<mn>1</mn>
-					</mtd>
-					<mtd class="highlight">
-						<mn>2</mn>
-					</mtd>
-					<mtd class="highlight">
-						<mn>3</mn>
-					</mtd>
-					<mtd>
-						<mn>3</mn>
-					</mtd>
-					<mtd>
-						<mn>2</mn>
-					</mtd>
-					<mtd>
-						<mn>1</mn>
-					</mtd>
-				</mtr>
-				<mtr>
-					<mtd class="highlight">
-						<mn>4</mn>
-					</mtd>
-					<mtd class="highlight">
-						<mn>5</mn>
-					</mtd>
-					<mtd class="highlight">
-						<mn>6</mn>
-					</mtd>
-					<mtd>
-						<mn>6</mn>
-					</mtd>
-					<mtd>
-						<mn>5</mn>
-					</mtd>
-					<mtd>
-						<mn>4</mn>
-					</mtd>
-				</mtr>
-				<mtr>
-					<mtd class="highlight">
-						<mn>7</mn>
-					</mtd>
-					<mtd class="highlight">
-						<mn>8</mn>
-					</mtd>
-					<mtd class="highlight">
-						<mn>9</mn>
-					</mtd>
-					<mtd>
-						<mn>9</mn>
-					</mtd>
-					<mtd>
-						<mn>8</mn>
-					</mtd>
-					<mtd>
-						<mn>7</mn>
-					</mtd>
-				</mtr>
-				<mtr>
-					<mtd>
-						<mn>7</mn>
-					</mtd>
-					<mtd>
-						<mn>8</mn>
-					</mtd>
-					<mtd>
-						<mn>9</mn>
-					</mtd>
-					<mtd>
-						<mn>9</mn>
-					</mtd>
-					<mtd>
-						<mn>8</mn>
-					</mtd>
-					<mtd>
-						<mn>7</mn>
-					</mtd>
-				</mtr>
-				<mtr>
-					<mtd>
-						<mn>4</mn>
-					</mtd>
-					<mtd>
-						<mn>5</mn>
-					</mtd>
-					<mtd>
-						<mn>6</mn>
-					</mtd>
-					<mtd>
-						<mn>6</mn>
-					</mtd>
-					<mtd>
-						<mn>5</mn>
-					</mtd>
-					<mtd>
-						<mn>4</mn>
-					</mtd>
-				</mtr>
-				<mtr>
-					<mtd>
-						<mn>1</mn>
-					</mtd>
-					<mtd>
-						<mn>2</mn>
-					</mtd>
-					<mtd>
-						<mn>3</mn>
-					</mtd>
-					<mtd>
-						<mn>3</mn>
-					</mtd>
-					<mtd>
-						<mn>2</mn>
-					</mtd>
-					<mtd>
-						<mn>1</mn>
-					</mtd>
-				</mtr>
-			</mtable>
-			<mo>]</mo>
-		</mrow>
-	</math>
-	<math>
-		<mrow>
-			<mo>[</mo>
-			<mtable>
-				<mtr>
-					<mtd class="highlight">
-						<mn>1</mn>
-					</mtd>
-					<mtd class="highlight">
-						<mn>2</mn>
-					</mtd>
-					<mtd class="highlight">
-						<mn>3</mn>
-					</mtd>
-					<mtd>
-						<mn>2</mn>
-					</mtd>
-					<mtd>
-						<mn>1</mn>
-					</mtd>
-				</mtr>
-				<mtr>
-					<mtd class="highlight">
-						<mn>4</mn>
-					</mtd>
-					<mtd class="highlight">
-						<mn>5</mn>
-					</mtd>
-					<mtd class="highlight">
-						<mn>6</mn>
-					</mtd>
-					<mtd>
-						<mn>5</mn>
-					</mtd>
-					<mtd>
-						<mn>4</mn>
-					</mtd>
-				</mtr>
-				<mtr>
-					<mtd class="highlight">
-						<mn>7</mn>
-					</mtd>
-					<mtd class="highlight">
-						<mn>8</mn>
-					</mtd>
-					<mtd class="highlight">
-						<mn>9</mn>
-					</mtd>
-					<mtd>
-						<mn>8</mn>
-					</mtd>
-					<mtd>
-						<mn>7</mn>
-					</mtd>
-				</mtr>
-				<mtr>
-					<mtd>
-						<mn>4</mn>
-					</mtd>
-					<mtd>
-						<mn>5</mn>
-					</mtd>
-					<mtd>
-						<mn>6</mn>
-					</mtd>
-					<mtd>
-						<mn>5</mn>
-					</mtd>
-					<mtd>
-						<mn>4</mn>
-					</mtd>
-				</mtr>
-				<mtr>
-					<mtd>
-						<mn>1</mn>
-					</mtd>
-					<mtd>
-						<mn>2</mn>
-					</mtd>
-					<mtd>
-						<mn>3</mn>
-					</mtd>
-					<mtd>
-						<mn>2</mn>
-					</mtd>
-					<mtd>
-						<mn>1</mn>
-					</mtd>
-				</mtr>
-			</mtable>
-			<mo>]</mo>
-		</mrow>
-	</math>
-	<p>We can see that the highlighted submatrix contains each value. The values of this submatrix are not necessarily distinct, but no two of them <em>need</em> to be the same. For an even <i>n</i>, it is easy to see that we simply need four each of <math><msup><mrow><mo>(</mo><mfrac><mi>n</mi><mn>2</mn></mfrac><mo>)</mo></mrow><mn>2</mn></msup></math> values to fill the palindromic matrix.
-	<p>For an odd <i>n</i>, things are slightly more complicated. We need four of every value in this submatrix, <em>except</em> the values in the last column and row. We need two each of these values, except for the value at the bottom right, which can be unique.
-	<p>We can use a greedy algorithm to populate the submatrix with values from the "stock" of values we are given. We have to start by populating the entries whose values are repeated four times in the palindromic matrix. If we simply populate the submatrix in reading order, we may, for example, take two of the only number we have four of to populate an entry in the right column, then not have enough to populate the next entry, even though we could use a number we have only two of to populate the entry in the right column and still have the four of the other number available.
-	<p>My solution (<a href="/solutions/palmat.py">palmat.py</a>):
-	<pre>from collections import Counter
+    total = 0
+    i = 1
+    while True:
+        fakeBin = int("{0:b}".format(i))
+        if fakeBin &gt; int(number):
+            break
+        total += fakeBin
+        i += 1
+    print(total)
+    number = input().strip()
+    while len(number) == 0:
+        number = input().strip()</pre>
+    <p>The <code>while len(number) == 0</code> loops are to deal with blank lines, which we were required to ignore.
+    
+    <h3>Counting the delta-permutations of a string</h3>
+    <p>"Delta-permutations" are actually called <a href="https://en.wikipedia.org/wiki/Derangement"><strong>derangements</strong></a>. The total number of derangements&mdash;<strong>not</strong> considering letters that appear multiple times in the input word&mdash;can be found with the subfactorial function. The solution to this problem is described in detail by <a href="https://math.stackexchange.com/a/2189723">this Mathematics Stack Exchange answer</a>.
+        
+    <h2>Some interesting recent Codeforces problems</h2>
+    <h3>Palindromic Matrix</h3>
+    <p><a href="https://codeforces.com/problemset/problem/1118/C">This problem</a> was featured in Tuesday's Division 3 round. Consider the following palindromic matrices:
+    <p style="display: flex; justify-content: space-around; align-items: center;">
+    <math>
+        <mrow>
+            <mo>[</mo>
+            <mtable>
+                <mtr>
+                    <mtd class="highlight">
+                        <mn>1</mn>
+                    </mtd>
+                    <mtd class="highlight">
+                        <mn>2</mn>
+                    </mtd>
+                    <mtd class="highlight">
+                        <mn>3</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>3</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>2</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>1</mn>
+                    </mtd>
+                </mtr>
+                <mtr>
+                    <mtd class="highlight">
+                        <mn>4</mn>
+                    </mtd>
+                    <mtd class="highlight">
+                        <mn>5</mn>
+                    </mtd>
+                    <mtd class="highlight">
+                        <mn>6</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>6</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>5</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>4</mn>
+                    </mtd>
+                </mtr>
+                <mtr>
+                    <mtd class="highlight">
+                        <mn>7</mn>
+                    </mtd>
+                    <mtd class="highlight">
+                        <mn>8</mn>
+                    </mtd>
+                    <mtd class="highlight">
+                        <mn>9</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>9</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>8</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>7</mn>
+                    </mtd>
+                </mtr>
+                <mtr>
+                    <mtd>
+                        <mn>7</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>8</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>9</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>9</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>8</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>7</mn>
+                    </mtd>
+                </mtr>
+                <mtr>
+                    <mtd>
+                        <mn>4</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>5</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>6</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>6</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>5</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>4</mn>
+                    </mtd>
+                </mtr>
+                <mtr>
+                    <mtd>
+                        <mn>1</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>2</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>3</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>3</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>2</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>1</mn>
+                    </mtd>
+                </mtr>
+            </mtable>
+            <mo>]</mo>
+        </mrow>
+    </math>
+    <math>
+        <mrow>
+            <mo>[</mo>
+            <mtable>
+                <mtr>
+                    <mtd class="highlight">
+                        <mn>1</mn>
+                    </mtd>
+                    <mtd class="highlight">
+                        <mn>2</mn>
+                    </mtd>
+                    <mtd class="highlight">
+                        <mn>3</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>2</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>1</mn>
+                    </mtd>
+                </mtr>
+                <mtr>
+                    <mtd class="highlight">
+                        <mn>4</mn>
+                    </mtd>
+                    <mtd class="highlight">
+                        <mn>5</mn>
+                    </mtd>
+                    <mtd class="highlight">
+                        <mn>6</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>5</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>4</mn>
+                    </mtd>
+                </mtr>
+                <mtr>
+                    <mtd class="highlight">
+                        <mn>7</mn>
+                    </mtd>
+                    <mtd class="highlight">
+                        <mn>8</mn>
+                    </mtd>
+                    <mtd class="highlight">
+                        <mn>9</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>8</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>7</mn>
+                    </mtd>
+                </mtr>
+                <mtr>
+                    <mtd>
+                        <mn>4</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>5</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>6</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>5</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>4</mn>
+                    </mtd>
+                </mtr>
+                <mtr>
+                    <mtd>
+                        <mn>1</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>2</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>3</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>2</mn>
+                    </mtd>
+                    <mtd>
+                        <mn>1</mn>
+                    </mtd>
+                </mtr>
+            </mtable>
+            <mo>]</mo>
+        </mrow>
+    </math>
+    <p>We can see that the highlighted submatrix contains each value. The values of this submatrix are not necessarily distinct, but no two of them <em>need</em> to be the same. For an even <i>n</i>, it is easy to see that we simply need four each of <math><msup><mrow><mo>(</mo><mfrac><mi>n</mi><mn>2</mn></mfrac><mo>)</mo></mrow><mn>2</mn></msup></math> values to fill the palindromic matrix.
+    <p>For an odd <i>n</i>, things are slightly more complicated. We need four of every value in this submatrix, <em>except</em> the values in the last column and row. We need two each of these values, except for the value at the bottom right, which can be unique.
+    <p>We can use a greedy algorithm to populate the submatrix with values from the "stock" of values we are given. We have to start by populating the entries whose values are repeated four times in the palindromic matrix. If we simply populate the submatrix in reading order, we may, for example, take two of the only number we have four of to populate an entry in the right column, then not have enough to populate the next entry, even though we could use a number we have only two of to populate the entry in the right column and still have the four of the other number available.
+    <p>My solution (<a href="/solutions/palmat.py">palmat.py</a>):
+    <pre>from collections import Counter
 import math
 
 n = int(input())
@@ -557,159 +557,159 @@ subn = math.floor(n/2)
 use = [[0 for col in range(subn)] for row in range(subn)]
 
 if n == 1:
-	print("YES")
-	print(stock.most_common(1)[0][0])
-	exit()
+    print("YES")
+    print(stock.most_common(1)[0][0])
+    exit()
 
 for row in range(subn):
-	for col in range(subn):
-		mc = stock.most_common(1)[0]
-		if(mc[1] &lt; 4):
-			print("NO")
-			exit()
-		stock[mc[0]] -= 4
-		use[row][col] = mc[0]
+    for col in range(subn):
+        mc = stock.most_common(1)[0]
+        if(mc[1] &lt; 4):
+            print("NO")
+            exit()
+        stock[mc[0]] -= 4
+        use[row][col] = mc[0]
 
 if n % 2:
-	for row in range(subn):
-		mc = stock.most_common(1)[0]
-		if(mc[1] &lt; 2):
-			print("NO")
-			exit()
-		stock[mc[0]] -= 2
-		use[row].append(mc[0])
-	use.append([])
-	for col in range(subn):
-		mc = stock.most_common(1)[0]
-		if(mc[1] &lt; 2):
-			print("NO")
-			exit()
-		stock[mc[0]] -= 2
-		use[subn].append(mc[0])
-	mc = stock.most_common(1)[0]
-	if(mc[1] &lt; 1):
-		print("NO")
-		exit()
-	use[subn].append(mc[0])
-	subn += 1 # for printing
+    for row in range(subn):
+        mc = stock.most_common(1)[0]
+        if(mc[1] &lt; 2):
+            print("NO")
+            exit()
+        stock[mc[0]] -= 2
+        use[row].append(mc[0])
+    use.append([])
+    for col in range(subn):
+        mc = stock.most_common(1)[0]
+        if(mc[1] &lt; 2):
+            print("NO")
+            exit()
+        stock[mc[0]] -= 2
+        use[subn].append(mc[0])
+    mc = stock.most_common(1)[0]
+    if(mc[1] &lt; 1):
+        print("NO")
+        exit()
+    use[subn].append(mc[0])
+    subn += 1 # for printing
 
 print("YES")
 
 for row in range(subn):
-	for col in range(subn):
-		print(use[row][col], end=' ')
-	for col in reversed(range(1, subn - n%2)):
-		print(use[row][col], end=' ')
-	print(use[row][0])
+    for col in range(subn):
+        print(use[row][col], end=' ')
+    for col in reversed(range(1, subn - n%2)):
+        print(use[row][col], end=' ')
+    print(use[row][0])
 for row in reversed(range(1, subn - n%2)):
-	for col in range(subn):
-		print(use[row][col], end=' ')
-	for col in reversed(range(1, subn - n%2)):
-		print(use[row][col], end=' ')
-	print(use[row][0])
+    for col in range(subn):
+        print(use[row][col], end=' ')
+    for col in reversed(range(1, subn - n%2)):
+        print(use[row][col], end=' ')
+    print(use[row][0])
 for col in range(subn):
-	print(use[0][col], end=' ')
+    print(use[0][col], end=' ')
 for col in reversed(range(1, subn - n%2)):
-	print(use[0][col], end=' ')
+    print(use[0][col], end=' ')
 print(use[0][0])</pre>
 
-	<h3>Emotes</h3>
-	<p><a href="https://codeforces.com/problemset/problem/1117/B">This problem</a> appeared in Monday's Educational Codeforces round.
-	<p>When first reading this problem, I thought each emote came with its own "stock" like in the above problem. But the limit is on the <em>total</em> emotes you use, as well as how many of <em>any</em> emote you use in a row. This makes the solution (<a href="1117b.cpp">1117b.cpp</a>) quite straightforward:
-	<pre>#include &lt;iostream&gt;
+    <h3>Emotes</h3>
+    <p><a href="https://codeforces.com/problemset/problem/1117/B">This problem</a> appeared in Monday's Educational Codeforces round.
+    <p>When first reading this problem, I thought each emote came with its own "stock" like in the above problem. But the limit is on the <em>total</em> emotes you use, as well as how many of <em>any</em> emote you use in a row. This makes the solution (<a href="1117b.cpp">1117b.cpp</a>) quite straightforward:
+    <pre>#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
 
 using namespace std;
 
 int main() {
-	unsigned long long int n, m, k, h1, h2;
-	cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;
-	h1 = h2 = 0;
-	for(int i = 0; i &lt; n; i++) {
-		unsigned long long int h;
-		cin &gt;&gt; h;
-		if(h &gt; h1) {
-			h2 = h1;
-			h1 = h;
-		}
-		else if(h &gt; h2) {
-			h2 = h;
-		}
-	}
-	unsigned long long int maxh = 0;
-	if(k == m) {
-		cout &lt;&lt; h1 * m &lt;&lt; endl;
-		return 0;
-	}
-	unsigned long long int happinessPerK = h1 * k + h2;
-	maxh = (happinessPerK * (m/(k+1))) + (h1 * (m%(k+1)));
-	cout &lt;&lt; maxh &lt;&lt; endl;
+    unsigned long long int n, m, k, h1, h2;
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;
+    h1 = h2 = 0;
+    for(int i = 0; i &lt; n; i++) {
+        unsigned long long int h;
+        cin &gt;&gt; h;
+        if(h &gt; h1) {
+            h2 = h1;
+            h1 = h;
+        }
+        else if(h &gt; h2) {
+            h2 = h;
+        }
+    }
+    unsigned long long int maxh = 0;
+    if(k == m) {
+        cout &lt;&lt; h1 * m &lt;&lt; endl;
+        return 0;
+    }
+    unsigned long long int happinessPerK = h1 * k + h2;
+    maxh = (happinessPerK * (m/(k+1))) + (h1 * (m%(k+1)));
+    cout &lt;&lt; maxh &lt;&lt; endl;
 }</pre>
-	<p>We simply use the happiest emote <i>k</i> times, use the next-happiest emote once to break the streak, and repeat until we have used <i>m</i> emotes in total. We do have to be careful not to overflow the answer <code>maxh</code>, since it can be up to <math><mrow><mn>2</mn><mo>&times;</mo><msup><mn>10</mn><mn>18</mn></msup></mrow></math>.
+    <p>We simply use the happiest emote <i>k</i> times, use the next-happiest emote once to break the streak, and repeat until we have used <i>m</i> emotes in total. We do have to be careful not to overflow the answer <code>maxh</code>, since it can be up to <math><mrow><mn>2</mn><mo>&times;</mo><msup><mn>10</mn><mn>18</mn></msup></mrow></math>.
 
-	<h3>Tanya and Candies</h3>
-	<p><a href="https://codeforces.com/problemset/problem/1118/B">This problem</a> from Tuesday's Division 3 round isn't too difficult, but can be tricky to get right. We can consider each candy as an even or an odd candy. Before giving a candy to her father, Tanya eats an even candy on even days and an odd candy on odd days. After giving a candy to her father, this swaps. Adding up all the candies she eats for every case takes too long, so we can keep track partial sums for each type of candy (<a href="/solutions/1118b.cpp">1118b.cpp</a>):
-	<pre>#include &lt;iostream&gt;
+    <h3>Tanya and Candies</h3>
+    <p><a href="https://codeforces.com/problemset/problem/1118/B">This problem</a> from Tuesday's Division 3 round isn't too difficult, but can be tricky to get right. We can consider each candy as an even or an odd candy. Before giving a candy to her father, Tanya eats an even candy on even days and an odd candy on odd days. After giving a candy to her father, this swaps. Adding up all the candies she eats for every case takes too long, so we can keep track partial sums for each type of candy (<a href="/solutions/1118b.cpp">1118b.cpp</a>):
+    <pre>#include &lt;iostream&gt;
 #include &lt;vector&gt;
 
 using namespace std;
 
 int main() {
-	int n;
-	cin &gt;&gt; n;
-	vector&lt;int&gt; evenUpTo = {0, 0}, oddUpTo = {0};
-	for(int i = 1; i &lt;= n; i++) {
-		int ai;
-		cin &gt;&gt; ai;
-		if(i%2) {
-			oddUpTo.push_back(oddUpTo.back() + ai);
-			oddUpTo.push_back(oddUpTo.back());
-		}
-		else {
-			evenUpTo.push_back(evenUpTo.back() + ai);
-			evenUpTo.push_back(evenUpTo.back());
-		}
-	}
-	int good = 0;
-	for(int i = 1; i &lt;= n; i++) {
-		int evens = evenUpTo.at(i - 1) + oddUpTo.back() - oddUpTo.at(i);
-		int odds = oddUpTo.at(i - 1) + evenUpTo.back() - evenUpTo.at(i);
-		good += evens == odds;
-	}
-	cout &lt;&lt; good &lt;&lt; endl;
+    int n;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; evenUpTo = {0, 0}, oddUpTo = {0};
+    for(int i = 1; i &lt;= n; i++) {
+        int ai;
+        cin &gt;&gt; ai;
+        if(i%2) {
+            oddUpTo.push_back(oddUpTo.back() + ai);
+            oddUpTo.push_back(oddUpTo.back());
+        }
+        else {
+            evenUpTo.push_back(evenUpTo.back() + ai);
+            evenUpTo.push_back(evenUpTo.back());
+        }
+    }
+    int good = 0;
+    for(int i = 1; i &lt;= n; i++) {
+        int evens = evenUpTo.at(i - 1) + oddUpTo.back() - oddUpTo.at(i);
+        int odds = oddUpTo.at(i - 1) + evenUpTo.back() - evenUpTo.at(i);
+        good += evens == odds;
+    }
+    cout &lt;&lt; good &lt;&lt; endl;
 }</pre>
 
-	<h3>Water Buying</h3>
-	<p>In case you are tired of thinking and want an easy problem, you can try to solve <a href="https://codeforces.com/problemset/problem/1118/A">this one</a> so you will feel like you have done something. A solution (<a href="/solutions/1118a.cpp">1118a.cpp</a>) is below, but you probably won't need it.
-	<pre>#include &lt;iostream&gt;
+    <h3>Water Buying</h3>
+    <p>In case you are tired of thinking and want an easy problem, you can try to solve <a href="https://codeforces.com/problemset/problem/1118/A">this one</a> so you will feel like you have done something. A solution (<a href="/solutions/1118a.cpp">1118a.cpp</a>) is below, but you probably won't need it.
+    <pre>#include &lt;iostream&gt;
 
 using namespace std;
 
 int main() {
-	int q;
-	cin &gt;&gt; q;
-	for(int i = 0; i &lt; q; i++) {
-		long long int n, a, b;
-		cin &gt;&gt; n &gt;&gt; a &gt;&gt; b;
-		if(b &gt; 2 * a) {
-			cout &lt;&lt; a * n &lt;&lt; endl;
-		}
-		else {
-			cout &lt;&lt; b * (n/2) + a * (n%2) &lt;&lt; endl;
-		}
-	}
+    int q;
+    cin &gt;&gt; q;
+    for(int i = 0; i &lt; q; i++) {
+        long long int n, a, b;
+        cin &gt;&gt; n &gt;&gt; a &gt;&gt; b;
+        if(b &gt; 2 * a) {
+            cout &lt;&lt; a * n &lt;&lt; endl;
+        }
+        else {
+            cout &lt;&lt; b * (n/2) + a * (n%2) &lt;&lt; endl;
+        }
+    }
 }</pre>
-	<p>And a Python version (<a href="/solutions/1118a.py">1118a.py</a>) for your enjoyment:
-	<pre>q = int(input())
+    <p>And a Python version (<a href="/solutions/1118a.py">1118a.py</a>) for your enjoyment:
+    <pre>q = int(input())
 for i in range(q):
-	nab = [int(i) for i in input().split()]
-	n = nab[0]
-	a = nab[1]
-	b = nab[2]
-	if b &gt; 2 * a:
-		print(a * n)
-	else:
-		print(b * (n//2) + a * (n%2))
+    nab = [int(i) for i in input().split()]
+    n = nab[0]
+    a = nab[1]
+    b = nab[2]
+    if b &gt; 2 * a:
+        print(a * n)
+    else:
+        print(b * (n//2) + a * (n%2))
 </pre>
 </article>
