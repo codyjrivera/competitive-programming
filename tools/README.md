@@ -10,6 +10,7 @@ It provides:
 * A `db` function that prints its argument to stderr when `DB` is true
 * A `PULSE` statement that prints "Alive at line" and the line number to stderr when `DB` is true
 * A typedef of `ll` to `long long`
+* `FOR`, `UPTO`, `IN`, `EACH`, and `PR` (print) macros
 
 ## debug.cpp
 
