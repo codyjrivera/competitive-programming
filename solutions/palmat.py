@@ -1,6 +1,5 @@
 from collections import Counter
 import math
-import sys
 
 n = int(input())
 stock = Counter(map(int, input().split()))

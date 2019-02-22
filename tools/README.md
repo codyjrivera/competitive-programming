@@ -2,7 +2,7 @@
 
 ## boilerplate.cpp
 
-This is a simple C++17 boilerplate that I like to use as a starting point for my projects.
+This is a simple C++17 program that I like to use as a starting point for my projects.
 
 It provides:
 * The entire standard library available without a namespace qualifier
