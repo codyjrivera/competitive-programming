@@ -1,4 +1,4 @@
-This repository is a mirror of [my competitive programming site](http://competitive-programming.seangillen.com). It is primarily intended for reference by myself and other members of the programming team at the University of Alabama, but anyone is welcome to find it useful.
+This repository is a mirror of [Sean Gillen's competitive programming site](http://codyjrivera.github.io/competitive-programming). It is primarily intended for reference by members of the programming teams at the University of Alabama, but anyone is welcome to find it useful.
 
 ## Sites for problems
 * [Codeforces](https://codeforces.com)
